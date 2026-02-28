@@ -595,15 +595,28 @@
   </footer>
 
   <script>
+    (function() {
+      var saved = localStorage.getItem('noir-theme');
+      if (saved) {
+        document.documentElement.setAttribute('data-theme', saved);
+      }
+      var btn = document.getElementById('themeBtn');
+      if (btn) {
+        btn.textContent = document.documentElement.getAttribute('data-theme') === 'dark' ? 'Light Mode' : 'Dark Mode';
+      }
+    })();
+
     function toggleTheme() {
-      const html = document.documentElement;
-      const btn = document.getElementById('themeBtn');
+      var html = document.documentElement;
+      var btn = document.getElementById('themeBtn');
       if (html.getAttribute('data-theme') === 'dark') {
         html.setAttribute('data-theme', 'light');
         btn.textContent = 'Dark Mode';
+        localStorage.setItem('noir-theme', 'light');
       } else {
         html.setAttribute('data-theme', 'dark');
         btn.textContent = 'Light Mode';
+        localStorage.setItem('noir-theme', 'dark');
       }
     }
   </script>

@@ -400,6 +400,18 @@
   .xl\:hidden { display: none; }
   .xl\:flex { display: flex; }
   .xl\:grid { display: grid; }
+  .xl\:inline { display: inline; }
+  .xl\:inline-flex { display: inline-flex; }
+
+  .xl\:flex-row { flex-direction: row; }
+  .xl\:flex-col { flex-direction: column; }
+
+  .xl\:justify-start { justify-content: flex-start; }
+  .xl\:justify-end { justify-content: flex-end; }
+  .xl\:justify-center { justify-content: center; }
+  .xl\:justify-between { justify-content: space-between; }
+  .xl\:items-center { align-items: center; }
+  .xl\:items-start { align-items: flex-start; }
 
   .xl\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .xl\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -407,12 +419,120 @@
   .xl\:grid-cols-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
   .xl\:grid-cols-6 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
 
+  .xl\:col-span-2 { grid-column: span 2 / span 2; }
+  .xl\:col-span-3 { grid-column: span 3 / span 3; }
+  .xl\:col-span-4 { grid-column: span 4 / span 4; }
+  .xl\:col-span-full { grid-column: 1 / -1; }
+
+  .xl\:gap-4 { gap: var(--noir-space-4); }
+  .xl\:gap-6 { gap: var(--noir-space-6); }
   .xl\:gap-8 { gap: var(--noir-space-8); }
   .xl\:gap-10 { gap: var(--noir-space-10); }
   .xl\:gap-12 { gap: var(--noir-space-12); }
 
+  .xl\:p-6 { padding: var(--noir-space-6); }
   .xl\:p-8 { padding: var(--noir-space-8); }
   .xl\:p-10 { padding: var(--noir-space-10); }
   .xl\:p-12 { padding: var(--noir-space-12); }
+  .xl\:px-6 { padding-inline: var(--noir-space-6); }
+  .xl\:px-8 { padding-inline: var(--noir-space-8); }
   .xl\:px-10 { padding-inline: var(--noir-space-10); }
+  .xl\:py-6 { padding-block: var(--noir-space-6); }
+  .xl\:py-8 { padding-block: var(--noir-space-8); }
+
+  .xl\:m-0 { margin: var(--noir-space-0); }
+  .xl\:mx-auto { margin-inline: auto; }
+  .xl\:mb-0 { margin-bottom: var(--noir-space-0); }
+
+  .xl\:text-left { text-align: left; }
+  .xl\:text-center { text-align: center; }
+  .xl\:text-right { text-align: right; }
+
+  .xl\:w-full { width: 100%; }
+  .xl\:w-auto { width: auto; }
+}
+
+/* --- Visibility --- */
+.visible { visibility: visible; }
+.invisible { visibility: hidden; }
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+.not-sr-only {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* --- Aspect Ratio --- */
+.aspect-auto { aspect-ratio: auto; }
+.aspect-square { aspect-ratio: 1 / 1; }
+.aspect-video { aspect-ratio: 16 / 9; }
+.aspect-4\/3 { aspect-ratio: 4 / 3; }
+.aspect-3\/2 { aspect-ratio: 3 / 2; }
+.aspect-21\/9 { aspect-ratio: 21 / 9; }
+
+/* --- Object Fit --- */
+.object-contain { object-fit: contain; }
+.object-cover { object-fit: cover; }
+.object-fill { object-fit: fill; }
+.object-none { object-fit: none; }
+.object-scale-down { object-fit: scale-down; }
+
+/* --- Object Position --- */
+.object-center { object-position: center; }
+.object-top { object-position: top; }
+.object-bottom { object-position: bottom; }
+.object-left { object-position: left; }
+.object-right { object-position: right; }
+
+/* --- Z-Index --- */
+.z-0 { z-index: 0; }
+.z-10 { z-index: 10; }
+.z-20 { z-index: 20; }
+.z-30 { z-index: 30; }
+.z-40 { z-index: 40; }
+.z-50 { z-index: 50; }
+.z-auto { z-index: auto; }
+.z-dropdown { z-index: var(--noir-z-dropdown); }
+.z-sticky { z-index: var(--noir-z-sticky); }
+.z-overlay { z-index: var(--noir-z-overlay); }
+.z-modal { z-index: var(--noir-z-modal); }
+.z-toast { z-index: var(--noir-z-toast); }
+.-z-10 { z-index: -10; }
+
+/* --- Gradient Backgrounds --- */
+.bg-gradient-accent {
+  background: linear-gradient(135deg, var(--noir-accent), var(--noir-accent-warm));
+}
+.bg-gradient-warm {
+  background: linear-gradient(135deg, var(--noir-accent-warm), #fbbf24);
+}
+.bg-gradient-dark {
+  background: linear-gradient(180deg, var(--noir-bg-primary), var(--noir-bg-secondary));
+}
+.bg-gradient-to-r {
+  background: linear-gradient(to right, var(--noir-accent), var(--noir-accent-warm));
+}
+.bg-gradient-to-l {
+  background: linear-gradient(to left, var(--noir-accent), var(--noir-accent-warm));
+}
+.bg-gradient-to-t {
+  background: linear-gradient(to top, var(--noir-bg-primary), transparent);
+}
+.bg-gradient-to-b {
+  background: linear-gradient(to bottom, var(--noir-bg-primary), transparent);
 }

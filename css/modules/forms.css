@@ -91,7 +91,7 @@
   cursor: pointer;
   transition: all var(--noir-transition-fast);
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23a0a0a0' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 12px center;
 }
@@ -103,6 +103,10 @@
 .select:focus {
   border-color: var(--noir-accent);
   box-shadow: 0 0 0 3px var(--noir-accent-subtle);
+}
+
+[data-theme="light"] .select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23555555' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
 }
 
 /* --- Checkbox & Radio --- */
@@ -302,4 +306,11 @@
   border-radius: var(--noir-radius-full);
   border: 2px solid var(--noir-bg-primary);
   cursor: pointer;
+}
+
+.range::-moz-range-track {
+  height: 6px;
+  background-color: var(--noir-bg-tertiary);
+  border-radius: var(--noir-radius-full);
+  border: none;
 }

@@ -1,0 +1,120 @@
+/* ============================================
+   Noir CSS Framework - Animations Module
+   Fade, Slide, Pulse, Spin, Bounce
+   ============================================ */
+
+/* --- Fade --- */
+.animate-fade-in {
+  animation: noir-fade-in var(--noir-transition-base) ease forwards;
+}
+
+.animate-fade-out {
+  animation: noir-fade-out var(--noir-transition-base) ease forwards;
+}
+
+@keyframes noir-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes noir-fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* --- Slide --- */
+.animate-slide-up {
+  animation: noir-slide-up var(--noir-transition-base) ease forwards;
+}
+
+.animate-slide-down {
+  animation: noir-slide-down var(--noir-transition-base) ease forwards;
+}
+
+.animate-slide-left {
+  animation: noir-slide-left var(--noir-transition-base) ease forwards;
+}
+
+.animate-slide-right {
+  animation: noir-slide-right var(--noir-transition-base) ease forwards;
+}
+
+@keyframes noir-slide-up {
+  from { transform: translateY(1rem); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes noir-slide-down {
+  from { transform: translateY(-1rem); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes noir-slide-left {
+  from { transform: translateX(1rem); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes noir-slide-right {
+  from { transform: translateX(-1rem); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* --- Pulse --- */
+.animate-pulse {
+  animation: noir-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes noir-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* --- Spin --- */
+.animate-spin {
+  animation: noir-spin 1s linear infinite;
+}
+
+@keyframes noir-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* --- Bounce --- */
+.animate-bounce {
+  animation: noir-bounce 1s infinite;
+}
+
+@keyframes noir-bounce {
+  0%, 100% { transform: translateY(-25%); animation-timing-function: cubic-bezier(0.8, 0, 1, 1); }
+  50% { transform: translateY(0); animation-timing-function: cubic-bezier(0, 0, 0.2, 1); }
+}
+
+/* --- Ping --- */
+.animate-ping {
+  animation: noir-ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes noir-ping {
+  75%, 100% { transform: scale(2); opacity: 0; }
+}
+
+/* --- Animation Control --- */
+.animate-none { animation: none; }
+.animate-duration-fast { animation-duration: 150ms; }
+.animate-duration-base { animation-duration: 250ms; }
+.animate-duration-slow { animation-duration: 400ms; }
+.animate-delay-100 { animation-delay: 100ms; }
+.animate-delay-200 { animation-delay: 200ms; }
+.animate-delay-300 { animation-delay: 300ms; }
+.animate-delay-500 { animation-delay: 500ms; }
+.animate-infinite { animation-iteration-count: infinite; }
+.animate-once { animation-iteration-count: 1; }
+
+/* --- Reduced Motion --- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

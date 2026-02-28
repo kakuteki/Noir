@@ -196,6 +196,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100dvh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Theme transition for common elements */
+.card, .navbar, .sidebar, .input, .textarea, .select, .btn, .alert, .badge, .modal {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 img,
