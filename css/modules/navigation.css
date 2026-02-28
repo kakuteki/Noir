@@ -14,13 +14,22 @@
   position: sticky;
   top: 0;
   z-index: var(--noir-z-sticky);
-  backdrop-filter: blur(12px);
-  background-color: rgba(from var(--noir-bg-secondary) r g b / 0.85);
 }
 
-@supports not (color: rgba(from red r g b / 1)) {
+@supports (backdrop-filter: blur(12px)) {
   .navbar {
-    background-color: var(--noir-bg-secondary);
+    backdrop-filter: blur(12px);
+    background-color: rgba(10, 10, 10, 0.85);
+  }
+}
+
+[data-theme="light"] .navbar {
+  background-color: var(--noir-bg-secondary);
+}
+
+@supports (backdrop-filter: blur(12px)) {
+  [data-theme="light"] .navbar {
+    background-color: rgba(255, 255, 255, 0.85);
   }
 }
 
