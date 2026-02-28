@@ -12,6 +12,13 @@
     "property-no-vendor-prefix": null,
     "selector-no-vendor-prefix": null,
     "at-rule-no-unknown": null,
-    "import-notation": null
+    "import-notation": null,
+    "color-hex-length": null,
+    "custom-property-empty-line-before": null,
+    "declaration-block-single-line-max-declarations": null,
+    "media-feature-range-notation": null,
+    "rule-empty-line-before": null,
+    "length-zero-no-unit": null,
+    "number-max-precision": null
   }
 }
