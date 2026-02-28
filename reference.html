@@ -70,6 +70,7 @@
             <a href="#ref-navigation" class="btn btn-sm btn-ghost">Navigation</a>
             <a href="#ref-utilities" class="btn btn-sm btn-ghost">Utilities</a>
             <a href="#ref-animations" class="btn btn-sm btn-ghost">Animations</a>
+            <a href="#accessibility" class="btn btn-sm btn-ghost">Accessibility</a>
           </nav>
           <span class="match-count" id="matchCount"></span>
         </div>
@@ -692,6 +693,68 @@
             <tr><td class="ref-class">.animate-delay-500</td><td class="ref-prop">animation-delay</td><td>500ms</td></tr>
             <tr><td class="ref-class">.animate-infinite</td><td class="ref-prop">animation-iteration-count</td><td>infinite</td></tr>
             <tr><td class="ref-class">.animate-once</td><td class="ref-prop">animation-iteration-count</td><td>1</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ==============================
+         ACCESSIBILITY
+         ============================== -->
+    <!-- Accessibility -->
+    <section class="ref-section" id="accessibility">
+      <h2 class="heading-3 mb-2">Accessibility</h2>
+      <p class="text-secondary text-sm mb-6">Noir includes built-in accessibility features. Follow these guidelines for WCAG 2.1 AA compliance.</p>
+      <div class="ref-table-wrap">
+        <table class="table table-compact ref-table">
+          <thead>
+            <tr>
+              <th>Component</th>
+              <th>Required Attributes</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Modal (dialog)</td>
+              <td><code class="code">aria-labelledby</code></td>
+              <td>Use native <code class="code">&lt;dialog&gt;</code> element. Browser provides Esc-close and focus trap via <code class="code">showModal()</code>.</td>
+            </tr>
+            <tr>
+              <td>Dropdown</td>
+              <td><code class="code">aria-haspopup</code>, <code class="code">aria-expanded</code>, <code class="code">role="menu"</code></td>
+              <td>Toggle <code class="code">aria-expanded</code> with JS. Add <code class="code">role="menuitem"</code> to items.</td>
+            </tr>
+            <tr>
+              <td>Toast</td>
+              <td><code class="code">role="status"</code>, <code class="code">aria-live="polite"</code></td>
+              <td>Use <code class="code">role="alert"</code> for error/warning toasts. Container needs <code class="code">aria-live</code>.</td>
+            </tr>
+            <tr>
+              <td>Accordion</td>
+              <td>Native <code class="code">&lt;details&gt;/&lt;summary&gt;</code></td>
+              <td>Browser handles expand/collapse accessibility natively.</td>
+            </tr>
+            <tr>
+              <td>Forms</td>
+              <td><code class="code">for/id</code>, <code class="code">aria-describedby</code></td>
+              <td>Link labels to inputs with <code class="code">for</code>. Use <code class="code">aria-describedby</code> for hints/errors.</td>
+            </tr>
+            <tr>
+              <td>Screen reader</td>
+              <td><code class="code">.sr-only</code></td>
+              <td>Visually hide content while keeping it accessible to assistive technology.</td>
+            </tr>
+            <tr>
+              <td>Reduced motion</td>
+              <td>Automatic</td>
+              <td>All animations and transitions respect <code class="code">prefers-reduced-motion: reduce</code>.</td>
+            </tr>
+            <tr>
+              <td>Focus</td>
+              <td>Automatic</td>
+              <td>All interactive elements show <code class="code">:focus-visible</code> outline. Use <code class="code">.focus\:ring-*</code> for custom rings.</td>
+            </tr>
           </tbody>
         </table>
       </div>

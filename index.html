@@ -534,6 +534,19 @@
         <a href="#" class="page-link">4</a>
         <a href="#" class="page-link">&raquo;</a>
       </nav>
+
+      <p class="demo-label">Dropdown</p>
+      <div class="dropdown mb-8">
+        <button class="btn btn-secondary" aria-haspopup="true" aria-expanded="false" onclick="this.parentElement.classList.toggle('open'); this.setAttribute('aria-expanded', this.parentElement.classList.contains('open'))">
+          Options &#9662;
+        </button>
+        <div class="dropdown-menu" role="menu">
+          <a href="#" class="dropdown-item" role="menuitem">Profile</a>
+          <a href="#" class="dropdown-item" role="menuitem">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item" role="menuitem">Sign Out</a>
+        </div>
+      </div>
     </section>
 
     <!-- ===== Utilities Showcase ===== -->
@@ -586,6 +599,31 @@
       <button class="btn btn-primary" onclick="document.getElementById('demoModal').classList.add('active')">
         Open Modal
       </button>
+    </section>
+
+    <!-- ===== Toast Demo ===== -->
+    <section class="demo-section" id="toasts">
+      <h2 class="heading-3 demo-title">Toasts</h2>
+      <p class="text-secondary demo-desc">Toast notifications with semantic roles for accessibility.</p>
+
+      <div class="toast-container" role="status" aria-live="polite" style="position: static; display: flex; flex-direction: column; gap: var(--noir-space-3);">
+        <div class="toast toast-success" role="status">
+          <span>Deployment successful.</span>
+          <button class="toast-close" aria-label="Close">&times;</button>
+        </div>
+        <div class="toast toast-error" role="alert">
+          <span>Build failed. Check logs.</span>
+          <button class="toast-close" aria-label="Close">&times;</button>
+        </div>
+        <div class="toast toast-warning" role="alert">
+          <span>Rate limit approaching.</span>
+          <button class="toast-close" aria-label="Close">&times;</button>
+        </div>
+        <div class="toast toast-info" role="status">
+          <span>New version available.</span>
+          <button class="toast-close" aria-label="Close">&times;</button>
+        </div>
+      </div>
     </section>
 
   </main>
