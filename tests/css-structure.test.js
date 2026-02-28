@@ -402,3 +402,266 @@ describe('Theme System', () => {
     expect(baseCSS).toContain('outline: 2px solid');
   });
 });
+
+describe('Design Tokens - Complete Coverage', () => {
+  const baseCSS = fs.readFileSync(path.join(MODULES_DIR, 'base.css'), 'utf8');
+
+  // Extract the dark theme block (:root, [data-theme="dark"])
+  const darkMatch = baseCSS.match(/:root,\s*\[data-theme="dark"\]\s*\{([\s\S]*?)\n\}/);
+  const darkBlock = darkMatch ? darkMatch[1] : '';
+
+  describe('Background tokens (4)', () => {
+    test.each([
+      '--noir-bg-primary',
+      '--noir-bg-secondary',
+      '--noir-bg-tertiary',
+      '--noir-bg-elevated',
+    ])('%s is defined in dark theme', (token) => {
+      expect(darkBlock).toContain(token);
+    });
+  });
+
+  describe('Text tokens (4)', () => {
+    test.each([
+      '--noir-text-primary',
+      '--noir-text-secondary',
+      '--noir-text-muted',
+      '--noir-text-inverse',
+    ])('%s is defined in dark theme', (token) => {
+      expect(darkBlock).toContain(token);
+    });
+  });
+
+  describe('Accent tokens (5)', () => {
+    test.each([
+      ['--noir-accent', '#e84545'],
+      ['--noir-accent-hover', '#ff5252'],
+      ['--noir-accent-subtle', 'rgba(232, 69, 69, 0.15)'],
+      ['--noir-accent-warm', '#f97316'],
+      ['--noir-accent-warm-hover', '#fb923c'],
+    ])('%s is defined with value %s', (token, value) => {
+      expect(darkBlock).toContain(token);
+      expect(darkBlock).toContain(value);
+    });
+  });
+
+  describe('Border tokens (3)', () => {
+    test.each([
+      ['--noir-border:', '#2a2a2a'],
+      ['--noir-border-hover', '#3a3a3a'],
+      ['--noir-border-focus', 'var(--noir-accent)'],
+    ])('%s is defined in dark theme', (token, value) => {
+      const checkToken = token.replace(/:$/, '');
+      expect(darkBlock).toContain(checkToken);
+      expect(darkBlock).toContain(value);
+    });
+  });
+
+  describe('Semantic color tokens (8)', () => {
+    test.each([
+      ['--noir-success:', '#22c55e'],
+      ['--noir-success-subtle', 'rgba(34, 197, 94, 0.15)'],
+      ['--noir-warning:', '#eab308'],
+      ['--noir-warning-subtle', 'rgba(234, 179, 8, 0.15)'],
+      ['--noir-error:', '#ef4444'],
+      ['--noir-error-subtle', 'rgba(239, 68, 68, 0.15)'],
+      ['--noir-info:', '#3b82f6'],
+      ['--noir-info-subtle', 'rgba(59, 130, 246, 0.15)'],
+    ])('%s is defined with value %s', (token, value) => {
+      const checkToken = token.replace(/:$/, '');
+      expect(darkBlock).toContain(checkToken);
+      expect(darkBlock).toContain(value);
+    });
+  });
+
+  describe('Spacing tokens (13)', () => {
+    test.each([0, 1, 2, 3, 4, 5, 6, 8, 10, 12, 16, 20, 24])(
+      '--noir-space-%i is defined in dark theme',
+      (n) => {
+        expect(darkBlock).toContain(`--noir-space-${n}:`);
+      }
+    );
+  });
+
+  describe('Font family tokens (2)', () => {
+    test.each([
+      ['--noir-font-sans', '"Inter"'],
+      ['--noir-font-mono', '"JetBrains Mono"'],
+    ])('%s is defined in dark theme', (token, contains) => {
+      expect(darkBlock).toContain(token);
+      expect(darkBlock).toContain(contains);
+    });
+  });
+
+  describe('Text size tokens (9)', () => {
+    test.each([
+      ['--noir-text-xs', '0.75rem'],
+      ['--noir-text-sm', '0.875rem'],
+      ['--noir-text-base', '1rem'],
+      ['--noir-text-lg', '1.125rem'],
+      ['--noir-text-xl', '1.25rem'],
+      ['--noir-text-2xl', '1.5rem'],
+      ['--noir-text-3xl', '1.875rem'],
+      ['--noir-text-4xl', '2.25rem'],
+      ['--noir-text-5xl', '3rem'],
+    ])('%s is defined with value %s', (token, value) => {
+      expect(darkBlock).toContain(`${token}:`);
+      expect(darkBlock).toContain(value);
+    });
+  });
+
+  describe('Leading tokens (3)', () => {
+    test.each([
+      ['--noir-leading-tight', '1.25'],
+      ['--noir-leading-normal', '1.5'],
+      ['--noir-leading-relaxed', '1.75'],
+    ])('%s is defined with value %s', (token, value) => {
+      expect(darkBlock).toContain(token);
+      expect(darkBlock).toContain(value);
+    });
+  });
+
+  describe('Font weight tokens (5)', () => {
+    test.each([
+      ['--noir-font-light', '300'],
+      ['--noir-font-normal', '400'],
+      ['--noir-font-medium', '500'],
+      ['--noir-font-semibold', '600'],
+      ['--noir-font-bold', '700'],
+    ])('%s is defined with value %s', (token, value) => {
+      expect(darkBlock).toContain(token);
+      expect(darkBlock).toContain(value);
+    });
+  });
+
+  describe('Border radius tokens (6)', () => {
+    test.each([
+      ['--noir-radius-none', '0'],
+      ['--noir-radius-sm', '0.25rem'],
+      ['--noir-radius-md', '0.5rem'],
+      ['--noir-radius-lg', '0.75rem'],
+      ['--noir-radius-xl', '1rem'],
+      ['--noir-radius-full', '9999px'],
+    ])('%s is defined with value %s', (token, value) => {
+      expect(darkBlock).toContain(`${token}:`);
+      expect(darkBlock).toContain(value);
+    });
+  });
+
+  describe('Shadow tokens (5)', () => {
+    test.each([
+      '--noir-shadow-sm',
+      '--noir-shadow-md',
+      '--noir-shadow-lg',
+      '--noir-shadow-xl',
+      '--noir-shadow-glow',
+    ])('%s is defined in dark theme', (token) => {
+      expect(darkBlock).toContain(`${token}:`);
+    });
+  });
+
+  describe('Transition tokens (3)', () => {
+    test.each([
+      ['--noir-transition-fast', '150ms ease'],
+      ['--noir-transition-base', '250ms ease'],
+      ['--noir-transition-slow', '400ms ease'],
+    ])('%s is defined with value %s', (token, value) => {
+      expect(darkBlock).toContain(token);
+      expect(darkBlock).toContain(value);
+    });
+  });
+
+  describe('Z-index tokens (6)', () => {
+    test.each([
+      ['--noir-z-tooltip', '50'],
+      ['--noir-z-dropdown', '100'],
+      ['--noir-z-sticky', '200'],
+      ['--noir-z-overlay', '300'],
+      ['--noir-z-modal', '400'],
+      ['--noir-z-toast', '500'],
+    ])('%s is defined with value %s', (token, value) => {
+      expect(darkBlock).toContain(token);
+      expect(darkBlock).toContain(value);
+    });
+  });
+
+  test('color-scheme is set to dark in root', () => {
+    expect(darkBlock).toContain('color-scheme: dark');
+  });
+
+  test('total of 76 custom properties are defined in dark theme', () => {
+    const customProps = [...darkBlock.matchAll(/--noir-[a-zA-Z0-9-]+\s*:/g)];
+    expect(customProps.length).toBe(76);
+  });
+});
+
+describe('Cross-Theme Consistency', () => {
+  const baseCSS = fs.readFileSync(path.join(MODULES_DIR, 'base.css'), 'utf8');
+
+  // Extract the light theme block
+  const lightMatch = baseCSS.match(/\[data-theme="light"\]\s*\{([\s\S]*?)\}/);
+  const lightBlock = lightMatch ? lightMatch[1] : '';
+
+  // Extract the auto theme block
+  const autoMatch = baseCSS.match(/prefers-color-scheme:\s*light\)[\s\S]*?\{[\s\S]*?:root:not\(\[data-theme\]\)\s*\{([\s\S]*?)\}/);
+  const autoBlock = autoMatch ? autoMatch[1] : '';
+
+  test('light theme overrides all visual tokens', () => {
+    const visualTokens = [
+      '--noir-bg-primary', '--noir-bg-secondary', '--noir-bg-tertiary', '--noir-bg-elevated',
+      '--noir-text-primary', '--noir-text-secondary', '--noir-text-muted', '--noir-text-inverse',
+      '--noir-accent:', '--noir-accent-hover', '--noir-accent-subtle', '--noir-accent-warm:', '--noir-accent-warm-hover',
+      '--noir-border:', '--noir-border-hover',
+      '--noir-shadow-sm', '--noir-shadow-md', '--noir-shadow-lg', '--noir-shadow-xl', '--noir-shadow-glow',
+    ];
+    visualTokens.forEach(token => {
+      // Remove trailing colon for checking
+      const checkToken = token.replace(/:$/, '');
+      expect(lightBlock).toContain(checkToken);
+    });
+  });
+
+  test('auto theme block matches light theme block', () => {
+    // Both should define the same set of overrides
+    const lightVars = [...lightBlock.matchAll(/--noir-([a-zA-Z0-9-]+)/g)].map(m => m[1]).sort();
+    const autoVars = [...autoBlock.matchAll(/--noir-([a-zA-Z0-9-]+)/g)].map(m => m[1]).sort();
+    expect(autoVars).toEqual(lightVars);
+  });
+
+  test('light theme does NOT override spacing tokens (they are theme-independent)', () => {
+    expect(lightBlock).not.toContain('--noir-space-');
+  });
+
+  test('light theme does NOT override typography tokens (they are theme-independent)', () => {
+    expect(lightBlock).not.toContain('--noir-text-xs');
+    expect(lightBlock).not.toContain('--noir-font-sans');
+    expect(lightBlock).not.toContain('--noir-leading-');
+  });
+
+  test('light theme does NOT override radius tokens', () => {
+    expect(lightBlock).not.toContain('--noir-radius-');
+  });
+
+  test('light theme does NOT override transition tokens', () => {
+    expect(lightBlock).not.toContain('--noir-transition-');
+  });
+
+  test('light theme does NOT override z-index tokens', () => {
+    expect(lightBlock).not.toContain('--noir-z-');
+  });
+
+  test('light and dark themes use different background colors', () => {
+    expect(lightBlock).toContain('#f8f8f8');
+    expect(baseCSS).toMatch(/:root[\s\S]*?--noir-bg-primary:\s*#0a0a0a/);
+  });
+
+  test('light and dark themes use different accent colors', () => {
+    expect(lightBlock).toContain('#d63031');
+    expect(baseCSS).toMatch(/:root[\s\S]*?--noir-accent:\s*#e84545/);
+  });
+
+  test('color-scheme is correctly set for both themes', () => {
+    expect(baseCSS).toContain('color-scheme: dark');
+    expect(lightBlock).toContain('color-scheme: light');
+  });
+});
