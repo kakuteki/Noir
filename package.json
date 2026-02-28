@@ -6,7 +6,18 @@
   "style": "css/noir.css",
   "scripts": {
     "build": "node scripts/build.js",
-    "lint": "stylelint \"css/**/*.css\""
+    "lint": "stylelint \"css/**/*.css\"",
+    "test": "jest --coverage",
+    "test:e2e": "npx playwright test"
+  },
+  "jest": {
+    "testMatch": [
+      "<rootDir>/tests/**/*.test.js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/dist/"
+    ]
   },
   "files": [
     "css/",
@@ -34,8 +45,11 @@
     "url": "https://github.com/kakuteki/Noir/issues"
   },
   "devDependencies": {
+    "@playwright/test": "^1.58.2",
     "browserslist": "^4.23.0",
+    "jest": "^30.2.0",
     "lightningcss": "^1.25.0",
+    "serve": "^14.2.5",
     "stylelint": "^16.0.0",
     "stylelint-config-standard": "^36.0.0"
   },
