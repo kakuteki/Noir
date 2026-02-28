@@ -16,6 +16,24 @@ A utility-first dark theme CSS framework with bold accent colors.
 - **Lightweight (~67KB)** — full framework unminified
 - **`prefers-reduced-motion` support** — respects user accessibility settings
 
+## Why Noir?
+
+| | Noir | Tailwind CSS | Bootstrap |
+|---|---|---|---|
+| Philosophy | Utility-first | Utility-first | Component-first |
+| Default theme | Dark | Light | Light |
+| JavaScript | None | None (core) | Required |
+| File size | ~67KB | ~300KB+ | ~200KB+ |
+| Build step | Not required | Required (PostCSS) | Optional |
+| Dark mode | Built-in (`data-theme`) | Class-based (`dark:`) | `data-bs-theme` (v5.3+) |
+| Learning curve | Low | Medium | Medium |
+| Customization | CSS variables | tailwind.config.js | Sass variables |
+
+**Noir is ideal when you want:**
+- A dark-first design without extra configuration
+- A lightweight framework with no build tools or JS dependencies
+- Quick prototyping with utility classes and ready-made components
+
 ## Quick Start
 
 ```bash
