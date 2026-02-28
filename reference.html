@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Noir CSS Framework class reference. Complete list of all utility classes, components, layout helpers, and animation classes available in Noir CSS.">
+  <meta name="keywords" content="CSS framework, utility-first, dark theme, class reference, API, documentation, Noir CSS">
+  <meta name="author" content="kakuteki">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="canonical" href="https://kakuteki.github.io/Noir/reference.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Noir CSS - Class Reference">
+  <meta property="og:description" content="Complete class reference for Noir CSS Framework. Every utility class, component, and animation documented.">
+  <meta property="og:url" content="https://kakuteki.github.io/Noir/reference.html">
+  <meta property="og:site_name" content="Noir CSS">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Noir CSS - Class Reference">
+  <meta name="twitter:description" content="Complete class reference for Noir CSS Framework. Every utility class, component, and animation documented.">
+
+  <title>Noir CSS - Class Reference</title>
+  <link rel="stylesheet" href="css/noir.css">
+  <style>
+    .ref-section { padding: var(--noir-space-10) 0; border-bottom: 1px solid var(--noir-border); }
+    .ref-section:last-child { border-bottom: none; }
+    .ref-table-wrap { overflow-x: auto; }
+    .ref-class { font-family: var(--noir-font-mono); font-size: var(--noir-text-xs); color: var(--noir-accent); white-space: nowrap; }
+    .ref-prop { font-family: var(--noir-font-mono); font-size: var(--noir-text-xs); white-space: nowrap; }
+    .search-wrap { position: sticky; top: 52px; z-index: 50; background-color: var(--noir-bg-primary); padding: var(--noir-space-4) 0; border-bottom: 1px solid var(--noir-border); }
+    .toc { display: flex; flex-wrap: wrap; gap: var(--noir-space-2); margin-bottom: var(--noir-space-4); }
+    .toc a { font-size: var(--noir-text-xs); }
+    .match-count { font-size: var(--noir-text-sm); color: var(--noir-text-muted); }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="index.html" class="navbar-brand">
+      <span class="text-accent font-bold">N</span>oir
+    </a>
+    <div class="navbar-nav" id="mainNav">
+      <a href="index.html" class="navbar-link">Demo</a>
+      <a href="reference.html" class="navbar-link active">Reference</a>
+      <a href="https://github.com/kakuteki/Noir" target="_blank" rel="noopener noreferrer" class="navbar-link">GitHub</a>
+    </div>
+    <div class="flex gap-3 items-center">
+      <button class="btn btn-sm btn-secondary" onclick="toggleTheme()" id="themeBtn">Light Mode</button>
+      <button class="navbar-toggle" onclick="document.getElementById('mainNav').classList.toggle('open')">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Search / Filter -->
+  <div class="search-wrap">
+    <div class="container">
+      <div class="flex flex-col gap-2">
+        <input type="text" class="input" id="searchInput" placeholder="Filter classes... (e.g. btn, flex, animate)" autocomplete="off">
+        <div class="flex justify-between items-center">
+          <nav class="toc" aria-label="Module navigation">
+            <a href="#ref-base" class="btn btn-sm btn-ghost">Base</a>
+            <a href="#ref-typography" class="btn btn-sm btn-ghost">Typography</a>
+            <a href="#ref-layout" class="btn btn-sm btn-ghost">Layout</a>
+            <a href="#ref-forms" class="btn btn-sm btn-ghost">Forms</a>
+            <a href="#ref-components" class="btn btn-sm btn-ghost">Components</a>
+            <a href="#ref-navigation" class="btn btn-sm btn-ghost">Navigation</a>
+            <a href="#ref-utilities" class="btn btn-sm btn-ghost">Utilities</a>
+            <a href="#ref-animations" class="btn btn-sm btn-ghost">Animations</a>
+          </nav>
+          <span class="match-count" id="matchCount"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="container">
+
+    <!-- ==============================
+         BASE
+         ============================== -->
+    <section class="ref-section" id="ref-base">
+      <h2 class="heading-3 mb-2">Base</h2>
+      <p class="text-secondary text-sm mb-6">Theme system, CSS custom properties, and reset. The base module sets global variables and normalizes browser defaults.</p>
+      <div class="ref-table-wrap">
+        <table class="table table-compact ref-table">
+          <thead><tr><th>Class / Attribute</th><th>CSS Property</th><th>Value / Description</th></tr></thead>
+          <tbody>
+            <tr><td class="ref-class">data-theme="dark"</td><td class="ref-prop">--noir-*</td><td>Dark theme (default). Sets dark backgrounds, light text, red accent.</td></tr>
+            <tr><td class="ref-class">data-theme="light"</td><td class="ref-prop">--noir-*</td><td>Light theme. Sets light backgrounds, dark text, adjusted accents and shadows.</td></tr>
+            <tr><td class="ref-class">(none / auto)</td><td class="ref-prop">prefers-color-scheme</td><td>Follows OS preference when no data-theme attribute is set.</td></tr>
+            <tr><td class="ref-class">* (reset)</td><td class="ref-prop">box-sizing</td><td>border-box applied to all elements.</td></tr>
+            <tr><td class="ref-class">body</td><td class="ref-prop">font-family</td><td>var(--noir-font-sans) - Inter / system-ui stack.</td></tr>
+            <tr><td class="ref-class">body</td><td class="ref-prop">background-color / color</td><td>var(--noir-bg-primary) / var(--noir-text-primary)</td></tr>
+            <tr><td class="ref-class">a</td><td class="ref-prop">color</td><td>var(--noir-accent) with hover transition.</td></tr>
+            <tr><td class="ref-class">::selection</td><td class="ref-prop">background-color</td><td>var(--noir-accent) with white text.</td></tr>
+            <tr><td class="ref-class">:focus-visible</td><td class="ref-prop">outline</td><td>2px solid var(--noir-accent), offset 2px.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ==============================
+         TYPOGRAPHY
+         ============================== -->
+    <section class="ref-section" id="ref-typography">
+      <h2 class="heading-3 mb-2">Typography</h2>
+      <p class="text-secondary text-sm mb-6">Font families, sizes, weights, alignment, colors, decoration, transforms, spacing, overflow, and heading presets.</p>
+      <div class="ref-table-wrap">
+        <table class="table table-compact ref-table">
+          <thead><tr><th>Class</th><th>CSS Property</th><th>Value / Description</th></tr></thead>
+          <tbody>
+            <!-- Font Family -->
+            <tr><td class="ref-class">.font-sans</td><td class="ref-prop">font-family</td><td>var(--noir-font-sans) - Inter, Segoe UI, system-ui</td></tr>
+            <tr><td class="ref-class">.font-mono</td><td class="ref-prop">font-family</td><td>var(--noir-font-mono) - JetBrains Mono, Fira Code, Consolas</td></tr>
+            <!-- Font Size -->
+            <tr><td class="ref-class">.text-xs</td><td class="ref-prop">font-size</td><td>0.75rem (12px)</td></tr>
+            <tr><td class="ref-class">.text-sm</td><td class="ref-prop">font-size</td><td>0.875rem (14px)</td></tr>
+            <tr><td class="ref-class">.text-base</td><td class="ref-prop">font-size</td><td>1rem (16px)</td></tr>
+            <tr><td class="ref-class">.text-lg</td><td class="ref-prop">font-size</td><td>1.125rem (18px)</td></tr>
+            <tr><td class="ref-class">.text-xl</td><td class="ref-prop">font-size</td><td>1.25rem (20px)</td></tr>
+            <tr><td class="ref-class">.text-2xl</td><td class="ref-prop">font-size</td><td>1.5rem (24px)</td></tr>
+            <tr><td class="ref-class">.text-3xl</td><td class="ref-prop">font-size</td><td>1.875rem (30px)</td></tr>
+            <tr><td class="ref-class">.text-4xl</td><td class="ref-prop">font-size</td><td>2.25rem (36px)</td></tr>
+            <tr><td class="ref-class">.text-5xl</td><td class="ref-prop">font-size</td><td>3rem (48px)</td></tr>
+            <!-- Font Weight -->
+            <tr><td class="ref-class">.font-light</td><td class="ref-prop">font-weight</td><td>300</td></tr>
+            <tr><td class="ref-class">.font-normal</td><td class="ref-prop">font-weight</td><td>400</td></tr>
+            <tr><td class="ref-class">.font-medium</td><td class="ref-prop">font-weight</td><td>500</td></tr>
+            <tr><td class="ref-class">.font-semibold</td><td class="ref-prop">font-weight</td><td>600</td></tr>
+            <tr><td class="ref-class">.font-bold</td><td class="ref-prop">font-weight</td><td>700</td></tr>
+            <!-- Line Height -->
+            <tr><td class="ref-class">.leading-tight</td><td class="ref-prop">line-height</td><td>1.25</td></tr>
+            <tr><td class="ref-class">.leading-normal</td><td class="ref-prop">line-height</td><td>1.5</td></tr>
+            <tr><td class="ref-class">.leading-relaxed</td><td class="ref-prop">line-height</td><td>1.75</td></tr>
+            <!-- Text Alignment -->
+            <tr><td class="ref-class">.text-left</td><td class="ref-prop">text-align</td><td>left</td></tr>
+            <tr><td class="ref-class">.text-center</td><td class="ref-prop">text-align</td><td>center</td></tr>
+            <tr><td class="ref-class">.text-right</td><td class="ref-prop">text-align</td><td>right</td></tr>
+            <tr><td class="ref-class">.text-justify</td><td class="ref-prop">text-align</td><td>justify</td></tr>
+            <!-- Text Color -->
+            <tr><td class="ref-class">.text-primary</td><td class="ref-prop">color</td><td>var(--noir-text-primary)</td></tr>
+            <tr><td class="ref-class">.text-secondary</td><td class="ref-prop">color</td><td>var(--noir-text-secondary)</td></tr>
+            <tr><td class="ref-class">.text-muted</td><td class="ref-prop">color</td><td>var(--noir-text-muted)</td></tr>
+            <tr><td class="ref-class">.text-inverse</td><td class="ref-prop">color</td><td>var(--noir-text-inverse)</td></tr>
+            <tr><td class="ref-class">.text-accent</td><td class="ref-prop">color</td><td>var(--noir-accent)</td></tr>
+            <tr><td class="ref-class">.text-accent-warm</td><td class="ref-prop">color</td><td>var(--noir-accent-warm)</td></tr>
+            <tr><td class="ref-class">.text-success</td><td class="ref-prop">color</td><td>var(--noir-success)</td></tr>
+            <tr><td class="ref-class">.text-warning</td><td class="ref-prop">color</td><td>var(--noir-warning)</td></tr>
+            <tr><td class="ref-class">.text-error</td><td class="ref-prop">color</td><td>var(--noir-error)</td></tr>
+            <tr><td class="ref-class">.text-info</td><td class="ref-prop">color</td><td>var(--noir-info)</td></tr>
+            <!-- Text Decoration -->
+            <tr><td class="ref-class">.underline</td><td class="ref-prop">text-decoration</td><td>underline</td></tr>
+            <tr><td class="ref-class">.line-through</td><td class="ref-prop">text-decoration</td><td>line-through</td></tr>
+            <tr><td class="ref-class">.no-underline</td><td class="ref-prop">text-decoration</td><td>none</td></tr>
+            <!-- Text Transform -->
+            <tr><td class="ref-class">.uppercase</td><td class="ref-prop">text-transform</td><td>uppercase</td></tr>
+            <tr><td class="ref-class">.lowercase</td><td class="ref-prop">text-transform</td><td>lowercase</td></tr>
+            <tr><td class="ref-class">.capitalize</td><td class="ref-prop">text-transform</td><td>capitalize</td></tr>
+            <tr><td class="ref-class">.normal-case</td><td class="ref-prop">text-transform</td><td>none</td></tr>
+            <!-- Letter Spacing -->
+            <tr><td class="ref-class">.tracking-tight</td><td class="ref-prop">letter-spacing</td><td>-0.025em</td></tr>
+            <tr><td class="ref-class">.tracking-normal</td><td class="ref-prop">letter-spacing</td><td>0</td></tr>
+            <tr><td class="ref-class">.tracking-wide</td><td class="ref-prop">letter-spacing</td><td>0.025em</td></tr>
+            <tr><td class="ref-class">.tracking-wider</td><td class="ref-prop">letter-spacing</td><td>0.05em</td></tr>
+            <tr><td class="ref-class">.tracking-widest</td><td class="ref-prop">letter-spacing</td><td>0.1em</td></tr>
+            <!-- Text Overflow -->
+            <tr><td class="ref-class">.truncate</td><td class="ref-prop">overflow / text-overflow / white-space</td><td>hidden / ellipsis / nowrap</td></tr>
+            <tr><td class="ref-class">.line-clamp-2</td><td class="ref-prop">-webkit-line-clamp</td><td>2 lines then overflow hidden</td></tr>
+            <tr><td class="ref-class">.line-clamp-3</td><td class="ref-prop">-webkit-line-clamp</td><td>3 lines then overflow hidden</td></tr>
+            <tr><td class="ref-class">.whitespace-nowrap</td><td class="ref-prop">white-space</td><td>nowrap</td></tr>
+            <tr><td class="ref-class">.whitespace-pre</td><td class="ref-prop">white-space</td><td>pre</td></tr>
+            <tr><td class="ref-class">.break-words</td><td class="ref-prop">overflow-wrap</td><td>break-word</td></tr>
+            <!-- Headings -->
+            <tr><td class="ref-class">.heading-1</td><td class="ref-prop">font-size / weight / line-height</td><td>3rem / 700 / 1.25, tracking -0.025em</td></tr>
+            <tr><td class="ref-class">.heading-2</td><td class="ref-prop">font-size / weight / line-height</td><td>2.25rem / 700 / 1.25, tracking -0.025em</td></tr>
+            <tr><td class="ref-class">.heading-3</td><td class="ref-prop">font-size / weight / line-height</td><td>1.875rem / 600 / 1.25</td></tr>
+            <tr><td class="ref-class">.heading-4</td><td class="ref-prop">font-size / weight / line-height</td><td>1.5rem / 600 / 1.25</td></tr>
+            <tr><td class="ref-class">.heading-5</td><td class="ref-prop">font-size / weight / line-height</td><td>1.25rem / 500 / 1.25</td></tr>
+            <!-- Code -->
+            <tr><td class="ref-class">.code</td><td class="ref-prop">font-family / background / border</td><td>Mono font, bg-tertiary, sm radius, inline code style</td></tr>
+            <tr><td class="ref-class">.code-block</td><td class="ref-prop">font-family / background / overflow</td><td>Mono font, bg-tertiary, md radius, pre whitespace, overflow-x auto</td></tr>
+            <!-- Responsive Typography -->
+            <tr><td class="ref-class">sm:text-{size}</td><td class="ref-prop">font-size</td><td>Responsive text size at >= 576px (xs through 3xl)</td></tr>
+            <tr><td class="ref-class">md:text-{size}</td><td class="ref-prop">font-size</td><td>Responsive text size at >= 768px (xs through 4xl)</td></tr>
+            <tr><td class="ref-class">lg:text-{size}</td><td class="ref-prop">font-size</td><td>Responsive text size at >= 1024px (xs through 5xl)</td></tr>
+            <tr><td class="ref-class">xl:text-{size}</td><td class="ref-prop">font-size</td><td>Responsive text size at >= 1280px (sm through 5xl)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ==============================
+         LAYOUT
+         ============================== -->
+    <section class="ref-section" id="ref-layout">
+      <h2 class="heading-3 mb-2">Layout</h2>
+      <p class="text-secondary text-sm mb-6">Container, display, flexbox, grid, spacing, sizing, position, overflow, border radius, shadows, backgrounds, borders, cursors, transitions, visibility, aspect ratio, object fit, z-index, and gradients. Responsive prefixes: sm: md: lg: xl:</p>
+      <div class="ref-table-wrap">
+        <table class="table table-compact ref-table">
+          <thead><tr><th>Class</th><th>CSS Property</th><th>Value / Description</th></tr></thead>
+          <tbody>
+            <!-- Container -->
+            <tr><td class="ref-class">.container</td><td class="ref-prop">max-width / margin / padding</td><td>1280px max, auto horizontal margin, 1rem horizontal padding</td></tr>
+            <tr><td class="ref-class">.container-sm</td><td class="ref-prop">max-width</td><td>640px</td></tr>
+            <tr><td class="ref-class">.container-md</td><td class="ref-prop">max-width</td><td>768px</td></tr>
+            <tr><td class="ref-class">.container-lg</td><td class="ref-prop">max-width</td><td>1024px</td></tr>
+            <tr><td class="ref-class">.container-xl</td><td class="ref-prop">max-width</td><td>1280px</td></tr>
+            <tr><td class="ref-class">.container-fluid</td><td class="ref-prop">max-width</td><td>100%</td></tr>
+            <!-- Display -->
+            <tr><td class="ref-class">.block</td><td class="ref-prop">display</td><td>block</td></tr>
+            <tr><td class="ref-class">.inline-block</td><td class="ref-prop">display</td><td>inline-block</td></tr>
+            <tr><td class="ref-class">.inline</td><td class="ref-prop">display</td><td>inline</td></tr>
+            <tr><td class="ref-class">.flex</td><td class="ref-prop">display</td><td>flex</td></tr>
+            <tr><td class="ref-class">.inline-flex</td><td class="ref-prop">display</td><td>inline-flex</td></tr>
+            <tr><td class="ref-class">.grid</td><td class="ref-prop">display</td><td>grid</td></tr>
+            <tr><td class="ref-class">.hidden</td><td class="ref-prop">display</td><td>none</td></tr>
+            <!-- Flexbox -->
+            <tr><td class="ref-class">.flex-row</td><td class="ref-prop">flex-direction</td><td>row</td></tr>
+            <tr><td class="ref-class">.flex-col</td><td class="ref-prop">flex-direction</td><td>column</td></tr>
+            <tr><td class="ref-class">.flex-row-reverse</td><td class="ref-prop">flex-direction</td><td>row-reverse</td></tr>
+            <tr><td class="ref-class">.flex-col-reverse</td><td class="ref-prop">flex-direction</td><td>column-reverse</td></tr>
+            <tr><td class="ref-class">.flex-wrap</td><td class="ref-prop">flex-wrap</td><td>wrap</td></tr>
+            <tr><td class="ref-class">.flex-nowrap</td><td class="ref-prop">flex-wrap</td><td>nowrap</td></tr>
+            <tr><td class="ref-class">.flex-1</td><td class="ref-prop">flex</td><td>1 1 0%</td></tr>
+            <tr><td class="ref-class">.flex-auto</td><td class="ref-prop">flex</td><td>1 1 auto</td></tr>
+            <tr><td class="ref-class">.flex-none</td><td class="ref-prop">flex</td><td>none</td></tr>
+            <tr><td class="ref-class">.grow</td><td class="ref-prop">flex-grow</td><td>1</td></tr>
+            <tr><td class="ref-class">.grow-0</td><td class="ref-prop">flex-grow</td><td>0</td></tr>
+            <tr><td class="ref-class">.shrink</td><td class="ref-prop">flex-shrink</td><td>1</td></tr>
+            <tr><td class="ref-class">.shrink-0</td><td class="ref-prop">flex-shrink</td><td>0</td></tr>
+            <!-- Justify Content -->
+            <tr><td class="ref-class">.justify-start</td><td class="ref-prop">justify-content</td><td>flex-start</td></tr>
+            <tr><td class="ref-class">.justify-end</td><td class="ref-prop">justify-content</td><td>flex-end</td></tr>
+            <tr><td class="ref-class">.justify-center</td><td class="ref-prop">justify-content</td><td>center</td></tr>
+            <tr><td class="ref-class">.justify-between</td><td class="ref-prop">justify-content</td><td>space-between</td></tr>
+            <tr><td class="ref-class">.justify-around</td><td class="ref-prop">justify-content</td><td>space-around</td></tr>
+            <tr><td class="ref-class">.justify-evenly</td><td class="ref-prop">justify-content</td><td>space-evenly</td></tr>
+            <!-- Align Items -->
+            <tr><td class="ref-class">.items-start</td><td class="ref-prop">align-items</td><td>flex-start</td></tr>
+            <tr><td class="ref-class">.items-end</td><td class="ref-prop">align-items</td><td>flex-end</td></tr>
+            <tr><td class="ref-class">.items-center</td><td class="ref-prop">align-items</td><td>center</td></tr>
+            <tr><td class="ref-class">.items-baseline</td><td class="ref-prop">align-items</td><td>baseline</td></tr>
+            <tr><td class="ref-class">.items-stretch</td><td class="ref-prop">align-items</td><td>stretch</td></tr>
+            <!-- Align Self -->
+            <tr><td class="ref-class">.self-start</td><td class="ref-prop">align-self</td><td>flex-start</td></tr>
+            <tr><td class="ref-class">.self-end</td><td class="ref-prop">align-self</td><td>flex-end</td></tr>
+            <tr><td class="ref-class">.self-center</td><td class="ref-prop">align-self</td><td>center</td></tr>
+            <tr><td class="ref-class">.self-stretch</td><td class="ref-prop">align-self</td><td>stretch</td></tr>
+            <!-- Gap -->
+            <tr><td class="ref-class">.gap-0</td><td class="ref-prop">gap</td><td>0</td></tr>
+            <tr><td class="ref-class">.gap-1</td><td class="ref-prop">gap</td><td>0.25rem</td></tr>
+            <tr><td class="ref-class">.gap-2</td><td class="ref-prop">gap</td><td>0.5rem</td></tr>
+            <tr><td class="ref-class">.gap-3</td><td class="ref-prop">gap</td><td>0.75rem</td></tr>
+            <tr><td class="ref-class">.gap-4</td><td class="ref-prop">gap</td><td>1rem</td></tr>
+            <tr><td class="ref-class">.gap-5</td><td class="ref-prop">gap</td><td>1.25rem</td></tr>
+            <tr><td class="ref-class">.gap-6</td><td class="ref-prop">gap</td><td>1.5rem</td></tr>
+            <tr><td class="ref-class">.gap-8</td><td class="ref-prop">gap</td><td>2rem</td></tr>
+            <tr><td class="ref-class">.gap-10</td><td class="ref-prop">gap</td><td>2.5rem</td></tr>
+            <tr><td class="ref-class">.gap-12</td><td class="ref-prop">gap</td><td>3rem</td></tr>
+            <!-- Grid -->
+            <tr><td class="ref-class">.grid-cols-1</td><td class="ref-prop">grid-template-columns</td><td>repeat(1, minmax(0, 1fr))</td></tr>
+            <tr><td class="ref-class">.grid-cols-2</td><td class="ref-prop">grid-template-columns</td><td>repeat(2, minmax(0, 1fr))</td></tr>
+            <tr><td class="ref-class">.grid-cols-3</td><td class="ref-prop">grid-template-columns</td><td>repeat(3, minmax(0, 1fr))</td></tr>
+            <tr><td class="ref-class">.grid-cols-4</td><td class="ref-prop">grid-template-columns</td><td>repeat(4, minmax(0, 1fr))</td></tr>
+            <tr><td class="ref-class">.grid-cols-5</td><td class="ref-prop">grid-template-columns</td><td>repeat(5, minmax(0, 1fr))</td></tr>
+            <tr><td class="ref-class">.grid-cols-6</td><td class="ref-prop">grid-template-columns</td><td>repeat(6, minmax(0, 1fr))</td></tr>
+            <tr><td class="ref-class">.grid-cols-12</td><td class="ref-prop">grid-template-columns</td><td>repeat(12, minmax(0, 1fr))</td></tr>
+            <!-- Col Span -->
+            <tr><td class="ref-class">.col-span-1</td><td class="ref-prop">grid-column</td><td>span 1</td></tr>
+            <tr><td class="ref-class">.col-span-2</td><td class="ref-prop">grid-column</td><td>span 2</td></tr>
+            <tr><td class="ref-class">.col-span-3</td><td class="ref-prop">grid-column</td><td>span 3</td></tr>
+            <tr><td class="ref-class">.col-span-4</td><td class="ref-prop">grid-column</td><td>span 4</td></tr>
+            <tr><td class="ref-class">.col-span-5</td><td class="ref-prop">grid-column</td><td>span 5</td></tr>
+            <tr><td class="ref-class">.col-span-6</td><td class="ref-prop">grid-column</td><td>span 6</td></tr>
+            <tr><td class="ref-class">.col-span-full</td><td class="ref-prop">grid-column</td><td>1 / -1 (full width)</td></tr>
+            <!-- Padding -->
+            <tr><td class="ref-class">.p-0 ... .p-12</td><td class="ref-prop">padding</td><td>0 through 3rem (0, 1, 2, 3, 4, 5, 6, 8, 10, 12)</td></tr>
+            <tr><td class="ref-class">.px-0 ... .px-8</td><td class="ref-prop">padding-inline</td><td>0 through 2rem (0, 1, 2, 3, 4, 6, 8)</td></tr>
+            <tr><td class="ref-class">.py-0 ... .py-8</td><td class="ref-prop">padding-block</td><td>0 through 2rem (0, 1, 2, 3, 4, 6, 8)</td></tr>
+            <tr><td class="ref-class">.pt-0, .pt-2, .pt-4, .pt-6, .pt-8</td><td class="ref-prop">padding-top</td><td>0 through 2rem</td></tr>
+            <tr><td class="ref-class">.pb-0, .pb-2, .pb-4, .pb-6, .pb-8</td><td class="ref-prop">padding-bottom</td><td>0 through 2rem</td></tr>
+            <!-- Margin -->
+            <tr><td class="ref-class">.m-0 ... .m-8</td><td class="ref-prop">margin</td><td>0 through 2rem (0, 1, 2, 3, 4, 6, 8)</td></tr>
+            <tr><td class="ref-class">.m-auto</td><td class="ref-prop">margin</td><td>auto</td></tr>
+            <tr><td class="ref-class">.mx-0 ... .mx-4</td><td class="ref-prop">margin-inline</td><td>0 through 1rem (0, 1, 2, 4)</td></tr>
+            <tr><td class="ref-class">.mx-auto</td><td class="ref-prop">margin-inline</td><td>auto</td></tr>
+            <tr><td class="ref-class">.my-0 ... .my-8</td><td class="ref-prop">margin-block</td><td>0 through 2rem (0, 1, 2, 4, 8)</td></tr>
+            <tr><td class="ref-class">.mt-0 ... .mt-8</td><td class="ref-prop">margin-top</td><td>0 through 2rem (0, 1, 2, 4, 6, 8)</td></tr>
+            <tr><td class="ref-class">.mb-0 ... .mb-8</td><td class="ref-prop">margin-bottom</td><td>0 through 2rem (0, 1, 2, 4, 6, 8)</td></tr>
+            <!-- Width & Height -->
+            <tr><td class="ref-class">.w-full</td><td class="ref-prop">width</td><td>100%</td></tr>
+            <tr><td class="ref-class">.w-screen</td><td class="ref-prop">width</td><td>100vw</td></tr>
+            <tr><td class="ref-class">.w-auto</td><td class="ref-prop">width</td><td>auto</td></tr>
+            <tr><td class="ref-class">.w-fit</td><td class="ref-prop">width</td><td>fit-content</td></tr>
+            <tr><td class="ref-class">.min-w-0</td><td class="ref-prop">min-width</td><td>0</td></tr>
+            <tr><td class="ref-class">.max-w-full</td><td class="ref-prop">max-width</td><td>100%</td></tr>
+            <tr><td class="ref-class">.h-full</td><td class="ref-prop">height</td><td>100%</td></tr>
+            <tr><td class="ref-class">.h-screen</td><td class="ref-prop">height</td><td>100dvh</td></tr>
+            <tr><td class="ref-class">.h-auto</td><td class="ref-prop">height</td><td>auto</td></tr>
+            <tr><td class="ref-class">.h-fit</td><td class="ref-prop">height</td><td>fit-content</td></tr>
+            <tr><td class="ref-class">.min-h-screen</td><td class="ref-prop">min-height</td><td>100dvh</td></tr>
+            <!-- Position -->
+            <tr><td class="ref-class">.relative</td><td class="ref-prop">position</td><td>relative</td></tr>
+            <tr><td class="ref-class">.absolute</td><td class="ref-prop">position</td><td>absolute</td></tr>
+            <tr><td class="ref-class">.fixed</td><td class="ref-prop">position</td><td>fixed</td></tr>
+            <tr><td class="ref-class">.sticky</td><td class="ref-prop">position</td><td>sticky; top: 0</td></tr>
+            <tr><td class="ref-class">.inset-0</td><td class="ref-prop">inset</td><td>0</td></tr>
+            <tr><td class="ref-class">.top-0</td><td class="ref-prop">top</td><td>0</td></tr>
+            <tr><td class="ref-class">.right-0</td><td class="ref-prop">right</td><td>0</td></tr>
+            <tr><td class="ref-class">.bottom-0</td><td class="ref-prop">bottom</td><td>0</td></tr>
+            <tr><td class="ref-class">.left-0</td><td class="ref-prop">left</td><td>0</td></tr>
+            <!-- Overflow -->
+            <tr><td class="ref-class">.overflow-hidden</td><td class="ref-prop">overflow</td><td>hidden</td></tr>
+            <tr><td class="ref-class">.overflow-auto</td><td class="ref-prop">overflow</td><td>auto</td></tr>
+            <tr><td class="ref-class">.overflow-x-auto</td><td class="ref-prop">overflow-x</td><td>auto</td></tr>
+            <tr><td class="ref-class">.overflow-y-auto</td><td class="ref-prop">overflow-y</td><td>auto</td></tr>
+            <!-- Border Radius -->
+            <tr><td class="ref-class">.rounded-none</td><td class="ref-prop">border-radius</td><td>0</td></tr>
+            <tr><td class="ref-class">.rounded-sm</td><td class="ref-prop">border-radius</td><td>0.25rem</td></tr>
+            <tr><td class="ref-class">.rounded</td><td class="ref-prop">border-radius</td><td>0.5rem</td></tr>
+            <tr><td class="ref-class">.rounded-lg</td><td class="ref-prop">border-radius</td><td>0.75rem</td></tr>
+            <tr><td class="ref-class">.rounded-xl</td><td class="ref-prop">border-radius</td><td>1rem</td></tr>
+            <tr><td class="ref-class">.rounded-full</td><td class="ref-prop">border-radius</td><td>9999px</td></tr>
+            <!-- Shadow -->
+            <tr><td class="ref-class">.shadow-sm</td><td class="ref-prop">box-shadow</td><td>0 1px 2px rgba(0,0,0,0.4)</td></tr>
+            <tr><td class="ref-class">.shadow</td><td class="ref-prop">box-shadow</td><td>0 4px 6px rgba(0,0,0,0.4)</td></tr>
+            <tr><td class="ref-class">.shadow-lg</td><td class="ref-prop">box-shadow</td><td>0 10px 15px rgba(0,0,0,0.5)</td></tr>
+            <tr><td class="ref-class">.shadow-xl</td><td class="ref-prop">box-shadow</td><td>0 20px 25px rgba(0,0,0,0.5)</td></tr>
+            <tr><td class="ref-class">.shadow-glow</td><td class="ref-prop">box-shadow</td><td>0 0 20px rgba(232,69,69,0.3) (accent glow)</td></tr>
+            <tr><td class="ref-class">.shadow-none</td><td class="ref-prop">box-shadow</td><td>none</td></tr>
+            <!-- Opacity -->
+            <tr><td class="ref-class">.opacity-0</td><td class="ref-prop">opacity</td><td>0</td></tr>
+            <tr><td class="ref-class">.opacity-25</td><td class="ref-prop">opacity</td><td>0.25</td></tr>
+            <tr><td class="ref-class">.opacity-50</td><td class="ref-prop">opacity</td><td>0.5</td></tr>
+            <tr><td class="ref-class">.opacity-75</td><td class="ref-prop">opacity</td><td>0.75</td></tr>
+            <tr><td class="ref-class">.opacity-100</td><td class="ref-prop">opacity</td><td>1</td></tr>
+            <!-- Background Colors -->
+            <tr><td class="ref-class">.bg-primary</td><td class="ref-prop">background-color</td><td>var(--noir-bg-primary)</td></tr>
+            <tr><td class="ref-class">.bg-secondary</td><td class="ref-prop">background-color</td><td>var(--noir-bg-secondary)</td></tr>
+            <tr><td class="ref-class">.bg-tertiary</td><td class="ref-prop">background-color</td><td>var(--noir-bg-tertiary)</td></tr>
+            <tr><td class="ref-class">.bg-elevated</td><td class="ref-prop">background-color</td><td>var(--noir-bg-elevated)</td></tr>
+            <tr><td class="ref-class">.bg-accent</td><td class="ref-prop">background-color</td><td>var(--noir-accent)</td></tr>
+            <tr><td class="ref-class">.bg-accent-subtle</td><td class="ref-prop">background-color</td><td>var(--noir-accent-subtle)</td></tr>
+            <tr><td class="ref-class">.bg-accent-warm</td><td class="ref-prop">background-color</td><td>var(--noir-accent-warm)</td></tr>
+            <tr><td class="ref-class">.bg-transparent</td><td class="ref-prop">background-color</td><td>transparent</td></tr>
+            <!-- Borders -->
+            <tr><td class="ref-class">.border</td><td class="ref-prop">border</td><td>1px solid var(--noir-border)</td></tr>
+            <tr><td class="ref-class">.border-0</td><td class="ref-prop">border</td><td>none</td></tr>
+            <tr><td class="ref-class">.border-t</td><td class="ref-prop">border-top</td><td>1px solid var(--noir-border)</td></tr>
+            <tr><td class="ref-class">.border-b</td><td class="ref-prop">border-bottom</td><td>1px solid var(--noir-border)</td></tr>
+            <tr><td class="ref-class">.border-l</td><td class="ref-prop">border-left</td><td>1px solid var(--noir-border)</td></tr>
+            <tr><td class="ref-class">.border-r</td><td class="ref-prop">border-right</td><td>1px solid var(--noir-border)</td></tr>
+            <tr><td class="ref-class">.border-accent</td><td class="ref-prop">border-color</td><td>var(--noir-accent)</td></tr>
+            <!-- Cursor -->
+            <tr><td class="ref-class">.cursor-pointer</td><td class="ref-prop">cursor</td><td>pointer</td></tr>
+            <tr><td class="ref-class">.cursor-not-allowed</td><td class="ref-prop">cursor</td><td>not-allowed</td></tr>
+            <!-- Transition -->
+            <tr><td class="ref-class">.transition</td><td class="ref-prop">transition</td><td>all 250ms ease</td></tr>
+            <tr><td class="ref-class">.transition-fast</td><td class="ref-prop">transition</td><td>all 150ms ease</td></tr>
+            <tr><td class="ref-class">.transition-slow</td><td class="ref-prop">transition</td><td>all 400ms ease</td></tr>
+            <tr><td class="ref-class">.transition-none</td><td class="ref-prop">transition</td><td>none</td></tr>
+            <!-- Visibility -->
+            <tr><td class="ref-class">.visible</td><td class="ref-prop">visibility</td><td>visible</td></tr>
+            <tr><td class="ref-class">.invisible</td><td class="ref-prop">visibility</td><td>hidden</td></tr>
+            <tr><td class="ref-class">.sr-only</td><td class="ref-prop">position / clip / overflow</td><td>Screen reader only (visually hidden, accessible)</td></tr>
+            <tr><td class="ref-class">.not-sr-only</td><td class="ref-prop">position / clip / overflow</td><td>Undo .sr-only, restore to normal flow</td></tr>
+            <!-- Aspect Ratio -->
+            <tr><td class="ref-class">.aspect-auto</td><td class="ref-prop">aspect-ratio</td><td>auto</td></tr>
+            <tr><td class="ref-class">.aspect-square</td><td class="ref-prop">aspect-ratio</td><td>1 / 1</td></tr>
+            <tr><td class="ref-class">.aspect-video</td><td class="ref-prop">aspect-ratio</td><td>16 / 9</td></tr>
+            <tr><td class="ref-class">.aspect-4/3</td><td class="ref-prop">aspect-ratio</td><td>4 / 3</td></tr>
+            <tr><td class="ref-class">.aspect-3/2</td><td class="ref-prop">aspect-ratio</td><td>3 / 2</td></tr>
+            <tr><td class="ref-class">.aspect-21/9</td><td class="ref-prop">aspect-ratio</td><td>21 / 9</td></tr>
+            <!-- Object Fit -->
+            <tr><td class="ref-class">.object-contain</td><td class="ref-prop">object-fit</td><td>contain</td></tr>
+            <tr><td class="ref-class">.object-cover</td><td class="ref-prop">object-fit</td><td>cover</td></tr>
+            <tr><td class="ref-class">.object-fill</td><td class="ref-prop">object-fit</td><td>fill</td></tr>
+            <tr><td class="ref-class">.object-none</td><td class="ref-prop">object-fit</td><td>none</td></tr>
+            <tr><td class="ref-class">.object-scale-down</td><td class="ref-prop">object-fit</td><td>scale-down</td></tr>
+            <!-- Object Position -->
+            <tr><td class="ref-class">.object-center</td><td class="ref-prop">object-position</td><td>center</td></tr>
+            <tr><td class="ref-class">.object-top</td><td class="ref-prop">object-position</td><td>top</td></tr>
+            <tr><td class="ref-class">.object-bottom</td><td class="ref-prop">object-position</td><td>bottom</td></tr>
+            <tr><td class="ref-class">.object-left</td><td class="ref-prop">object-position</td><td>left</td></tr>
+            <tr><td class="ref-class">.object-right</td><td class="ref-prop">object-position</td><td>right</td></tr>
+            <!-- Z-Index -->
+            <tr><td class="ref-class">.z-0</td><td class="ref-prop">z-index</td><td>0</td></tr>
+            <tr><td class="ref-class">.z-10</td><td class="ref-prop">z-index</td><td>10</td></tr>
+            <tr><td class="ref-class">.z-20</td><td class="ref-prop">z-index</td><td>20</td></tr>
+            <tr><td class="ref-class">.z-30</td><td class="ref-prop">z-index</td><td>30</td></tr>
+            <tr><td class="ref-class">.z-40</td><td class="ref-prop">z-index</td><td>40</td></tr>
+            <tr><td class="ref-class">.z-50</td><td class="ref-prop">z-index</td><td>50</td></tr>
+            <tr><td class="ref-class">.z-auto</td><td class="ref-prop">z-index</td><td>auto</td></tr>
+            <tr><td class="ref-class">.z-dropdown</td><td class="ref-prop">z-index</td><td>100</td></tr>
+            <tr><td class="ref-class">.z-sticky</td><td class="ref-prop">z-index</td><td>200</td></tr>
+            <tr><td class="ref-class">.z-overlay</td><td class="ref-prop">z-index</td><td>300</td></tr>
+            <tr><td class="ref-class">.z-modal</td><td class="ref-prop">z-index</td><td>400</td></tr>
+            <tr><td class="ref-class">.z-toast</td><td class="ref-prop">z-index</td><td>500</td></tr>
+            <tr><td class="ref-class">.-z-10</td><td class="ref-prop">z-index</td><td>-10</td></tr>
+            <!-- Gradients -->
+            <tr><td class="ref-class">.bg-gradient-accent</td><td class="ref-prop">background</td><td>135deg gradient from accent to accent-warm</td></tr>
+            <tr><td class="ref-class">.bg-gradient-warm</td><td class="ref-prop">background</td><td>135deg gradient from accent-warm to gold</td></tr>
+            <tr><td class="ref-class">.bg-gradient-dark</td><td class="ref-prop">background</td><td>180deg gradient from bg-primary to bg-secondary</td></tr>
+            <tr><td class="ref-class">.bg-gradient-to-r</td><td class="ref-prop">background</td><td>Left to right, accent to accent-warm</td></tr>
+            <tr><td class="ref-class">.bg-gradient-to-l</td><td class="ref-prop">background</td><td>Right to left, accent to accent-warm</td></tr>
+            <tr><td class="ref-class">.bg-gradient-to-t</td><td class="ref-prop">background</td><td>Bottom to top, bg-primary to transparent</td></tr>
+            <tr><td class="ref-class">.bg-gradient-to-b</td><td class="ref-prop">background</td><td>Top to bottom, bg-primary to transparent</td></tr>
+            <!-- Responsive Prefixes -->
+            <tr><td class="ref-class">sm:{class}</td><td class="ref-prop">(varies)</td><td>Applies at >= 576px. Supports display, flex, grid, gap, padding, margin, text-align, width.</td></tr>
+            <tr><td class="ref-class">md:{class}</td><td class="ref-prop">(varies)</td><td>Applies at >= 768px. Supports display, flex, grid, gap, padding, margin, text-align, width, justify, items.</td></tr>
+            <tr><td class="ref-class">lg:{class}</td><td class="ref-prop">(varies)</td><td>Applies at >= 1024px. Supports display, flex, grid, gap, padding, margin, text-align, width.</td></tr>
+            <tr><td class="ref-class">xl:{class}</td><td class="ref-prop">(varies)</td><td>Applies at >= 1280px. Supports display, flex, grid, gap, padding, margin, text-align, width, justify, items.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ==============================
+         FORMS
+         ============================== -->
+    <section class="ref-section" id="ref-forms">
+      <h2 class="heading-3 mb-2">Forms</h2>
+      <p class="text-secondary text-sm mb-6">Input fields, textareas, selects, checkboxes, radios, toggles, form groups, validation states, and range sliders.</p>
+      <div class="ref-table-wrap">
+        <table class="table table-compact ref-table">
+          <thead><tr><th>Class</th><th>CSS Property</th><th>Value / Description</th></tr></thead>
+          <tbody>
+            <tr><td class="ref-class">.input</td><td class="ref-prop">display / padding / border</td><td>Full-width text input with bg-secondary, border, rounded-md, focus accent ring.</td></tr>
+            <tr><td class="ref-class">.input-sm</td><td class="ref-prop">padding / font-size</td><td>Small input: tighter padding, text-xs.</td></tr>
+            <tr><td class="ref-class">.input-lg</td><td class="ref-prop">padding / font-size</td><td>Large input: larger padding, text-base.</td></tr>
+            <tr><td class="ref-class">.textarea</td><td class="ref-prop">display / padding / resize</td><td>Full-width textarea with vertical resize, min-height 80px.</td></tr>
+            <tr><td class="ref-class">.select</td><td class="ref-prop">display / padding / appearance</td><td>Custom styled select with dropdown arrow SVG.</td></tr>
+            <tr><td class="ref-class">.checkbox</td><td class="ref-prop">display / align-items / cursor</td><td>Inline-flex label wrapper for styled checkbox input.</td></tr>
+            <tr><td class="ref-class">.radio</td><td class="ref-prop">display / align-items / cursor</td><td>Inline-flex label wrapper for styled radio input.</td></tr>
+            <tr><td class="ref-class">.toggle</td><td class="ref-prop">display / align-items / cursor</td><td>Toggle switch wrapper. Checkbox rendered as pill-shaped switch.</td></tr>
+            <tr><td class="ref-class">.form-group</td><td class="ref-prop">display / flex-direction / gap</td><td>Flex column with 0.5rem gap for label + input + hint.</td></tr>
+            <tr><td class="ref-class">.form-label</td><td class="ref-prop">font-size / font-weight / color</td><td>text-sm, medium weight, primary color.</td></tr>
+            <tr><td class="ref-class">.form-hint</td><td class="ref-prop">font-size / color</td><td>text-xs, muted color. Helper text below inputs.</td></tr>
+            <tr><td class="ref-class">.input-group</td><td class="ref-prop">position / display</td><td>Relative flex container for icon + input combos.</td></tr>
+            <tr><td class="ref-class">.input-group-icon</td><td class="ref-prop">position / pointer-events</td><td>Absolute positioned icon inside input-group.</td></tr>
+            <tr><td class="ref-class">.input-success</td><td class="ref-prop">border-color</td><td>var(--noir-success) with green focus ring.</td></tr>
+            <tr><td class="ref-class">.input-error</td><td class="ref-prop">border-color</td><td>var(--noir-error) with red focus ring.</td></tr>
+            <tr><td class="ref-class">.form-error</td><td class="ref-prop">font-size / color</td><td>text-xs, error color. Validation error message.</td></tr>
+            <tr><td class="ref-class">.form-success</td><td class="ref-prop">font-size / color</td><td>text-xs, success color. Validation success message.</td></tr>
+            <tr><td class="ref-class">.range</td><td class="ref-prop">appearance / height / background</td><td>Custom range slider with accent thumb, 6px track.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ==============================
+         COMPONENTS
+         ============================== -->
+    <section class="ref-section" id="ref-components">
+      <h2 class="heading-3 mb-2">Components</h2>
+      <p class="text-secondary text-sm mb-6">Buttons, cards, badges, alerts, modals, tooltips, progress bars, skeletons, tables, spinners, loaders, toasts, and accordions.</p>
+      <div class="ref-table-wrap">
+        <table class="table table-compact ref-table">
+          <thead><tr><th>Class</th><th>CSS Property</th><th>Value / Description</th></tr></thead>
+          <tbody>
+            <!-- Buttons -->
+            <tr><td class="ref-class">.btn</td><td class="ref-prop">display / padding / font-size</td><td>Base button: inline-flex, centered, rounded-md, 150ms transition.</td></tr>
+            <tr><td class="ref-class">.btn-primary</td><td class="ref-prop">background-color / color</td><td>Accent background, white text. Glow on hover.</td></tr>
+            <tr><td class="ref-class">.btn-secondary</td><td class="ref-prop">background / border / color</td><td>Transparent with border. Accent border + color on hover.</td></tr>
+            <tr><td class="ref-class">.btn-ghost</td><td class="ref-prop">background / color</td><td>Transparent, secondary text. Tertiary bg on hover.</td></tr>
+            <tr><td class="ref-class">.btn-warm</td><td class="ref-prop">background-color / color</td><td>Orange accent background, white text.</td></tr>
+            <tr><td class="ref-class">.btn-danger</td><td class="ref-prop">background-color / color</td><td>Error red background, white text.</td></tr>
+            <tr><td class="ref-class">.btn-sm</td><td class="ref-prop">padding / font-size</td><td>Small button: tighter padding, text-xs.</td></tr>
+            <tr><td class="ref-class">.btn-lg</td><td class="ref-prop">padding / font-size</td><td>Large button: more padding, text-base.</td></tr>
+            <tr><td class="ref-class">.btn-icon</td><td class="ref-prop">padding / aspect-ratio</td><td>Square icon button (1:1 aspect ratio).</td></tr>
+            <tr><td class="ref-class">.btn-group</td><td class="ref-prop">display</td><td>Inline-flex container, removes inner border-radius for grouped buttons.</td></tr>
+            <!-- Cards -->
+            <tr><td class="ref-class">.card</td><td class="ref-prop">background / border / border-radius</td><td>bg-secondary, border, rounded-lg, overflow hidden.</td></tr>
+            <tr><td class="ref-class">.card-hover</td><td class="ref-prop">transform / box-shadow</td><td>Lifts -2px and adds shadow-lg + accent border on hover.</td></tr>
+            <tr><td class="ref-class">.card-header</td><td class="ref-prop">padding / border-bottom</td><td>Card top section with bottom border.</td></tr>
+            <tr><td class="ref-class">.card-body</td><td class="ref-prop">padding</td><td>Main card content area (1.5rem padding).</td></tr>
+            <tr><td class="ref-class">.card-footer</td><td class="ref-prop">padding / border-top</td><td>Card bottom section with top border.</td></tr>
+            <tr><td class="ref-class">.card-img</td><td class="ref-prop">width / object-fit</td><td>Full-width image with object-fit: cover.</td></tr>
+            <!-- Badges -->
+            <tr><td class="ref-class">.badge</td><td class="ref-prop">display / padding / font-size</td><td>Inline-flex, text-xs, medium weight, rounded-full.</td></tr>
+            <tr><td class="ref-class">.badge-accent</td><td class="ref-prop">background / color</td><td>Accent-subtle bg, accent text.</td></tr>
+            <tr><td class="ref-class">.badge-warm</td><td class="ref-prop">background / color</td><td>Warm-subtle bg, warm text.</td></tr>
+            <tr><td class="ref-class">.badge-success</td><td class="ref-prop">background / color</td><td>Success-subtle bg, success text.</td></tr>
+            <tr><td class="ref-class">.badge-warning</td><td class="ref-prop">background / color</td><td>Warning-subtle bg, warning text.</td></tr>
+            <tr><td class="ref-class">.badge-error</td><td class="ref-prop">background / color</td><td>Error-subtle bg, error text.</td></tr>
+            <tr><td class="ref-class">.badge-info</td><td class="ref-prop">background / color</td><td>Info-subtle bg, info text.</td></tr>
+            <tr><td class="ref-class">.badge-outline</td><td class="ref-prop">background / border / color</td><td>Transparent bg, 1px border, secondary text.</td></tr>
+            <!-- Alerts -->
+            <tr><td class="ref-class">.alert</td><td class="ref-prop">display / padding / border-left</td><td>Flex container with 3px left border, rounded-md.</td></tr>
+            <tr><td class="ref-class">.alert-success</td><td class="ref-prop">background / border-color / color</td><td>Success-subtle bg, success border + text.</td></tr>
+            <tr><td class="ref-class">.alert-warning</td><td class="ref-prop">background / border-color / color</td><td>Warning-subtle bg, warning border + text.</td></tr>
+            <tr><td class="ref-class">.alert-error</td><td class="ref-prop">background / border-color / color</td><td>Error-subtle bg, error border + text.</td></tr>
+            <tr><td class="ref-class">.alert-info</td><td class="ref-prop">background / border-color / color</td><td>Info-subtle bg, info border + text.</td></tr>
+            <!-- Modal / Overlay -->
+            <tr><td class="ref-class">.overlay</td><td class="ref-prop">position / background / z-index</td><td>Fixed fullscreen backdrop with blur, z-index 300. Hidden by default.</td></tr>
+            <tr><td class="ref-class">.overlay.active</td><td class="ref-prop">opacity / pointer-events</td><td>Shows the overlay and enables interaction.</td></tr>
+            <tr><td class="ref-class">.modal</td><td class="ref-prop">background / border / max-width</td><td>500px max centered dialog with bg-secondary, shadow-xl, rounded-xl.</td></tr>
+            <tr><td class="ref-class">.modal-header</td><td class="ref-prop">display / padding / border-bottom</td><td>Flex row, space-between, with bottom border.</td></tr>
+            <tr><td class="ref-class">.modal-body</td><td class="ref-prop">padding</td><td>Main modal content area.</td></tr>
+            <tr><td class="ref-class">.modal-footer</td><td class="ref-prop">display / justify-content / padding</td><td>Flex end-aligned row with top border for actions.</td></tr>
+            <!-- Divider -->
+            <tr><td class="ref-class">.divider</td><td class="ref-prop">height / background-color</td><td>1px horizontal rule using border color.</td></tr>
+            <!-- Avatar -->
+            <tr><td class="ref-class">.avatar</td><td class="ref-prop">width / height / border-radius</td><td>2.5rem circle with accent-subtle bg and accent text.</td></tr>
+            <tr><td class="ref-class">.avatar-sm</td><td class="ref-prop">width / height</td><td>2rem small avatar.</td></tr>
+            <tr><td class="ref-class">.avatar-lg</td><td class="ref-prop">width / height</td><td>3.5rem large avatar.</td></tr>
+            <!-- Tooltip -->
+            <tr><td class="ref-class">.tooltip</td><td class="ref-prop">position</td><td>Relative container. Use data-tooltip="text" for content.</td></tr>
+            <!-- Progress -->
+            <tr><td class="ref-class">.progress</td><td class="ref-prop">height / background / border-radius</td><td>6px bar track with bg-tertiary, rounded-full.</td></tr>
+            <tr><td class="ref-class">.progress-bar</td><td class="ref-prop">height / background-color</td><td>Accent-colored fill bar. Set width with inline style.</td></tr>
+            <tr><td class="ref-class">.progress-bar-warm</td><td class="ref-prop">background-color</td><td>Orange variant of progress bar.</td></tr>
+            <tr><td class="ref-class">.progress-bar-success</td><td class="ref-prop">background-color</td><td>Green variant of progress bar.</td></tr>
+            <!-- Skeleton -->
+            <tr><td class="ref-class">.skeleton</td><td class="ref-prop">background / animation</td><td>Shimmer loading placeholder with gradient animation.</td></tr>
+            <tr><td class="ref-class">.skeleton-text</td><td class="ref-prop">height</td><td>1em tall text placeholder.</td></tr>
+            <tr><td class="ref-class">.skeleton-title</td><td class="ref-prop">height / width</td><td>1.5em tall, 60% wide title placeholder.</td></tr>
+            <tr><td class="ref-class">.skeleton-avatar</td><td class="ref-prop">width / height / border-radius</td><td>2.5rem circular avatar placeholder.</td></tr>
+            <!-- Table -->
+            <tr><td class="ref-class">.table</td><td class="ref-prop">width / border-collapse</td><td>Full-width collapsed table with text-sm.</td></tr>
+            <tr><td class="ref-class">.table-striped</td><td class="ref-prop">background-color</td><td>Alternating row backgrounds (even rows).</td></tr>
+            <tr><td class="ref-class">.table-bordered</td><td class="ref-prop">border</td><td>All cells and table have 1px border.</td></tr>
+            <tr><td class="ref-class">.table-compact</td><td class="ref-prop">padding</td><td>Reduced cell padding.</td></tr>
+            <!-- Spinner -->
+            <tr><td class="ref-class">.spinner</td><td class="ref-prop">width / height / border / animation</td><td>1.5rem spinning circle with accent top border.</td></tr>
+            <tr><td class="ref-class">.spinner-sm</td><td class="ref-prop">width / height</td><td>1rem small spinner.</td></tr>
+            <tr><td class="ref-class">.spinner-lg</td><td class="ref-prop">width / height</td><td>2.5rem large spinner.</td></tr>
+            <tr><td class="ref-class">.spinner-warm</td><td class="ref-prop">border-top-color</td><td>Orange accent spinner.</td></tr>
+            <tr><td class="ref-class">.spinner-white</td><td class="ref-prop">border-color / border-top-color</td><td>White spinner for dark backgrounds.</td></tr>
+            <!-- Loader -->
+            <tr><td class="ref-class">.loader-dots</td><td class="ref-prop">display / animation</td><td>Three pulsing dots. Add 3 span children.</td></tr>
+            <tr><td class="ref-class">.loader-bar</td><td class="ref-prop">width / height / animation</td><td>Indeterminate horizontal bar loader.</td></tr>
+            <!-- Toast -->
+            <tr><td class="ref-class">.toast-container</td><td class="ref-prop">position / z-index</td><td>Fixed bottom-right container for toast notifications.</td></tr>
+            <tr><td class="ref-class">.toast-container-top</td><td class="ref-prop">top / bottom</td><td>Moves container to top-right.</td></tr>
+            <tr><td class="ref-class">.toast</td><td class="ref-prop">display / padding / background</td><td>Flex toast notification card with slide-in animation.</td></tr>
+            <tr><td class="ref-class">.toast-success</td><td class="ref-prop">border-left</td><td>3px green left border.</td></tr>
+            <tr><td class="ref-class">.toast-error</td><td class="ref-prop">border-left</td><td>3px red left border.</td></tr>
+            <tr><td class="ref-class">.toast-warning</td><td class="ref-prop">border-left</td><td>3px yellow left border.</td></tr>
+            <tr><td class="ref-class">.toast-info</td><td class="ref-prop">border-left</td><td>3px blue left border.</td></tr>
+            <tr><td class="ref-class">.toast-close</td><td class="ref-prop">margin-left / cursor</td><td>Auto-left close button for toasts.</td></tr>
+            <!-- Accordion -->
+            <tr><td class="ref-class">.accordion</td><td class="ref-prop">display / border / border-radius</td><td>Flex column container with border and rounded-lg.</td></tr>
+            <tr><td class="ref-class">.accordion-item</td><td class="ref-prop">border-bottom</td><td>Use with &lt;details&gt; element. Bottom border separator.</td></tr>
+            <tr><td class="ref-class">.accordion-trigger</td><td class="ref-prop">display / padding / cursor</td><td>Use with &lt;summary&gt;. Full-width toggle button with +/- indicator.</td></tr>
+            <tr><td class="ref-class">.accordion-content</td><td class="ref-prop">padding / color</td><td>Collapsible content area, secondary text color.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ==============================
+         NAVIGATION
+         ============================== -->
+    <section class="ref-section" id="ref-navigation">
+      <h2 class="heading-3 mb-2">Navigation</h2>
+      <p class="text-secondary text-sm mb-6">Navbar, sidebar, tabs, breadcrumbs, pagination, and dropdowns.</p>
+      <div class="ref-table-wrap">
+        <table class="table table-compact ref-table">
+          <thead><tr><th>Class</th><th>CSS Property</th><th>Value / Description</th></tr></thead>
+          <tbody>
+            <!-- Navbar -->
+            <tr><td class="ref-class">.navbar</td><td class="ref-prop">display / position / backdrop-filter</td><td>Sticky top flex bar with blur backdrop, z-index 200.</td></tr>
+            <tr><td class="ref-class">.navbar-brand</td><td class="ref-prop">display / font-size / font-weight</td><td>Flex link with bold text for logo/brand name.</td></tr>
+            <tr><td class="ref-class">.navbar-nav</td><td class="ref-prop">display / gap</td><td>Flex row of navigation links. Becomes slide-out panel on mobile.</td></tr>
+            <tr><td class="ref-class">.navbar-link</td><td class="ref-prop">display / padding / color</td><td>Individual nav link with hover and .active state support.</td></tr>
+            <tr><td class="ref-class">.navbar-link.active</td><td class="ref-prop">color / background-color</td><td>Accent color with accent-subtle background.</td></tr>
+            <tr><td class="ref-class">.navbar-toggle</td><td class="ref-prop">display / flex-direction</td><td>Mobile hamburger button (3 spans). Hidden on desktop.</td></tr>
+            <!-- Sidebar -->
+            <tr><td class="ref-class">.sidebar</td><td class="ref-prop">width / min-height / background</td><td>260px fixed sidebar with bg-secondary and right border.</td></tr>
+            <tr><td class="ref-class">.sidebar-header</td><td class="ref-prop">padding / font-size / font-weight</td><td>Bold header text for sidebar title.</td></tr>
+            <tr><td class="ref-class">.sidebar-section</td><td class="ref-prop">font-size / text-transform / color</td><td>Uppercase muted section label (text-xs).</td></tr>
+            <tr><td class="ref-class">.sidebar-link</td><td class="ref-prop">display / padding / color</td><td>Sidebar navigation link with hover and .active state.</td></tr>
+            <tr><td class="ref-class">.sidebar-link.active</td><td class="ref-prop">color / background-color</td><td>Accent color with accent-subtle background.</td></tr>
+            <!-- Tabs -->
+            <tr><td class="ref-class">.tabs</td><td class="ref-prop">display / border-bottom</td><td>Flex row with bottom border for underline-style tabs.</td></tr>
+            <tr><td class="ref-class">.tab</td><td class="ref-prop">display / padding / border-bottom</td><td>Individual tab button with 2px transparent bottom border.</td></tr>
+            <tr><td class="ref-class">.tab.active</td><td class="ref-prop">color / border-bottom-color</td><td>Accent colored text and bottom border.</td></tr>
+            <tr><td class="ref-class">.tabs-pill</td><td class="ref-prop">display / background / border-radius</td><td>Pill-style tab container with tertiary bg and rounded-lg.</td></tr>
+            <tr><td class="ref-class">.tabs-pill .tab.active</td><td class="ref-prop">background / color / box-shadow</td><td>Elevated bg, primary text, small shadow.</td></tr>
+            <!-- Breadcrumb -->
+            <tr><td class="ref-class">.breadcrumb</td><td class="ref-prop">display / gap</td><td>Flex row with 0.5rem gap for breadcrumb navigation.</td></tr>
+            <tr><td class="ref-class">.breadcrumb-item</td><td class="ref-prop">color / text-decoration</td><td>Muted color link with hover to primary.</td></tr>
+            <tr><td class="ref-class">.breadcrumb-item.active</td><td class="ref-prop">color / font-weight</td><td>Primary color, medium weight for current page.</td></tr>
+            <tr><td class="ref-class">.breadcrumb-separator</td><td class="ref-prop">color / user-select</td><td>Muted separator character (e.g. "/").</td></tr>
+            <!-- Pagination -->
+            <tr><td class="ref-class">.pagination</td><td class="ref-prop">display / gap</td><td>Flex row of page links.</td></tr>
+            <tr><td class="ref-class">.page-link</td><td class="ref-prop">display / min-width / border</td><td>2.25rem square link with border and rounded-md.</td></tr>
+            <tr><td class="ref-class">.page-link.active</td><td class="ref-prop">background / border-color / color</td><td>Accent bg and border, white text.</td></tr>
+            <!-- Dropdown -->
+            <tr><td class="ref-class">.dropdown</td><td class="ref-prop">position / display</td><td>Relative inline-block container for dropdown menus.</td></tr>
+            <tr><td class="ref-class">.dropdown-menu</td><td class="ref-prop">position / min-width / z-index</td><td>Absolute positioned menu, 200px min-width, z-index 100. Hidden by default.</td></tr>
+            <tr><td class="ref-class">.dropdown.open .dropdown-menu</td><td class="ref-prop">opacity / pointer-events</td><td>Shows dropdown on .open class or :focus-within.</td></tr>
+            <tr><td class="ref-class">.dropdown-item</td><td class="ref-prop">display / padding / cursor</td><td>Full-width flex link/button inside dropdown.</td></tr>
+            <tr><td class="ref-class">.dropdown-divider</td><td class="ref-prop">height / background-color</td><td>1px separator inside dropdown menu.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ==============================
+         UTILITIES
+         ============================== -->
+    <section class="ref-section" id="ref-utilities">
+      <h2 class="heading-3 mb-2">Utilities</h2>
+      <p class="text-secondary text-sm mb-6">CSS transform utilities: rotate, scale, translate, and transform-origin.</p>
+      <div class="ref-table-wrap">
+        <table class="table table-compact ref-table">
+          <thead><tr><th>Class</th><th>CSS Property</th><th>Value / Description</th></tr></thead>
+          <tbody>
+            <!-- Rotate -->
+            <tr><td class="ref-class">.rotate-0</td><td class="ref-prop">transform</td><td>rotate(0deg)</td></tr>
+            <tr><td class="ref-class">.rotate-45</td><td class="ref-prop">transform</td><td>rotate(45deg)</td></tr>
+            <tr><td class="ref-class">.rotate-90</td><td class="ref-prop">transform</td><td>rotate(90deg)</td></tr>
+            <tr><td class="ref-class">.rotate-180</td><td class="ref-prop">transform</td><td>rotate(180deg)</td></tr>
+            <tr><td class="ref-class">.-rotate-45</td><td class="ref-prop">transform</td><td>rotate(-45deg)</td></tr>
+            <tr><td class="ref-class">.-rotate-90</td><td class="ref-prop">transform</td><td>rotate(-90deg)</td></tr>
+            <tr><td class="ref-class">.-rotate-180</td><td class="ref-prop">transform</td><td>rotate(-180deg)</td></tr>
+            <!-- Scale -->
+            <tr><td class="ref-class">.scale-75</td><td class="ref-prop">transform</td><td>scale(0.75)</td></tr>
+            <tr><td class="ref-class">.scale-90</td><td class="ref-prop">transform</td><td>scale(0.9)</td></tr>
+            <tr><td class="ref-class">.scale-95</td><td class="ref-prop">transform</td><td>scale(0.95)</td></tr>
+            <tr><td class="ref-class">.scale-100</td><td class="ref-prop">transform</td><td>scale(1)</td></tr>
+            <tr><td class="ref-class">.scale-105</td><td class="ref-prop">transform</td><td>scale(1.05)</td></tr>
+            <tr><td class="ref-class">.scale-110</td><td class="ref-prop">transform</td><td>scale(1.1)</td></tr>
+            <tr><td class="ref-class">.scale-125</td><td class="ref-prop">transform</td><td>scale(1.25)</td></tr>
+            <tr><td class="ref-class">.scale-150</td><td class="ref-prop">transform</td><td>scale(1.5)</td></tr>
+            <!-- Translate X -->
+            <tr><td class="ref-class">.translate-x-1</td><td class="ref-prop">transform</td><td>translateX(0.25rem)</td></tr>
+            <tr><td class="ref-class">.translate-x-2</td><td class="ref-prop">transform</td><td>translateX(0.5rem)</td></tr>
+            <tr><td class="ref-class">.translate-x-4</td><td class="ref-prop">transform</td><td>translateX(1rem)</td></tr>
+            <tr><td class="ref-class">.-translate-x-1</td><td class="ref-prop">transform</td><td>translateX(-0.25rem)</td></tr>
+            <tr><td class="ref-class">.-translate-x-2</td><td class="ref-prop">transform</td><td>translateX(-0.5rem)</td></tr>
+            <tr><td class="ref-class">.-translate-x-4</td><td class="ref-prop">transform</td><td>translateX(-1rem)</td></tr>
+            <tr><td class="ref-class">.translate-x-full</td><td class="ref-prop">transform</td><td>translateX(100%)</td></tr>
+            <tr><td class="ref-class">.-translate-x-full</td><td class="ref-prop">transform</td><td>translateX(-100%)</td></tr>
+            <!-- Translate Y -->
+            <tr><td class="ref-class">.translate-y-1</td><td class="ref-prop">transform</td><td>translateY(0.25rem)</td></tr>
+            <tr><td class="ref-class">.translate-y-2</td><td class="ref-prop">transform</td><td>translateY(0.5rem)</td></tr>
+            <tr><td class="ref-class">.translate-y-4</td><td class="ref-prop">transform</td><td>translateY(1rem)</td></tr>
+            <tr><td class="ref-class">.-translate-y-1</td><td class="ref-prop">transform</td><td>translateY(-0.25rem)</td></tr>
+            <tr><td class="ref-class">.-translate-y-2</td><td class="ref-prop">transform</td><td>translateY(-0.5rem)</td></tr>
+            <tr><td class="ref-class">.-translate-y-4</td><td class="ref-prop">transform</td><td>translateY(-1rem)</td></tr>
+            <tr><td class="ref-class">.translate-y-full</td><td class="ref-prop">transform</td><td>translateY(100%)</td></tr>
+            <tr><td class="ref-class">.-translate-y-full</td><td class="ref-prop">transform</td><td>translateY(-100%)</td></tr>
+            <!-- Origin -->
+            <tr><td class="ref-class">.origin-center</td><td class="ref-prop">transform-origin</td><td>center</td></tr>
+            <tr><td class="ref-class">.origin-top</td><td class="ref-prop">transform-origin</td><td>top</td></tr>
+            <tr><td class="ref-class">.origin-bottom</td><td class="ref-prop">transform-origin</td><td>bottom</td></tr>
+            <tr><td class="ref-class">.origin-left</td><td class="ref-prop">transform-origin</td><td>left</td></tr>
+            <tr><td class="ref-class">.origin-right</td><td class="ref-prop">transform-origin</td><td>right</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ==============================
+         ANIMATIONS
+         ============================== -->
+    <section class="ref-section" id="ref-animations">
+      <h2 class="heading-3 mb-2">Animations</h2>
+      <p class="text-secondary text-sm mb-6">Keyframe animations for fade, slide, pulse, spin, bounce, and ping. Includes duration, delay, and iteration control classes. Respects prefers-reduced-motion.</p>
+      <div class="ref-table-wrap">
+        <table class="table table-compact ref-table">
+          <thead><tr><th>Class</th><th>CSS Property</th><th>Value / Description</th></tr></thead>
+          <tbody>
+            <!-- Fade -->
+            <tr><td class="ref-class">.animate-fade-in</td><td class="ref-prop">animation</td><td>Fade in from opacity 0 to 1 (250ms ease).</td></tr>
+            <tr><td class="ref-class">.animate-fade-out</td><td class="ref-prop">animation</td><td>Fade out from opacity 1 to 0 (250ms ease).</td></tr>
+            <!-- Slide -->
+            <tr><td class="ref-class">.animate-slide-up</td><td class="ref-prop">animation</td><td>Slide up from +1rem, fade in (250ms ease).</td></tr>
+            <tr><td class="ref-class">.animate-slide-down</td><td class="ref-prop">animation</td><td>Slide down from -1rem, fade in (250ms ease).</td></tr>
+            <tr><td class="ref-class">.animate-slide-left</td><td class="ref-prop">animation</td><td>Slide left from +1rem, fade in (250ms ease).</td></tr>
+            <tr><td class="ref-class">.animate-slide-right</td><td class="ref-prop">animation</td><td>Slide right from -1rem, fade in (250ms ease).</td></tr>
+            <!-- Pulse / Spin / Bounce / Ping -->
+            <tr><td class="ref-class">.animate-pulse</td><td class="ref-prop">animation</td><td>Pulsing opacity 1 -> 0.5 -> 1 (2s infinite).</td></tr>
+            <tr><td class="ref-class">.animate-spin</td><td class="ref-prop">animation</td><td>Continuous 360deg rotation (1s linear infinite).</td></tr>
+            <tr><td class="ref-class">.animate-bounce</td><td class="ref-prop">animation</td><td>Vertical bounce effect (1s infinite).</td></tr>
+            <tr><td class="ref-class">.animate-ping</td><td class="ref-prop">animation</td><td>Scale up to 2x and fade out (1s infinite). Ping/ripple effect.</td></tr>
+            <!-- Control -->
+            <tr><td class="ref-class">.animate-none</td><td class="ref-prop">animation</td><td>none - removes all animation.</td></tr>
+            <tr><td class="ref-class">.animate-duration-fast</td><td class="ref-prop">animation-duration</td><td>150ms</td></tr>
+            <tr><td class="ref-class">.animate-duration-base</td><td class="ref-prop">animation-duration</td><td>250ms</td></tr>
+            <tr><td class="ref-class">.animate-duration-slow</td><td class="ref-prop">animation-duration</td><td>400ms</td></tr>
+            <tr><td class="ref-class">.animate-delay-100</td><td class="ref-prop">animation-delay</td><td>100ms</td></tr>
+            <tr><td class="ref-class">.animate-delay-200</td><td class="ref-prop">animation-delay</td><td>200ms</td></tr>
+            <tr><td class="ref-class">.animate-delay-300</td><td class="ref-prop">animation-delay</td><td>300ms</td></tr>
+            <tr><td class="ref-class">.animate-delay-500</td><td class="ref-prop">animation-delay</td><td>500ms</td></tr>
+            <tr><td class="ref-class">.animate-infinite</td><td class="ref-prop">animation-iteration-count</td><td>infinite</td></tr>
+            <tr><td class="ref-class">.animate-once</td><td class="ref-prop">animation-iteration-count</td><td>1</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t py-8 mt-8">
+    <div class="container text-center">
+      <p class="text-sm text-muted">Noir CSS Framework &mdash; <a href="index.html">Demo</a> &middot; <a href="https://github.com/kakuteki/Noir" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+    </div>
+  </footer>
+
+  <script>
+    /* Theme toggle */
+    (function() {
+      var saved = localStorage.getItem('noir-theme');
+      if (saved) {
+        document.documentElement.setAttribute('data-theme', saved);
+      }
+      var btn = document.getElementById('themeBtn');
+      if (btn) {
+        btn.textContent = document.documentElement.getAttribute('data-theme') === 'dark' ? 'Light Mode' : 'Dark Mode';
+      }
+    })();
+
+    function toggleTheme() {
+      var html = document.documentElement;
+      var btn = document.getElementById('themeBtn');
+      if (html.getAttribute('data-theme') === 'dark') {
+        html.setAttribute('data-theme', 'light');
+        btn.textContent = 'Dark Mode';
+        localStorage.setItem('noir-theme', 'light');
+      } else {
+        html.setAttribute('data-theme', 'dark');
+        btn.textContent = 'Light Mode';
+        localStorage.setItem('noir-theme', 'dark');
+      }
+    }
+
+    /* Search / Filter */
+    (function() {
+      var input = document.getElementById('searchInput');
+      var countEl = document.getElementById('matchCount');
+      var tables = document.querySelectorAll('.ref-table');
+
+      input.addEventListener('input', function() {
+        var query = this.value.toLowerCase().trim();
+        var total = 0;
+        var visible = 0;
+
+        tables.forEach(function(table) {
+          var rows = table.querySelectorAll('tbody tr');
+          rows.forEach(function(row) {
+            total++;
+            var className = row.cells[0] ? row.cells[0].textContent.toLowerCase() : '';
+            var desc = row.cells[2] ? row.cells[2].textContent.toLowerCase() : '';
+            if (!query || className.indexOf(query) !== -1 || desc.indexOf(query) !== -1) {
+              row.style.display = '';
+              visible++;
+            } else {
+              row.style.display = 'none';
+            }
+          });
+        });
+
+        if (query) {
+          countEl.textContent = visible + ' of ' + total + ' classes';
+        } else {
+          countEl.textContent = total + ' classes total';
+        }
+      });
+
+      /* Trigger initial count */
+      input.dispatchEvent(new Event('input'));
+    })();
+  </script>
+</body>
+</html>
