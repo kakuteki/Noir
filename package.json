@@ -5,7 +5,8 @@
   "main": "css/noir.css",
   "style": "css/noir.css",
   "scripts": {
-    "build": "node scripts/build.js"
+    "build": "node scripts/build.js",
+    "lint": "stylelint \"css/**/*.css\""
   },
   "files": [
     "css/",
@@ -31,5 +32,9 @@
   },
   "bugs": {
     "url": "https://github.com/kakuteki/Noir/issues"
+  },
+  "devDependencies": {
+    "stylelint": "^16.0.0",
+    "stylelint-config-standard": "^36.0.0"
   }
 }

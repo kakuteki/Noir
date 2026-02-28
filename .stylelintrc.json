@@ -1,0 +1,17 @@
+{
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "selector-class-pattern": null,
+    "custom-property-pattern": null,
+    "no-descending-specificity": null,
+    "declaration-block-no-redundant-longhand-properties": null,
+    "shorthand-property-no-redundant-values": null,
+    "alpha-value-notation": null,
+    "color-function-notation": null,
+    "value-keyword-case": ["lower", { "ignoreKeywords": ["currentColor"] }],
+    "property-no-vendor-prefix": null,
+    "selector-no-vendor-prefix": null,
+    "at-rule-no-unknown": null,
+    "import-notation": null
+  }
+}
