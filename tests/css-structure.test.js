@@ -190,10 +190,10 @@ describe('Utility Classes Existence', () => {
   });
 
   test('grid utilities exist', () => {
-    [1, 2, 3, 4, 5, 6, 12].forEach(n => {
+    [1, 2, 3, 4, 6, 12].forEach(n => {
       expect(layoutCSS).toContain(`.grid-cols-${n}`);
     });
-    [1, 2, 3, 4, 5, 6].forEach(n => {
+    [1, 2, 3, 4, 6].forEach(n => {
       expect(layoutCSS).toContain(`.col-span-${n}`);
     });
   });
@@ -267,32 +267,44 @@ describe('Utility Classes Existence', () => {
 describe('Responsive Variants', () => {
   const layoutCSS = fs.readFileSync(path.join(MODULES_DIR, 'layout.css'), 'utf8');
 
-  test('all 4 breakpoints are defined', () => {
+  test('all 3 breakpoints are defined', () => {
     expect(layoutCSS).toContain('min-width: 576px');  // sm
     expect(layoutCSS).toContain('min-width: 768px');  // md
     expect(layoutCSS).toContain('min-width: 1024px'); // lg
-    expect(layoutCSS).toContain('min-width: 1280px'); // xl
   });
 
-  test.each(['sm', 'md', 'lg', 'xl'])('%s breakpoint has display utilities', (bp) => {
+  test.each(['sm', 'md', 'lg'])('%s breakpoint has display utilities', (bp) => {
     expect(layoutCSS).toContain(`.${bp}\\:block`);
     expect(layoutCSS).toContain(`.${bp}\\:hidden`);
     expect(layoutCSS).toContain(`.${bp}\\:flex`);
     expect(layoutCSS).toContain(`.${bp}\\:grid`);
   });
 
-  test.each(['sm', 'md', 'lg', 'xl'])('%s breakpoint has grid utilities', (bp) => {
-    expect(layoutCSS).toContain(`.${bp}\\:grid-cols-1`);
-    expect(layoutCSS).toContain(`.${bp}\\:grid-cols-2`);
-    expect(layoutCSS).toContain(`.${bp}\\:grid-cols-3`);
+  test('sm breakpoint has grid utilities', () => {
+    expect(layoutCSS).toContain('.sm\\:grid-cols-1');
+    expect(layoutCSS).toContain('.sm\\:grid-cols-2');
+    expect(layoutCSS).toContain('.sm\\:grid-cols-3');
   });
 
-  test.each(['sm', 'md', 'lg', 'xl'])('%s breakpoint has gap utilities', (bp) => {
+  test('md breakpoint has grid utilities', () => {
+    expect(layoutCSS).toContain('.md\\:grid-cols-1');
+    expect(layoutCSS).toContain('.md\\:grid-cols-2');
+    expect(layoutCSS).toContain('.md\\:grid-cols-3');
+    expect(layoutCSS).toContain('.md\\:grid-cols-4');
+  });
+
+  test('lg breakpoint has grid utilities', () => {
+    expect(layoutCSS).toContain('.lg\\:grid-cols-2');
+    expect(layoutCSS).toContain('.lg\\:grid-cols-3');
+    expect(layoutCSS).toContain('.lg\\:grid-cols-4');
+  });
+
+  test.each(['sm', 'md', 'lg'])('%s breakpoint has gap utilities', (bp) => {
     expect(layoutCSS).toContain(`.${bp}\\:gap-4`);
     expect(layoutCSS).toContain(`.${bp}\\:gap-6`);
   });
 
-  test.each(['sm', 'md', 'lg', 'xl'])('%s breakpoint has fractional widths', (bp) => {
+  test.each(['sm', 'md', 'lg'])('%s breakpoint has fractional widths', (bp) => {
     expect(layoutCSS).toContain(`.${bp}\\:w-1\\/2`);
     expect(layoutCSS).toContain(`.${bp}\\:w-1\\/3`);
   });
