@@ -1,0 +1,31 @@
+{
+  "name": "noir-css",
+  "version": "1.0.0",
+  "description": "A utility-first CSS framework with dark-cool aesthetic and red/orange accents",
+  "main": "css/noir.css",
+  "style": "css/noir.css",
+  "files": [
+    "css/"
+  ],
+  "keywords": [
+    "css",
+    "css-framework",
+    "utility-first",
+    "dark-theme",
+    "dark-mode",
+    "responsive",
+    "lightweight",
+    "frontend",
+    "ui"
+  ],
+  "author": "kakuteki",
+  "license": "Apache-2.0",
+  "homepage": "https://kakuteki.github.io/Noir/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kakuteki/Noir.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kakuteki/Noir/issues"
+  }
+}
