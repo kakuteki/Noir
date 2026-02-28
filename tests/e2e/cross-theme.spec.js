@@ -146,9 +146,6 @@ test.describe('Expanded Accessibility', () => {
       const text = await btn.textContent();
       const ariaLabel = await btn.getAttribute('aria-label');
       const ariaLabelledBy = await btn.getAttribute('aria-labelledby');
-      const isNavToggle = await btn.evaluate(el => el.classList.contains('navbar-toggle'));
-      // Skip the navbar-toggle (hamburger button with empty spans) - this is a known gap
-      if (isNavToggle) continue;
       // Button must have either text content, aria-label, or aria-labelledby
       const hasAccessibleName = (text && text.trim().length > 0) || ariaLabel || ariaLabelledBy;
       if (!hasAccessibleName) {
@@ -210,20 +207,40 @@ test.describe('Expanded Accessibility', () => {
     }
   });
 
-  test('color contrast - accent on dark bg meets 3:1 for large text', async ({ page }) => {
+  test('color contrast - accent on bg-primary meets 3:1 for large text', async ({ page }) => {
     await page.goto('/index.html');
-    // Get accent color and background
-    const colors = await page.evaluate(() => {
+
+    // Compute actual contrast ratio from computed styles in the browser
+    const ratio = await page.evaluate(() => {
+      function parseColor(str) {
+        // Parse rgb(r, g, b) or hex
+        const rgbMatch = str.match(/rgb\(\s*(\d+),\s*(\d+),\s*(\d+)\s*\)/);
+        if (rgbMatch) {
+          return [parseInt(rgbMatch[1]) / 255, parseInt(rgbMatch[2]) / 255, parseInt(rgbMatch[3]) / 255];
+        }
+        // hex
+        const hex = str.replace('#', '');
+        return [parseInt(hex.slice(0, 2), 16) / 255, parseInt(hex.slice(2, 4), 16) / 255, parseInt(hex.slice(4, 6), 16) / 255];
+      }
+
+      function luminance(rgb) {
+        const [r, g, b] = rgb.map(c => c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4));
+        return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+      }
+
       const style = getComputedStyle(document.documentElement);
-      return {
-        accent: style.getPropertyValue('--noir-accent').trim(),
-        bg: style.getPropertyValue('--noir-bg-primary').trim(),
-      };
+      const accent = style.getPropertyValue('--noir-accent').trim();
+      const bg = style.getPropertyValue('--noir-bg-primary').trim();
+
+      const l1 = luminance(parseColor(accent));
+      const l2 = luminance(parseColor(bg));
+      const lighter = Math.max(l1, l2);
+      const darker = Math.min(l1, l2);
+      return (lighter + 0.05) / (darker + 0.05);
     });
-    // #e84545 on #0a0a0a - relative luminance calculation
-    // This is a basic check that accent is not too dark on dark bg
-    expect(colors.accent).not.toBe(colors.bg);
-    // The accent red (#e84545) has sufficient contrast on near-black
+
+    // WCAG AA requires at least 3:1 for large text / UI components
+    expect(ratio).toBeGreaterThanOrEqual(3);
   });
 
   test('skip link or main landmark exists', async ({ page }) => {
