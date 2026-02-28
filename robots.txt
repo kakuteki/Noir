@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kakuteki.github.io/Noir/sitemap.xml

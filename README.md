@@ -123,6 +123,11 @@ git clone https://github.com/kakuteki/Noir.git
 <label class="toggle"><input type="checkbox"> Toggle</label>
 ```
 
+## Documentation
+
+- [Demo](https://kakuteki.github.io/Noir/) — Live preview of all components
+- [Class Reference](https://kakuteki.github.io/Noir/reference.html) — Complete list of all utility classes
+
 ## Modules
 
 | File | Description |
