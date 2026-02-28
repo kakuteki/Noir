@@ -403,10 +403,10 @@
 
       <p class="demo-label">Alerts</p>
       <div class="flex flex-col gap-4">
-        <div class="alert alert-success">Successfully deployed to production.</div>
-        <div class="alert alert-warning">API rate limit approaching. Consider upgrading your plan.</div>
-        <div class="alert alert-error">Build failed. Check the console for errors.</div>
-        <div class="alert alert-info">A new version is available. Refresh to update.</div>
+        <div class="alert alert-success" role="alert">Successfully deployed to production.</div>
+        <div class="alert alert-warning" role="alert">API rate limit approaching. Consider upgrading your plan.</div>
+        <div class="alert alert-error" role="alert">Build failed. Check the console for errors.</div>
+        <div class="alert alert-info" role="alert">A new version is available. Refresh to update.</div>
       </div>
     </section>
 
@@ -418,19 +418,19 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div class="flex flex-col gap-6">
           <div class="form-group">
-            <label class="form-label">Email</label>
-            <input type="email" class="input" placeholder="you@example.com">
+            <label class="form-label" for="email">Email</label>
+            <input type="email" class="input" id="email" placeholder="you@example.com">
             <span class="form-hint">We'll never share your email.</span>
           </div>
 
           <div class="form-group">
-            <label class="form-label">Password</label>
-            <input type="password" class="input" placeholder="Enter password">
+            <label class="form-label" for="password">Password</label>
+            <input type="password" class="input" id="password" placeholder="Enter password">
           </div>
 
           <div class="form-group">
-            <label class="form-label">Select</label>
-            <select class="select">
+            <label class="form-label" for="demo-select">Select</label>
+            <select class="select" id="demo-select">
               <option>Choose an option</option>
               <option>Option 1</option>
               <option>Option 2</option>
@@ -439,24 +439,24 @@
           </div>
 
           <div class="form-group">
-            <label class="form-label">Message</label>
-            <textarea class="textarea" rows="3" placeholder="Type your message..."></textarea>
+            <label class="form-label" for="message">Message</label>
+            <textarea class="textarea" id="message" rows="3" placeholder="Type your message..."></textarea>
           </div>
         </div>
 
         <div class="flex flex-col gap-6">
           <div class="form-group">
             <label class="form-label">Input Sizes</label>
-            <input type="text" class="input input-sm" placeholder="Small input">
-            <input type="text" class="input" placeholder="Default input">
-            <input type="text" class="input input-lg" placeholder="Large input">
+            <input type="text" class="input input-sm" id="input-sm" placeholder="Small input">
+            <input type="text" class="input" id="input-default" placeholder="Default input">
+            <input type="text" class="input input-lg" id="input-lg" placeholder="Large input">
           </div>
 
           <div class="form-group">
             <label class="form-label">Validation</label>
-            <input type="text" class="input input-success" value="Valid input">
+            <input type="text" class="input input-success" id="input-valid" value="Valid input">
             <span class="form-success">Looks good!</span>
-            <input type="text" class="input input-error" value="Invalid input">
+            <input type="text" class="input input-error" id="input-invalid" value="Invalid input">
             <span class="form-error">This field is required.</span>
           </div>
 
@@ -487,8 +487,8 @@
           </div>
 
           <div class="form-group">
-            <label class="form-label">Range Slider</label>
-            <input type="range" class="range" min="0" max="100" value="60">
+            <label class="form-label" for="range">Range Slider</label>
+            <input type="range" class="range" id="range" min="0" max="100" value="60">
           </div>
 
           <button class="btn btn-primary w-full">Submit</button>
@@ -517,7 +517,7 @@
       </div>
 
       <p class="demo-label">Breadcrumb</p>
-      <nav class="breadcrumb mb-8">
+      <nav class="breadcrumb mb-8" aria-label="Breadcrumb">
         <a href="#" class="breadcrumb-item">Home</a>
         <span class="breadcrumb-separator">/</span>
         <a href="#" class="breadcrumb-item">Components</a>
@@ -591,11 +591,11 @@
   </main>
 
   <!-- Modal -->
-  <div class="overlay" id="demoModal" onclick="if(event.target===this)this.classList.remove('active')">
+  <div class="overlay" id="demoModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" onclick="if(event.target===this)this.classList.remove('active')">
     <div class="modal">
       <div class="modal-header">
-        <h3 class="heading-5">Confirm Action</h3>
-        <button class="btn btn-ghost btn-icon btn-sm" onclick="document.getElementById('demoModal').classList.remove('active')">
+        <h3 class="heading-5" id="modalTitle">Confirm Action</h3>
+        <button class="btn btn-ghost btn-icon btn-sm" aria-label="Close" onclick="document.getElementById('demoModal').classList.remove('active')">
           &times;
         </button>
       </div>
