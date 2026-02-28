@@ -190,7 +190,12 @@ html {
   -webkit-text-size-adjust: 100%;
   -moz-tab-size: 4;
   tab-size: 4;
-  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
@@ -229,8 +234,6 @@ select {
 
 button {
   cursor: pointer;
-  border: none;
-  background: none;
 }
 
 a {
@@ -243,8 +246,8 @@ a:hover {
   color: var(--noir-accent-hover);
 }
 
-ul,
-ol {
+nav ul,
+nav ol {
   list-style: none;
 }
 
