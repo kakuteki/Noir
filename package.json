@@ -4,8 +4,12 @@
   "description": "A utility-first CSS framework with dark-cool aesthetic and red/orange accents",
   "main": "css/noir.css",
   "style": "css/noir.css",
+  "scripts": {
+    "build": "node scripts/build.js"
+  },
   "files": [
-    "css/"
+    "css/",
+    "dist/"
   ],
   "keywords": [
     "css",
