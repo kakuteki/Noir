@@ -241,6 +241,7 @@ test.describe('Expanded Accessibility', () => {
 
     // Check that animations are effectively disabled on skeleton element
     const skeleton = page.locator('.skeleton').first();
+    await skeleton.scrollIntoViewIfNeeded();
     await expect(skeleton).toBeVisible();
     const animDuration = await skeleton.evaluate(el => getComputedStyle(el).animationDuration);
     // With reduced motion, duration should be near 0 (CSS sets 0.01ms !important)
