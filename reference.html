@@ -3,835 +3,1590 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Noir CSS Framework class reference. Complete list of all utility classes, components, layout helpers, and animation classes available in Noir CSS.">
-  <meta name="keywords" content="CSS framework, utility-first, dark theme, class reference, API, documentation, Noir CSS">
+  <meta name="description" content="Noir CSS Framework - Complete class reference and customization guide.">
   <meta name="author" content="kakuteki">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="canonical" href="https://kakuteki.github.io/Noir/reference.html">
-
-  <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Noir CSS - Class Reference">
-  <meta property="og:description" content="Complete class reference for Noir CSS Framework. Every utility class, component, and animation documented.">
+  <meta property="og:description" content="Complete class reference for Noir CSS Framework.">
   <meta property="og:url" content="https://kakuteki.github.io/Noir/reference.html">
   <meta property="og:site_name" content="Noir CSS">
-
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Noir CSS - Class Reference">
-  <meta name="twitter:description" content="Complete class reference for Noir CSS Framework. Every utility class, component, and animation documented.">
-
   <title>Noir CSS - Class Reference</title>
   <link rel="stylesheet" href="css/noir.css">
   <style>
-    .ref-section { padding: var(--noir-space-10) 0; border-bottom: 1px solid var(--noir-border); }
-    .ref-section:last-child { border-bottom: none; }
-    .ref-table-wrap { overflow-x: auto; }
-    .ref-class { font-family: var(--noir-font-mono); font-size: var(--noir-text-xs); color: var(--noir-accent); white-space: nowrap; }
-    .ref-prop { font-family: var(--noir-font-mono); font-size: var(--noir-text-xs); white-space: nowrap; }
-    .search-wrap { position: sticky; top: 52px; z-index: 50; background-color: var(--noir-bg-primary); padding: var(--noir-space-4) 0; border-bottom: 1px solid var(--noir-border); }
-    .toc { display: flex; flex-wrap: wrap; gap: var(--noir-space-2); margin-bottom: var(--noir-space-4); }
-    .toc a { font-size: var(--noir-text-xs); }
-    .match-count { font-size: var(--noir-text-sm); color: var(--noir-text-muted); }
+    .ref-layout{display:flex;min-height:100vh}
+    .ref-sidebar{width:220px;position:sticky;top:52px;height:calc(100vh - 52px);overflow-y:auto;background-color:var(--noir-bg-secondary);border-right:1px solid var(--noir-border);padding:var(--noir-space-4) 0;flex-shrink:0}
+    .ref-sidebar-link{display:block;padding:var(--noir-space-1) var(--noir-space-4);font-size:var(--noir-text-xs);color:var(--noir-text-muted);text-decoration:none;transition:color var(--noir-transition-fast)}
+    .ref-sidebar-link:hover{color:var(--noir-text-primary);background:var(--noir-bg-tertiary)}
+    .ref-sidebar-group{font-weight:var(--noir-font-semibold);color:var(--noir-text-secondary);text-transform:uppercase;letter-spacing:0.05em;margin-top:var(--noir-space-3);pointer-events:none}
+    .ref-content{flex:1;min-width:0;padding:var(--noir-space-6) var(--noir-space-6);max-width:960px}
+    .ref-section{padding:var(--noir-space-8) 0;border-bottom:1px solid var(--noir-border)}
+    .ref-section:last-child{border-bottom:none}
+    .ref-tw{overflow-x:auto;margin-bottom:var(--noir-space-4)}
+    .rt{width:100%;border-collapse:collapse;font-size:var(--noir-text-sm)}
+    .rt th{text-align:left;padding:var(--noir-space-2) var(--noir-space-3);background:var(--noir-bg-tertiary);font-size:var(--noir-text-xs);text-transform:uppercase;letter-spacing:0.05em;font-weight:var(--noir-font-semibold);color:var(--noir-text-primary);border-bottom:1px solid var(--noir-border)}
+    .rt td{padding:var(--noir-space-2) var(--noir-space-3);border-bottom:1px solid var(--noir-border);color:var(--noir-text-secondary)}
+    .rt tbody tr:hover{background:var(--noir-bg-tertiary)}
+    .rc{font-family:var(--noir-font-mono);font-size:var(--noir-text-xs);color:var(--noir-accent);white-space:nowrap}
+    .rv{font-family:var(--noir-font-mono);font-size:var(--noir-text-xs)}
+    .rvar{font-family:var(--noir-font-mono);font-size:var(--noir-text-xs);color:var(--noir-accent-warm)}
+    .pbox{padding:var(--noir-space-4);background:var(--noir-bg-secondary);border-radius:var(--noir-radius-md);margin-bottom:var(--noir-space-4);border:1px solid var(--noir-border)}
+    @media(max-width:767px){.ref-sidebar{display:none}.ref-content{padding:var(--noir-space-4) var(--noir-space-3)}}
   </style>
 </head>
 <body>
-
-  <!-- Navbar -->
-  <nav class="navbar">
-    <a href="index.html" class="navbar-brand">
-      <span class="text-accent font-bold">N</span>oir
+<nav class="navbar">
+  <a href="index.html" class="navbar-brand"><span class="text-accent font-bold">N</span>oir</a>
+  <div class="navbar-nav" id="mainNav">
+    <a href="index.html" class="navbar-link">Demo</a>
+    <a href="reference.html" class="navbar-link active">Reference</a>
+  </div>
+  <div class="flex gap-3 items-center">
+    <a href="https://github.com/kakuteki/Noir" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-ghost" aria-label="GitHub">
+      <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg> GitHub
     </a>
-    <div class="navbar-nav" id="mainNav">
-      <a href="index.html" class="navbar-link">Demo</a>
-      <a href="reference.html" class="navbar-link active">Reference</a>
-      <a href="https://github.com/kakuteki/Noir" target="_blank" rel="noopener noreferrer" class="navbar-link">GitHub</a>
-    </div>
-    <div class="flex gap-3 items-center">
-      <button class="btn btn-sm btn-secondary" onclick="toggleTheme()" id="themeBtn">Light Mode</button>
-      <button class="navbar-toggle" aria-label="Toggle navigation" onclick="document.getElementById('mainNav').classList.toggle('open')">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </nav>
+    <button class="btn btn-sm btn-secondary" onclick="toggleTheme()" id="themeBtn">Light Mode</button>
+    <button class="navbar-toggle" onclick="document.getElementById('mainNav').classList.toggle('open')"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="ref-layout">
+<aside class="ref-sidebar">
+  <span class="ref-sidebar-link ref-sidebar-group">Getting Started</span>
+  <a href="#getting-started" class="ref-sidebar-link">Installation</a>
+  <a href="#customization" class="ref-sidebar-link">Customization</a>
+  <a href="#css-variables" class="ref-sidebar-link">CSS Variables</a>
+  <span class="ref-sidebar-link ref-sidebar-group">Layout</span>
+  <a href="#container" class="ref-sidebar-link">Container</a>
+  <a href="#display" class="ref-sidebar-link">Display</a>
+  <a href="#flexbox" class="ref-sidebar-link">Flexbox</a>
+  <a href="#grid" class="ref-sidebar-link">Grid</a>
+  <a href="#spacing" class="ref-sidebar-link">Spacing</a>
+  <a href="#sizing" class="ref-sidebar-link">Width / Height</a>
+  <a href="#position" class="ref-sidebar-link">Position</a>
+  <a href="#layout-misc" class="ref-sidebar-link">Overflow / Z-Index</a>
+  <a href="#borders-shadows" class="ref-sidebar-link">Borders / Shadows</a>
+  <a href="#backgrounds" class="ref-sidebar-link">Backgrounds</a>
+  <a href="#responsive" class="ref-sidebar-link">Responsive</a>
+  <span class="ref-sidebar-link ref-sidebar-group">Typography</span>
+  <a href="#typography" class="ref-sidebar-link">Font &amp; Text</a>
+  <a href="#headings" class="ref-sidebar-link">Headings</a>
+  <a href="#code-blocks" class="ref-sidebar-link">Code Blocks</a>
+  <span class="ref-sidebar-link ref-sidebar-group">Components</span>
+  <a href="#buttons" class="ref-sidebar-link">Buttons</a>
+  <a href="#cards" class="ref-sidebar-link">Cards</a>
+  <a href="#badges" class="ref-sidebar-link">Badges</a>
+  <a href="#alerts" class="ref-sidebar-link">Alerts</a>
+  <a href="#modal" class="ref-sidebar-link">Modal</a>
+  <a href="#progress" class="ref-sidebar-link">Progress</a>
+  <a href="#avatar" class="ref-sidebar-link">Avatar</a>
+  <a href="#skeleton" class="ref-sidebar-link">Skeleton</a>
+  <a href="#toast" class="ref-sidebar-link">Toast</a>
+  <a href="#tooltip" class="ref-sidebar-link">Tooltip</a>
+  <a href="#accordion" class="ref-sidebar-link">Accordion</a>
+  <a href="#table" class="ref-sidebar-link">Table</a>
+  <a href="#divider" class="ref-sidebar-link">Divider</a>
+  <a href="#spinners" class="ref-sidebar-link">Spinners</a>
+  <span class="ref-sidebar-link ref-sidebar-group">Forms</span>
+  <a href="#forms" class="ref-sidebar-link">Inputs &amp; Forms</a>
+  <span class="ref-sidebar-link ref-sidebar-group">Navigation</span>
+  <a href="#nav-navbar" class="ref-sidebar-link">Navbar</a>
+  <a href="#nav-tabs" class="ref-sidebar-link">Tabs</a>
+  <a href="#nav-breadcrumb" class="ref-sidebar-link">Breadcrumb</a>
+  <a href="#nav-pagination" class="ref-sidebar-link">Pagination</a>
+  <a href="#nav-dropdown" class="ref-sidebar-link">Dropdown</a>
+  <span class="ref-sidebar-link ref-sidebar-group">Utilities</span>
+  <a href="#utilities" class="ref-sidebar-link">Transform / Misc</a>
+  <span class="ref-sidebar-link ref-sidebar-group">States</span>
+  <a href="#states" class="ref-sidebar-link">Hover / Focus / Active</a>
+  <span class="ref-sidebar-link ref-sidebar-group">Animations</span>
+  <a href="#animations" class="ref-sidebar-link">Animations</a>
+  <span class="ref-sidebar-link ref-sidebar-group">Accessibility</span>
+  <a href="#accessibility" class="ref-sidebar-link">WCAG Guide</a>
+</aside>
+<main class="ref-content">
 
-  <!-- Search / Filter -->
-  <div class="search-wrap">
-    <div class="container">
-      <div class="flex flex-col gap-2">
-        <input type="text" class="input" id="searchInput" placeholder="Filter classes... (e.g. btn, flex, animate)" autocomplete="off">
-        <div class="flex justify-between items-center">
-          <nav class="toc" aria-label="Module navigation">
-            <a href="#ref-base" class="btn btn-sm btn-ghost">Base</a>
-            <a href="#ref-typography" class="btn btn-sm btn-ghost">Typography</a>
-            <a href="#ref-layout" class="btn btn-sm btn-ghost">Layout</a>
-            <a href="#ref-forms" class="btn btn-sm btn-ghost">Forms</a>
-            <a href="#ref-components" class="btn btn-sm btn-ghost">Components</a>
-            <a href="#ref-navigation" class="btn btn-sm btn-ghost">Navigation</a>
-            <a href="#ref-utilities" class="btn btn-sm btn-ghost">Utilities</a>
-            <a href="#ref-animations" class="btn btn-sm btn-ghost">Animations</a>
-            <a href="#accessibility" class="btn btn-sm btn-ghost">Accessibility</a>
-          </nav>
-          <span class="match-count" id="matchCount"></span>
+<section class="ref-section" id="getting-started">
+  <h2 class="heading-3 mb-2">Getting Started</h2>
+  <p class="text-secondary mb-6">Add Noir CSS to your project in seconds.</p>
+
+  <h4 class="heading-5 mb-2">CDN</h4>
+  <div class="code-block mb-4"><pre><code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kakuteki/Noir@main/css/noir.css"&gt;</code></pre></div>
+
+  <h4 class="heading-5 mb-2">Direct Download</h4>
+  <p class="text-secondary text-sm mb-4">Download <code class="code">css/noir.css</code> and include it in your project.</p>
+
+  <h4 class="heading-5 mb-2">Basic Template</h4>
+  <div class="code-block mb-4"><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot; data-theme=&quot;dark&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;css/noir.css&quot;&gt;
+  &lt;title&gt;My Noir App&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1 class=&quot;heading-1 text-accent&quot;&gt;Hello Noir&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div>
+
+  <h4 class="heading-5 mb-2">Theme</h4>
+  <p class="text-secondary text-sm mb-2">Noir defaults to dark theme. Set <code class="code">data-theme="light"</code> on <code class="code">&lt;html&gt;</code> for light mode. Omit the attribute to follow OS preference.</p>
+</section>
+
+<section class="ref-section" id="customization">
+  <h2 class="heading-3 mb-2">Customization</h2>
+  <p class="text-secondary mb-6">Override CSS variables to create custom themes. No build step required.</p>
+
+  <h4 class="heading-5 mb-2">Override Variables</h4>
+  <div class="code-block mb-4"><pre><code>:root {
+  --noir-accent: #6366f1;        /* indigo */
+  --noir-accent-hover: #818cf8;
+  --noir-accent-subtle: rgba(99,102,241,0.15);
+  --noir-accent-warm: #f59e0b;   /* amber */
+}</code></pre></div>
+
+  <h4 class="heading-5 mb-2">Blue Theme Example</h4>
+  <div class="code-block mb-4"><pre><code>:root {
+  --noir-accent: #3b82f6;
+  --noir-accent-hover: #60a5fa;
+  --noir-accent-subtle: rgba(59,130,246,0.15);
+  --noir-accent-warm: #8b5cf6;
+  --noir-accent-warm-hover: #a78bfa;
+}</code></pre></div>
+
+  <h4 class="heading-5 mb-2">Modular Imports</h4>
+  <p class="text-secondary text-sm mb-2">Import only the modules you need:</p>
+  <div class="code-block mb-4"><pre><code>@import &quot;noir/modules/base.css&quot;;       /* required */
+@import &quot;noir/modules/typography.css&quot;;
+@import &quot;noir/modules/layout.css&quot;;
+@import &quot;noir/modules/components.css&quot;;
+/* skip forms.css, navigation.css, etc. if unneeded */</code></pre></div>
+</section>
+
+<section class="ref-section" id="css-variables">
+  <h2 class="heading-3 mb-2">CSS Variables</h2>
+  <p class="text-secondary mb-6">All <code class="code">--noir-*</code> variables defined in <code class="code">base.css</code>.</p>
+
+  <h4 class="heading-5 mb-3">Colors</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Variable</th><th>Dark Default</th><th>Light Default</th></tr></thead><tbody>
+<tr><td><span class="rc">--noir-bg-primary</span></td><td><span class="rv">#0a0a0a</span></td><td><span class="rv">#f8f8f8</span></td></tr>
+<tr><td><span class="rc">--noir-bg-secondary</span></td><td><span class="rv">#141414</span></td><td><span class="rv">#ffffff</span></td></tr>
+<tr><td><span class="rc">--noir-bg-tertiary</span></td><td><span class="rv">#1e1e1e</span></td><td><span class="rv">#f0f0f0</span></td></tr>
+<tr><td><span class="rc">--noir-bg-elevated</span></td><td><span class="rv">#262626</span></td><td><span class="rv">#ffffff</span></td></tr>
+<tr><td><span class="rc">--noir-text-primary</span></td><td><span class="rv">#f0f0f0</span></td><td><span class="rv">#1a1a1a</span></td></tr>
+<tr><td><span class="rc">--noir-text-secondary</span></td><td><span class="rv">#a0a0a0</span></td><td><span class="rv">#555555</span></td></tr>
+<tr><td><span class="rc">--noir-text-muted</span></td><td><span class="rv">#888888</span></td><td><span class="rv">#767676</span></td></tr>
+<tr><td><span class="rc">--noir-text-inverse</span></td><td><span class="rv">#0a0a0a</span></td><td><span class="rv">#f0f0f0</span></td></tr>
+<tr><td><span class="rc">--noir-accent</span></td><td><span class="rv">#e84545</span></td><td><span class="rv">#d63031</span></td></tr>
+<tr><td><span class="rc">--noir-accent-hover</span></td><td><span class="rv">#ff5252</span></td><td><span class="rv">#e84545</span></td></tr>
+<tr><td><span class="rc">--noir-accent-subtle</span></td><td><span class="rv">rgba(232,69,69,0.15)</span></td><td><span class="rv">rgba(214,48,49,0.1)</span></td></tr>
+<tr><td><span class="rc">--noir-accent-warm</span></td><td><span class="rv">#f97316</span></td><td><span class="rv">#e67e22</span></td></tr>
+<tr><td><span class="rc">--noir-accent-warm-hover</span></td><td><span class="rv">#fb923c</span></td><td><span class="rv">#f97316</span></td></tr>
+<tr><td><span class="rc">--noir-border</span></td><td><span class="rv">#2a2a2a</span></td><td><span class="rv">#e0e0e0</span></td></tr>
+<tr><td><span class="rc">--noir-border-hover</span></td><td><span class="rv">#3a3a3a</span></td><td><span class="rv">#cccccc</span></td></tr>
+<tr><td><span class="rc">--noir-success</span></td><td><span class="rv">#22c55e</span></td><td><span class="rv">#22c55e</span></td></tr>
+<tr><td><span class="rc">--noir-warning</span></td><td><span class="rv">#eab308</span></td><td><span class="rv">#eab308</span></td></tr>
+<tr><td><span class="rc">--noir-error</span></td><td><span class="rv">#ef4444</span></td><td><span class="rv">#ef4444</span></td></tr>
+<tr><td><span class="rc">--noir-info</span></td><td><span class="rv">#3b82f6</span></td><td><span class="rv">#3b82f6</span></td></tr>
+</tbody></table></div>
+
+
+  <h4 class="heading-5 mb-3">Spacing</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Variable</th><th>Value</th></tr></thead><tbody>
+<tr><td><span class="rc">--noir-space-0</span></td><td><span class="rv">0</span></td></tr>
+<tr><td><span class="rc">--noir-space-1</span></td><td><span class="rv">0.25rem</span></td></tr>
+<tr><td><span class="rc">--noir-space-2</span></td><td><span class="rv">0.5rem</span></td></tr>
+<tr><td><span class="rc">--noir-space-3</span></td><td><span class="rv">0.75rem</span></td></tr>
+<tr><td><span class="rc">--noir-space-4</span></td><td><span class="rv">1rem</span></td></tr>
+<tr><td><span class="rc">--noir-space-5</span></td><td><span class="rv">1.25rem</span></td></tr>
+<tr><td><span class="rc">--noir-space-6</span></td><td><span class="rv">1.5rem</span></td></tr>
+<tr><td><span class="rc">--noir-space-8</span></td><td><span class="rv">2rem</span></td></tr>
+<tr><td><span class="rc">--noir-space-10</span></td><td><span class="rv">2.5rem</span></td></tr>
+<tr><td><span class="rc">--noir-space-12</span></td><td><span class="rv">3rem</span></td></tr>
+<tr><td><span class="rc">--noir-space-16</span></td><td><span class="rv">4rem</span></td></tr>
+<tr><td><span class="rc">--noir-space-20</span></td><td><span class="rv">5rem</span></td></tr>
+<tr><td><span class="rc">--noir-space-24</span></td><td><span class="rv">6rem</span></td></tr>
+</tbody></table></div>
+
+
+  <h4 class="heading-5 mb-3">Typography</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Variable</th><th>Value</th></tr></thead><tbody>
+<tr><td><span class="rc">--noir-font-sans</span></td><td><span class="rv">"Inter", "Segoe UI", system-ui, sans-serif</span></td></tr>
+<tr><td><span class="rc">--noir-font-mono</span></td><td><span class="rv">"JetBrains Mono", "Fira Code", "Consolas", monospace</span></td></tr>
+<tr><td><span class="rc">--noir-text-xs</span></td><td><span class="rv">0.75rem</span></td></tr>
+<tr><td><span class="rc">--noir-text-sm</span></td><td><span class="rv">0.875rem</span></td></tr>
+<tr><td><span class="rc">--noir-text-base</span></td><td><span class="rv">1rem</span></td></tr>
+<tr><td><span class="rc">--noir-text-lg</span></td><td><span class="rv">1.125rem</span></td></tr>
+<tr><td><span class="rc">--noir-text-xl</span></td><td><span class="rv">1.25rem</span></td></tr>
+<tr><td><span class="rc">--noir-text-2xl</span></td><td><span class="rv">1.5rem</span></td></tr>
+<tr><td><span class="rc">--noir-text-3xl</span></td><td><span class="rv">1.875rem</span></td></tr>
+<tr><td><span class="rc">--noir-text-4xl</span></td><td><span class="rv">2.25rem</span></td></tr>
+<tr><td><span class="rc">--noir-text-5xl</span></td><td><span class="rv">3rem</span></td></tr>
+<tr><td><span class="rc">--noir-leading-tight</span></td><td><span class="rv">1.25</span></td></tr>
+<tr><td><span class="rc">--noir-leading-normal</span></td><td><span class="rv">1.5</span></td></tr>
+<tr><td><span class="rc">--noir-leading-relaxed</span></td><td><span class="rv">1.75</span></td></tr>
+<tr><td><span class="rc">--noir-font-light</span></td><td><span class="rv">300</span></td></tr>
+<tr><td><span class="rc">--noir-font-normal</span></td><td><span class="rv">400</span></td></tr>
+<tr><td><span class="rc">--noir-font-medium</span></td><td><span class="rv">500</span></td></tr>
+<tr><td><span class="rc">--noir-font-semibold</span></td><td><span class="rv">600</span></td></tr>
+<tr><td><span class="rc">--noir-font-bold</span></td><td><span class="rv">700</span></td></tr>
+</tbody></table></div>
+
+
+  <h4 class="heading-5 mb-3">Border Radius</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Variable</th><th>Value</th></tr></thead><tbody>
+<tr><td><span class="rc">--noir-radius-none</span></td><td><span class="rv">0</span></td></tr>
+<tr><td><span class="rc">--noir-radius-sm</span></td><td><span class="rv">0.25rem</span></td></tr>
+<tr><td><span class="rc">--noir-radius-md</span></td><td><span class="rv">0.5rem</span></td></tr>
+<tr><td><span class="rc">--noir-radius-lg</span></td><td><span class="rv">0.75rem</span></td></tr>
+<tr><td><span class="rc">--noir-radius-xl</span></td><td><span class="rv">1rem</span></td></tr>
+<tr><td><span class="rc">--noir-radius-full</span></td><td><span class="rv">9999px</span></td></tr>
+</tbody></table></div>
+
+
+  <h4 class="heading-5 mb-3">Shadows</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Variable</th><th>Value</th></tr></thead><tbody>
+<tr><td><span class="rc">--noir-shadow-sm</span></td><td><span class="rv">0 1px 2px rgba(0,0,0,0.4)</span></td></tr>
+<tr><td><span class="rc">--noir-shadow-md</span></td><td><span class="rv">0 4px 6px rgba(0,0,0,0.4)</span></td></tr>
+<tr><td><span class="rc">--noir-shadow-lg</span></td><td><span class="rv">0 10px 15px rgba(0,0,0,0.5)</span></td></tr>
+<tr><td><span class="rc">--noir-shadow-xl</span></td><td><span class="rv">0 20px 25px rgba(0,0,0,0.5)</span></td></tr>
+<tr><td><span class="rc">--noir-shadow-glow</span></td><td><span class="rv">0 0 20px rgba(232,69,69,0.3)</span></td></tr>
+</tbody></table></div>
+
+
+  <h4 class="heading-5 mb-3">Transitions</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Variable</th><th>Value</th></tr></thead><tbody>
+<tr><td><span class="rc">--noir-transition-fast</span></td><td><span class="rv">150ms ease</span></td></tr>
+<tr><td><span class="rc">--noir-transition-base</span></td><td><span class="rv">250ms ease</span></td></tr>
+<tr><td><span class="rc">--noir-transition-slow</span></td><td><span class="rv">400ms ease</span></td></tr>
+</tbody></table></div>
+
+
+  <h4 class="heading-5 mb-3">Z-Index</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Variable</th><th>Value</th></tr></thead><tbody>
+<tr><td><span class="rc">--noir-z-tooltip</span></td><td><span class="rv">50</span></td></tr>
+<tr><td><span class="rc">--noir-z-dropdown</span></td><td><span class="rv">100</span></td></tr>
+<tr><td><span class="rc">--noir-z-sticky</span></td><td><span class="rv">200</span></td></tr>
+<tr><td><span class="rc">--noir-z-overlay</span></td><td><span class="rv">300</span></td></tr>
+<tr><td><span class="rc">--noir-z-modal</span></td><td><span class="rv">400</span></td></tr>
+<tr><td><span class="rc">--noir-z-toast</span></td><td><span class="rv">500</span></td></tr>
+</tbody></table></div>
+
+</section>
+
+<section class="ref-section" id="container">
+  <h2 class="heading-3 mb-2">Container</h2>
+  <p class="text-secondary text-sm mb-4">Centered container with responsive max-width.</p>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Max Width</th></tr></thead><tbody>
+<tr><td><span class="rc">container</span></td><td><span class="rv">1280px + auto margins + padding</span></td></tr>
+<tr><td><span class="rc">container-sm</span></td><td><span class="rv">640px</span></td></tr>
+<tr><td><span class="rc">container-md</span></td><td><span class="rv">768px</span></td></tr>
+<tr><td><span class="rc">container-lg</span></td><td><span class="rv">1024px</span></td></tr>
+<tr><td><span class="rc">container-xl</span></td><td><span class="rv">1280px</span></td></tr>
+<tr><td><span class="rc">container-fluid</span></td><td><span class="rv">100%</span></td></tr>
+</tbody></table></div>
+
+</section>
+
+<section class="ref-section" id="display">
+  <h2 class="heading-3 mb-2">Display</h2>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>CSS</th></tr></thead><tbody>
+<tr><td><span class="rc">block</span></td><td><span class="rv">display: block</span></td></tr>
+<tr><td><span class="rc">inline-block</span></td><td><span class="rv">display: inline-block</span></td></tr>
+<tr><td><span class="rc">inline</span></td><td><span class="rv">display: inline</span></td></tr>
+<tr><td><span class="rc">flex</span></td><td><span class="rv">display: flex</span></td></tr>
+<tr><td><span class="rc">inline-flex</span></td><td><span class="rv">display: inline-flex</span></td></tr>
+<tr><td><span class="rc">grid</span></td><td><span class="rv">display: grid</span></td></tr>
+<tr><td><span class="rc">hidden</span></td><td><span class="rv">display: none</span></td></tr>
+</tbody></table></div>
+
+
+  <h4 class="heading-5 mb-3 mt-4">Visibility</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>CSS</th></tr></thead><tbody>
+<tr><td><span class="rc">visible</span></td><td><span class="rv">visibility: visible</span></td></tr>
+<tr><td><span class="rc">invisible</span></td><td><span class="rv">visibility: hidden</span></td></tr>
+<tr><td><span class="rc">sr-only</span></td><td><span class="rv">Screen reader only (visually hidden)</span></td></tr>
+</tbody></table></div>
+
+</section>
+
+<section class="ref-section" id="flexbox">
+  <h2 class="heading-3 mb-2">Flexbox</h2>
+  <h4 class="heading-5 mb-3">Direction &amp; Wrap</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>CSS</th></tr></thead><tbody>
+<tr><td><span class="rc">flex-row</span></td><td><span class="rv">flex-direction: row</span></td></tr>
+<tr><td><span class="rc">flex-col</span></td><td><span class="rv">flex-direction: column</span></td></tr>
+<tr><td><span class="rc">flex-row-reverse</span></td><td><span class="rv">flex-direction: row-reverse</span></td></tr>
+<tr><td><span class="rc">flex-col-reverse</span></td><td><span class="rv">flex-direction: column-reverse</span></td></tr>
+<tr><td><span class="rc">flex-wrap</span></td><td><span class="rv">flex-wrap: wrap</span></td></tr>
+<tr><td><span class="rc">flex-nowrap</span></td><td><span class="rv">flex-wrap: nowrap</span></td></tr>
+<tr><td><span class="rc">flex-1</span></td><td><span class="rv">flex: 1 1 0%</span></td></tr>
+<tr><td><span class="rc">flex-auto</span></td><td><span class="rv">flex: 1 1 auto</span></td></tr>
+<tr><td><span class="rc">flex-none</span></td><td><span class="rv">flex: none</span></td></tr>
+<tr><td><span class="rc">grow</span></td><td><span class="rv">flex-grow: 1</span></td></tr>
+<tr><td><span class="rc">grow-0</span></td><td><span class="rv">flex-grow: 0</span></td></tr>
+<tr><td><span class="rc">shrink</span></td><td><span class="rv">flex-shrink: 1</span></td></tr>
+<tr><td><span class="rc">shrink-0</span></td><td><span class="rv">flex-shrink: 0</span></td></tr>
+</tbody></table></div>
+
+  <h4 class="heading-5 mb-3">Justify Content</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>CSS</th></tr></thead><tbody>
+<tr><td><span class="rc">justify-start</span></td><td><span class="rv">justify-content: flex-start</span></td></tr>
+<tr><td><span class="rc">justify-end</span></td><td><span class="rv">justify-content: flex-end</span></td></tr>
+<tr><td><span class="rc">justify-center</span></td><td><span class="rv">justify-content: center</span></td></tr>
+<tr><td><span class="rc">justify-between</span></td><td><span class="rv">justify-content: space-between</span></td></tr>
+<tr><td><span class="rc">justify-around</span></td><td><span class="rv">justify-content: space-around</span></td></tr>
+<tr><td><span class="rc">justify-evenly</span></td><td><span class="rv">justify-content: space-evenly</span></td></tr>
+</tbody></table></div>
+
+  <h4 class="heading-5 mb-3">Align Items</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>CSS</th></tr></thead><tbody>
+<tr><td><span class="rc">items-start</span></td><td><span class="rv">align-items: flex-start</span></td></tr>
+<tr><td><span class="rc">items-end</span></td><td><span class="rv">align-items: flex-end</span></td></tr>
+<tr><td><span class="rc">items-center</span></td><td><span class="rv">align-items: center</span></td></tr>
+<tr><td><span class="rc">items-baseline</span></td><td><span class="rv">align-items: baseline</span></td></tr>
+<tr><td><span class="rc">items-stretch</span></td><td><span class="rv">align-items: stretch</span></td></tr>
+</tbody></table></div>
+
+  <h4 class="heading-5 mb-3">Align Self</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>CSS</th></tr></thead><tbody>
+<tr><td><span class="rc">self-start</span></td><td><span class="rv">align-self: flex-start</span></td></tr>
+<tr><td><span class="rc">self-end</span></td><td><span class="rv">align-self: flex-end</span></td></tr>
+<tr><td><span class="rc">self-center</span></td><td><span class="rv">align-self: center</span></td></tr>
+<tr><td><span class="rc">self-stretch</span></td><td><span class="rv">align-self: stretch</span></td></tr>
+</tbody></table></div>
+
+  <h4 class="heading-5 mb-3">Order</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>CSS</th></tr></thead><tbody>
+<tr><td><span class="rc">order-first</span></td><td><span class="rv">order: -9999</span></td></tr>
+<tr><td><span class="rc">order-last</span></td><td><span class="rv">order: 9999</span></td></tr>
+<tr><td><span class="rc">order-none</span></td><td><span class="rv">order: 0</span></td></tr>
+<tr><td><span class="rc">order-1</span></td><td><span class="rv">order: 1</span></td></tr>
+<tr><td><span class="rc">order-2</span></td><td><span class="rv">order: 2</span></td></tr>
+</tbody></table></div>
+
+  <h4 class="heading-5 mb-3">Space Between Children</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>CSS</th></tr></thead><tbody>
+<tr><td><span class="rc">space-x-2</span></td><td><span class="rv">margin-left: 0.5rem (children)</span></td></tr>
+<tr><td><span class="rc">space-x-4</span></td><td><span class="rv">margin-left: 1rem</span></td></tr>
+<tr><td><span class="rc">space-x-6</span></td><td><span class="rv">margin-left: 1.5rem</span></td></tr>
+<tr><td><span class="rc">space-y-2</span></td><td><span class="rv">margin-top: 0.5rem (children)</span></td></tr>
+<tr><td><span class="rc">space-y-4</span></td><td><span class="rv">margin-top: 1rem</span></td></tr>
+<tr><td><span class="rc">space-y-6</span></td><td><span class="rv">margin-top: 1.5rem</span></td></tr>
+</tbody></table></div>
+
+  <h4 class="heading-5 mb-3">Gap</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Value</th></tr></thead><tbody>
+<tr><td><span class="rc">gap-0</span></td><td><span class="rv">0</span></td></tr>
+<tr><td><span class="rc">gap-1</span></td><td><span class="rv">0.25rem</span></td></tr>
+<tr><td><span class="rc">gap-2</span></td><td><span class="rv">0.5rem</span></td></tr>
+<tr><td><span class="rc">gap-3</span></td><td><span class="rv">0.75rem</span></td></tr>
+<tr><td><span class="rc">gap-4</span></td><td><span class="rv">1rem</span></td></tr>
+<tr><td><span class="rc">gap-5</span></td><td><span class="rv">1.25rem</span></td></tr>
+<tr><td><span class="rc">gap-6</span></td><td><span class="rv">1.5rem</span></td></tr>
+<tr><td><span class="rc">gap-8</span></td><td><span class="rv">2rem</span></td></tr>
+<tr><td><span class="rc">gap-10</span></td><td><span class="rv">2.5rem</span></td></tr>
+<tr><td><span class="rc">gap-12</span></td><td><span class="rv">3rem</span></td></tr>
+</tbody></table></div>
+
+</section>
+
+<section class="ref-section" id="grid">
+  <h2 class="heading-3 mb-2">Grid</h2>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>CSS</th></tr></thead><tbody>
+<tr><td><span class="rc">grid-cols-1</span></td><td><span class="rv">grid-template-columns: repeat(1, minmax(0,1fr))</span></td></tr>
+<tr><td><span class="rc">grid-cols-2</span></td><td><span class="rv">repeat(2, ...)</span></td></tr>
+<tr><td><span class="rc">grid-cols-3</span></td><td><span class="rv">repeat(3, ...)</span></td></tr>
+<tr><td><span class="rc">grid-cols-4</span></td><td><span class="rv">repeat(4, ...)</span></td></tr>
+<tr><td><span class="rc">grid-cols-6</span></td><td><span class="rv">repeat(6, ...)</span></td></tr>
+<tr><td><span class="rc">grid-cols-12</span></td><td><span class="rv">repeat(12, ...)</span></td></tr>
+<tr><td><span class="rc">col-span-1</span></td><td><span class="rv">grid-column: span 1</span></td></tr>
+<tr><td><span class="rc">col-span-2</span></td><td><span class="rv">span 2</span></td></tr>
+<tr><td><span class="rc">col-span-3</span></td><td><span class="rv">span 3</span></td></tr>
+<tr><td><span class="rc">col-span-4</span></td><td><span class="rv">span 4</span></td></tr>
+<tr><td><span class="rc">col-span-6</span></td><td><span class="rv">span 6</span></td></tr>
+<tr><td><span class="rc">col-span-full</span></td><td><span class="rv">1 / -1</span></td></tr>
+<tr><td><span class="rc">row-span-1</span></td><td><span class="rv">grid-row: span 1</span></td></tr>
+<tr><td><span class="rc">row-span-2</span></td><td><span class="rv">span 2</span></td></tr>
+<tr><td><span class="rc">row-span-full</span></td><td><span class="rv">1 / -1</span></td></tr>
+<tr><td><span class="rc">place-items-center</span></td><td><span class="rv">place-items: center</span></td></tr>
+<tr><td><span class="rc">place-content-center</span></td><td><span class="rv">place-content: center</span></td></tr>
+</tbody></table></div>
+
+</section>
+
+<section class="ref-section" id="spacing">
+  <h2 class="heading-3 mb-2">Spacing</h2>
+  <h4 class="heading-5 mb-3">Padding</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>CSS</th></tr></thead><tbody>
+<tr><td><span class="rc">p-{0-12}</span></td><td><span class="rv">padding: var(--noir-space-N)</span></td></tr>
+<tr><td><span class="rc">px-{0-8}</span></td><td><span class="rv">padding-inline</span></td></tr>
+<tr><td><span class="rc">py-{0-8}</span></td><td><span class="rv">padding-block</span></td></tr>
+<tr><td><span class="rc">pt-{0,2,4,6,8}</span></td><td><span class="rv">padding-top</span></td></tr>
+<tr><td><span class="rc">pb-{0,2,4,6,8}</span></td><td><span class="rv">padding-bottom</span></td></tr>
+</tbody></table></div>
+
+  <p class="text-xs text-muted mb-4">Available values: 0, 1, 2, 3, 4, 5, 6, 8, 10, 12. px/py: 0, 1, 2, 3, 4, 6, 8.</p>
+  <h4 class="heading-5 mb-3">Margin</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>CSS</th></tr></thead><tbody>
+<tr><td><span class="rc">m-{0-8}</span></td><td><span class="rv">margin: var(--noir-space-N)</span></td></tr>
+<tr><td><span class="rc">m-auto</span></td><td><span class="rv">margin: auto</span></td></tr>
+<tr><td><span class="rc">mx-{0,2,4}</span></td><td><span class="rv">margin-inline</span></td></tr>
+<tr><td><span class="rc">mx-auto</span></td><td><span class="rv">margin-inline: auto</span></td></tr>
+<tr><td><span class="rc">my-{0,2,4,6,8}</span></td><td><span class="rv">margin-block</span></td></tr>
+<tr><td><span class="rc">mt-{0-8}</span></td><td><span class="rv">margin-top</span></td></tr>
+<tr><td><span class="rc">mb-{0-8}</span></td><td><span class="rv">margin-bottom</span></td></tr>
+</tbody></table></div>
+
+</section>
+
+<section class="ref-section" id="sizing">
+  <h2 class="heading-3 mb-2">Width &amp; Height</h2>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>CSS</th></tr></thead><tbody>
+<tr><td><span class="rc">w-full</span></td><td><span class="rv">width: 100%</span></td></tr>
+<tr><td><span class="rc">w-screen</span></td><td><span class="rv">width: 100vw</span></td></tr>
+<tr><td><span class="rc">w-auto</span></td><td><span class="rv">width: auto</span></td></tr>
+<tr><td><span class="rc">w-fit</span></td><td><span class="rv">width: fit-content</span></td></tr>
+<tr><td><span class="rc">min-w-0</span></td><td><span class="rv">min-width: 0</span></td></tr>
+<tr><td><span class="rc">max-w-full</span></td><td><span class="rv">max-width: 100%</span></td></tr>
+<tr><td><span class="rc">w-1/2</span></td><td><span class="rv">width: 50%</span></td></tr>
+<tr><td><span class="rc">w-1/3</span></td><td><span class="rv">33.33%</span></td></tr>
+<tr><td><span class="rc">w-2/3</span></td><td><span class="rv">66.67%</span></td></tr>
+<tr><td><span class="rc">w-1/4</span></td><td><span class="rv">25%</span></td></tr>
+<tr><td><span class="rc">w-3/4</span></td><td><span class="rv">75%</span></td></tr>
+<tr><td><span class="rc">w-1/5</span></td><td><span class="rv">20%</span></td></tr>
+<tr><td><span class="rc">w-2/5</span></td><td><span class="rv">40%</span></td></tr>
+<tr><td><span class="rc">w-3/5</span></td><td><span class="rv">60%</span></td></tr>
+<tr><td><span class="rc">w-4/5</span></td><td><span class="rv">80%</span></td></tr>
+<tr><td><span class="rc">h-full</span></td><td><span class="rv">height: 100%</span></td></tr>
+<tr><td><span class="rc">h-screen</span></td><td><span class="rv">height: 100dvh</span></td></tr>
+<tr><td><span class="rc">h-auto</span></td><td><span class="rv">height: auto</span></td></tr>
+<tr><td><span class="rc">min-h-screen</span></td><td><span class="rv">min-height: 100dvh</span></td></tr>
+<tr><td><span class="rc">min-h-0</span></td><td><span class="rv">min-height: 0</span></td></tr>
+<tr><td><span class="rc">max-h-screen</span></td><td><span class="rv">max-height: 100dvh</span></td></tr>
+</tbody></table></div>
+
+  <h4 class="heading-5 mb-3">Aspect Ratio &amp; Object Fit</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>CSS</th></tr></thead><tbody>
+<tr><td><span class="rc">aspect-auto</span></td><td><span class="rv">aspect-ratio: auto</span></td></tr>
+<tr><td><span class="rc">aspect-square</span></td><td><span class="rv">aspect-ratio: 1/1</span></td></tr>
+<tr><td><span class="rc">aspect-video</span></td><td><span class="rv">aspect-ratio: 16/9</span></td></tr>
+<tr><td><span class="rc">object-contain</span></td><td><span class="rv">object-fit: contain</span></td></tr>
+<tr><td><span class="rc">object-cover</span></td><td><span class="rv">object-fit: cover</span></td></tr>
+<tr><td><span class="rc">object-fill</span></td><td><span class="rv">object-fit: fill</span></td></tr>
+</tbody></table></div>
+
+</section>
+
+<section class="ref-section" id="position">
+  <h2 class="heading-3 mb-2">Position</h2>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>CSS</th></tr></thead><tbody>
+<tr><td><span class="rc">relative</span></td><td><span class="rv">position: relative</span></td></tr>
+<tr><td><span class="rc">absolute</span></td><td><span class="rv">position: absolute</span></td></tr>
+<tr><td><span class="rc">fixed</span></td><td><span class="rv">position: fixed</span></td></tr>
+<tr><td><span class="rc">sticky</span></td><td><span class="rv">position: sticky; top: 0</span></td></tr>
+<tr><td><span class="rc">inset-0</span></td><td><span class="rv">inset: 0</span></td></tr>
+<tr><td><span class="rc">top-0</span></td><td><span class="rv">top: 0</span></td></tr>
+<tr><td><span class="rc">right-0</span></td><td><span class="rv">right: 0</span></td></tr>
+<tr><td><span class="rc">bottom-0</span></td><td><span class="rv">bottom: 0</span></td></tr>
+<tr><td><span class="rc">left-0</span></td><td><span class="rv">left: 0</span></td></tr>
+</tbody></table></div>
+
+</section>
+
+<section class="ref-section" id="layout-misc">
+  <h2 class="heading-3 mb-2">Overflow, Z-Index &amp; Cursor</h2>
+  <h4 class="heading-5 mb-3">Overflow</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>CSS</th></tr></thead><tbody>
+<tr><td><span class="rc">overflow-hidden</span></td><td><span class="rv">overflow: hidden</span></td></tr>
+<tr><td><span class="rc">overflow-auto</span></td><td><span class="rv">overflow: auto</span></td></tr>
+<tr><td><span class="rc">overflow-x-auto</span></td><td><span class="rv">overflow-x: auto</span></td></tr>
+<tr><td><span class="rc">overflow-y-auto</span></td><td><span class="rv">overflow-y: auto</span></td></tr>
+</tbody></table></div>
+
+  <h4 class="heading-5 mb-3">Z-Index</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Value</th></tr></thead><tbody>
+<tr><td><span class="rc">z-0</span></td><td><span class="rv">0</span></td></tr>
+<tr><td><span class="rc">z-10</span></td><td><span class="rv">10</span></td></tr>
+<tr><td><span class="rc">z-20</span></td><td><span class="rv">20</span></td></tr>
+<tr><td><span class="rc">z-30</span></td><td><span class="rv">30</span></td></tr>
+<tr><td><span class="rc">z-40</span></td><td><span class="rv">40</span></td></tr>
+<tr><td><span class="rc">z-50</span></td><td><span class="rv">50</span></td></tr>
+<tr><td><span class="rc">z-auto</span></td><td><span class="rv">auto</span></td></tr>
+<tr><td><span class="rc">z-dropdown</span></td><td><span class="rv">100</span></td></tr>
+<tr><td><span class="rc">z-sticky</span></td><td><span class="rv">200</span></td></tr>
+<tr><td><span class="rc">z-overlay</span></td><td><span class="rv">300</span></td></tr>
+<tr><td><span class="rc">z-modal</span></td><td><span class="rv">400</span></td></tr>
+<tr><td><span class="rc">z-toast</span></td><td><span class="rv">500</span></td></tr>
+</tbody></table></div>
+
+  <h4 class="heading-5 mb-3">Cursor</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>CSS</th></tr></thead><tbody>
+<tr><td><span class="rc">cursor-pointer</span></td><td><span class="rv">cursor: pointer</span></td></tr>
+<tr><td><span class="rc">cursor-not-allowed</span></td><td><span class="rv">cursor: not-allowed</span></td></tr>
+</tbody></table></div>
+
+  <h4 class="heading-5 mb-3">Transition</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>CSS</th></tr></thead><tbody>
+<tr><td><span class="rc">transition</span></td><td><span class="rv">all 250ms ease</span></td></tr>
+<tr><td><span class="rc">transition-fast</span></td><td><span class="rv">all 150ms ease</span></td></tr>
+<tr><td><span class="rc">transition-slow</span></td><td><span class="rv">all 400ms ease</span></td></tr>
+<tr><td><span class="rc">transition-none</span></td><td><span class="rv">transition: none</span></td></tr>
+</tbody></table></div>
+
+  <h4 class="heading-5 mb-3">Opacity</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Value</th></tr></thead><tbody>
+<tr><td><span class="rc">opacity-0</span></td><td><span class="rv">0</span></td></tr>
+<tr><td><span class="rc">opacity-25</span></td><td><span class="rv">0.25</span></td></tr>
+<tr><td><span class="rc">opacity-50</span></td><td><span class="rv">0.5</span></td></tr>
+<tr><td><span class="rc">opacity-75</span></td><td><span class="rv">0.75</span></td></tr>
+<tr><td><span class="rc">opacity-100</span></td><td><span class="rv">1</span></td></tr>
+</tbody></table></div>
+
+</section>
+
+<section class="ref-section" id="borders-shadows">
+  <h2 class="heading-3 mb-2">Borders, Radius &amp; Shadows</h2>
+  <h4 class="heading-5 mb-3">Border</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>CSS</th></tr></thead><tbody>
+<tr><td><span class="rc">border</span></td><td><span class="rv">1px solid var(--noir-border)</span></td></tr>
+<tr><td><span class="rc">border-0</span></td><td><span class="rv">border: none</span></td></tr>
+<tr><td><span class="rc">border-t</span></td><td><span class="rv">border-top: 1px solid</span></td></tr>
+<tr><td><span class="rc">border-b</span></td><td><span class="rv">border-bottom</span></td></tr>
+<tr><td><span class="rc">border-l</span></td><td><span class="rv">border-left</span></td></tr>
+<tr><td><span class="rc">border-r</span></td><td><span class="rv">border-right</span></td></tr>
+<tr><td><span class="rc">border-accent</span></td><td><span class="rv">border-color: var(--noir-accent)</span></td></tr>
+</tbody></table></div>
+
+  <h4 class="heading-5 mb-3">Border Radius</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Value</th></tr></thead><tbody>
+<tr><td><span class="rc">rounded-none</span></td><td><span class="rv">0</span></td></tr>
+<tr><td><span class="rc">rounded-sm</span></td><td><span class="rv">0.25rem</span></td></tr>
+<tr><td><span class="rc">rounded</span></td><td><span class="rv">0.5rem</span></td></tr>
+<tr><td><span class="rc">rounded-lg</span></td><td><span class="rv">0.75rem</span></td></tr>
+<tr><td><span class="rc">rounded-xl</span></td><td><span class="rv">1rem</span></td></tr>
+<tr><td><span class="rc">rounded-full</span></td><td><span class="rv">9999px</span></td></tr>
+</tbody></table></div>
+
+  <h4 class="heading-5 mb-3">Box Shadow</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Shadow</th></tr></thead><tbody>
+<tr><td><span class="rc">shadow-sm</span></td><td><span class="rv">0 1px 2px ...</span></td></tr>
+<tr><td><span class="rc">shadow</span></td><td><span class="rv">0 4px 6px ...</span></td></tr>
+<tr><td><span class="rc">shadow-lg</span></td><td><span class="rv">0 10px 15px ...</span></td></tr>
+<tr><td><span class="rc">shadow-xl</span></td><td><span class="rv">0 20px 25px ...</span></td></tr>
+<tr><td><span class="rc">shadow-glow</span></td><td><span class="rv">0 0 20px accent glow</span></td></tr>
+<tr><td><span class="rc">shadow-none</span></td><td><span class="rv">none</span></td></tr>
+</tbody></table></div>
+
+</section>
+
+<section class="ref-section" id="backgrounds">
+  <h2 class="heading-3 mb-2">Backgrounds &amp; Gradients</h2>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Value</th></tr></thead><tbody>
+<tr><td><span class="rc">bg-primary</span></td><td><span class="rv">var(--noir-bg-primary)</span></td></tr>
+<tr><td><span class="rc">bg-secondary</span></td><td><span class="rv">var(--noir-bg-secondary)</span></td></tr>
+<tr><td><span class="rc">bg-tertiary</span></td><td><span class="rv">var(--noir-bg-tertiary)</span></td></tr>
+<tr><td><span class="rc">bg-elevated</span></td><td><span class="rv">var(--noir-bg-elevated)</span></td></tr>
+<tr><td><span class="rc">bg-accent</span></td><td><span class="rv">var(--noir-accent)</span></td></tr>
+<tr><td><span class="rc">bg-accent-subtle</span></td><td><span class="rv">var(--noir-accent-subtle)</span></td></tr>
+<tr><td><span class="rc">bg-accent-warm</span></td><td><span class="rv">var(--noir-accent-warm)</span></td></tr>
+<tr><td><span class="rc">bg-transparent</span></td><td><span class="rv">transparent</span></td></tr>
+<tr><td><span class="rc">bg-gradient-accent</span></td><td><span class="rv">linear-gradient(135deg, accent, warm)</span></td></tr>
+<tr><td><span class="rc">bg-gradient-dark</span></td><td><span class="rv">linear-gradient(180deg, primary, secondary)</span></td></tr>
+<tr><td><span class="rc">bg-gradient-to-r</span></td><td><span class="rv">linear-gradient(to right, accent, warm)</span></td></tr>
+<tr><td><span class="rc">bg-gradient-to-b</span></td><td><span class="rv">linear-gradient(to bottom, primary, transparent)</span></td></tr>
+</tbody></table></div>
+
+</section>
+
+<section class="ref-section" id="responsive">
+  <h2 class="heading-3 mb-2">Responsive Variants</h2>
+  <p class="text-secondary text-sm mb-4">Noir uses mobile-first breakpoints. Prefix classes with <code class="code">sm:</code>, <code class="code">md:</code>, or <code class="code">lg:</code>.</p>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Prefix</th><th>Min Width</th><th>Example</th></tr></thead><tbody>
+<tr><td><span class="rc">(none)</span></td><td><span class="rv">0 (mobile-first default)</span></td><td><span class="rv">grid-cols-1</span></td></tr>
+<tr><td><span class="rc">sm:</span></td><td><span class="rv">576px</span></td><td><span class="rv">sm:grid-cols-2</span></td></tr>
+<tr><td><span class="rc">md:</span></td><td><span class="rv">768px</span></td><td><span class="rv">md:grid-cols-3</span></td></tr>
+<tr><td><span class="rc">lg:</span></td><td><span class="rv">1024px</span></td><td><span class="rv">lg:grid-cols-4</span></td></tr>
+</tbody></table></div>
+
+  <p class="text-secondary text-sm mb-2">Responsive variants are available for: display, flex direction, grid columns/spans, gap, padding, margin, text alignment, and width.</p>
+  <div class="code-block mb-4"><pre><code>&lt;!-- 1 column on mobile, 2 on sm, 3 on md, 4 on lg --&gt;
+&lt;div class=&quot;grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4&quot;&gt;
+  ...
+&lt;/div&gt;</code></pre></div>
+</section>
+
+<section class="ref-section" id="typography">
+  <h2 class="heading-3 mb-2">Typography</h2>
+  <h4 class="heading-5 mb-3">Font Family</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>CSS</th></tr></thead><tbody>
+<tr><td><span class="rc">font-sans</span></td><td><span class="rv">font-family: var(--noir-font-sans)</span></td></tr>
+<tr><td><span class="rc">font-mono</span></td><td><span class="rv">font-family: var(--noir-font-mono)</span></td></tr>
+</tbody></table></div>
+
+  <h4 class="heading-5 mb-3">Font Size</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Size</th></tr></thead><tbody>
+<tr><td><span class="rc">text-xs</span></td><td><span class="rv">0.75rem</span></td></tr>
+<tr><td><span class="rc">text-sm</span></td><td><span class="rv">0.875rem</span></td></tr>
+<tr><td><span class="rc">text-base</span></td><td><span class="rv">1rem</span></td></tr>
+<tr><td><span class="rc">text-lg</span></td><td><span class="rv">1.125rem</span></td></tr>
+<tr><td><span class="rc">text-xl</span></td><td><span class="rv">1.25rem</span></td></tr>
+<tr><td><span class="rc">text-2xl</span></td><td><span class="rv">1.5rem</span></td></tr>
+<tr><td><span class="rc">text-3xl</span></td><td><span class="rv">1.875rem</span></td></tr>
+<tr><td><span class="rc">text-4xl</span></td><td><span class="rv">2.25rem</span></td></tr>
+<tr><td><span class="rc">text-5xl</span></td><td><span class="rv">3rem</span></td></tr>
+</tbody></table></div>
+
+  <p class="text-xs text-muted mb-4">Responsive: <code class="code">md:text-lg</code>, <code class="code">lg:text-2xl</code>, etc.</p>
+  <h4 class="heading-5 mb-3">Font Weight</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Weight</th></tr></thead><tbody>
+<tr><td><span class="rc">font-light</span></td><td><span class="rv">300</span></td></tr>
+<tr><td><span class="rc">font-normal</span></td><td><span class="rv">400</span></td></tr>
+<tr><td><span class="rc">font-medium</span></td><td><span class="rv">500</span></td></tr>
+<tr><td><span class="rc">font-semibold</span></td><td><span class="rv">600</span></td></tr>
+<tr><td><span class="rc">font-bold</span></td><td><span class="rv">700</span></td></tr>
+</tbody></table></div>
+
+  <h4 class="heading-5 mb-3">Line Height</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Value</th></tr></thead><tbody>
+<tr><td><span class="rc">leading-tight</span></td><td><span class="rv">1.25</span></td></tr>
+<tr><td><span class="rc">leading-normal</span></td><td><span class="rv">1.5</span></td></tr>
+<tr><td><span class="rc">leading-relaxed</span></td><td><span class="rv">1.75</span></td></tr>
+</tbody></table></div>
+
+  <h4 class="heading-5 mb-3">Text Alignment</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>CSS</th></tr></thead><tbody>
+<tr><td><span class="rc">text-left</span></td><td><span class="rv">text-align: left</span></td></tr>
+<tr><td><span class="rc">text-center</span></td><td><span class="rv">center</span></td></tr>
+<tr><td><span class="rc">text-right</span></td><td><span class="rv">right</span></td></tr>
+<tr><td><span class="rc">text-justify</span></td><td><span class="rv">justify</span></td></tr>
+</tbody></table></div>
+
+  <h4 class="heading-5 mb-3">Text Color</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Color</th></tr></thead><tbody>
+<tr><td><span class="rc">text-primary</span></td><td><span class="rv">var(--noir-text-primary)</span></td></tr>
+<tr><td><span class="rc">text-secondary</span></td><td><span class="rv">var(--noir-text-secondary)</span></td></tr>
+<tr><td><span class="rc">text-muted</span></td><td><span class="rv">var(--noir-text-muted)</span></td></tr>
+<tr><td><span class="rc">text-inverse</span></td><td><span class="rv">var(--noir-text-inverse)</span></td></tr>
+<tr><td><span class="rc">text-accent</span></td><td><span class="rv">var(--noir-accent)</span></td></tr>
+<tr><td><span class="rc">text-accent-warm</span></td><td><span class="rv">var(--noir-accent-warm)</span></td></tr>
+<tr><td><span class="rc">text-success</span></td><td><span class="rv">var(--noir-success)</span></td></tr>
+<tr><td><span class="rc">text-warning</span></td><td><span class="rv">var(--noir-warning)</span></td></tr>
+<tr><td><span class="rc">text-error</span></td><td><span class="rv">var(--noir-error)</span></td></tr>
+<tr><td><span class="rc">text-info</span></td><td><span class="rv">var(--noir-info)</span></td></tr>
+</tbody></table></div>
+
+  <h4 class="heading-5 mb-3">Decoration &amp; Transform</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>CSS</th></tr></thead><tbody>
+<tr><td><span class="rc">underline</span></td><td><span class="rv">text-decoration: underline</span></td></tr>
+<tr><td><span class="rc">line-through</span></td><td><span class="rv">line-through</span></td></tr>
+<tr><td><span class="rc">no-underline</span></td><td><span class="rv">none</span></td></tr>
+<tr><td><span class="rc">uppercase</span></td><td><span class="rv">text-transform: uppercase</span></td></tr>
+<tr><td><span class="rc">lowercase</span></td><td><span class="rv">lowercase</span></td></tr>
+<tr><td><span class="rc">capitalize</span></td><td><span class="rv">capitalize</span></td></tr>
+<tr><td><span class="rc">normal-case</span></td><td><span class="rv">none</span></td></tr>
+</tbody></table></div>
+
+  <h4 class="heading-5 mb-3">Letter Spacing</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Value</th></tr></thead><tbody>
+<tr><td><span class="rc">tracking-tight</span></td><td><span class="rv">-0.025em</span></td></tr>
+<tr><td><span class="rc">tracking-normal</span></td><td><span class="rv">0</span></td></tr>
+<tr><td><span class="rc">tracking-wide</span></td><td><span class="rv">0.025em</span></td></tr>
+<tr><td><span class="rc">tracking-wider</span></td><td><span class="rv">0.05em</span></td></tr>
+<tr><td><span class="rc">tracking-widest</span></td><td><span class="rv">0.1em</span></td></tr>
+</tbody></table></div>
+
+  <h4 class="heading-5 mb-3">Text Overflow</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Effect</th></tr></thead><tbody>
+<tr><td><span class="rc">truncate</span></td><td><span class="rv">Ellipsis, single line</span></td></tr>
+<tr><td><span class="rc">line-clamp-2</span></td><td><span class="rv">Clamp to 2 lines</span></td></tr>
+<tr><td><span class="rc">line-clamp-3</span></td><td><span class="rv">Clamp to 3 lines</span></td></tr>
+<tr><td><span class="rc">whitespace-nowrap</span></td><td><span class="rv">white-space: nowrap</span></td></tr>
+<tr><td><span class="rc">break-words</span></td><td><span class="rv">overflow-wrap: break-word</span></td></tr>
+</tbody></table></div>
+
+  <h4 class="heading-5 mb-3">Font Style</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>CSS</th></tr></thead><tbody>
+<tr><td><span class="rc">italic</span></td><td><span class="rv">font-style: italic</span></td></tr>
+<tr><td><span class="rc">not-italic</span></td><td><span class="rv">font-style: normal</span></td></tr>
+</tbody></table></div>
+
+</section>
+
+<section class="ref-section" id="headings">
+  <h2 class="heading-3 mb-2">Headings</h2>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Size</th><th>Weight</th></tr></thead><tbody>
+<tr><td><span class="rc">heading-1</span></td><td><span class="rv">3rem (5xl)</span></td><td><span class="rv">700 (bold)</span></td></tr>
+<tr><td><span class="rc">heading-2</span></td><td><span class="rv">2.25rem (4xl)</span></td><td><span class="rv">700 (bold)</span></td></tr>
+<tr><td><span class="rc">heading-3</span></td><td><span class="rv">1.875rem (3xl)</span></td><td><span class="rv">600 (semibold)</span></td></tr>
+<tr><td><span class="rc">heading-4</span></td><td><span class="rv">1.5rem (2xl)</span></td><td><span class="rv">600 (semibold)</span></td></tr>
+<tr><td><span class="rc">heading-5</span></td><td><span class="rv">1.25rem (xl)</span></td><td><span class="rv">500 (medium)</span></td></tr>
+</tbody></table></div>
+
+  <div class="pbox">
+    <h1 class="heading-1 mb-2">Heading 1</h1>
+    <h2 class="heading-2 mb-2">Heading 2</h2>
+    <h3 class="heading-3 mb-2">Heading 3</h3>
+    <h4 class="heading-4 mb-2">Heading 4</h4>
+    <h5 class="heading-5">Heading 5</h5>
+  </div>
+</section>
+
+<section class="ref-section" id="code-blocks">
+  <h2 class="heading-3 mb-2">Code</h2>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Usage</th></tr></thead><tbody>
+<tr><td><span class="rc">code</span></td><td><span class="rv">Inline code (monospace, bg, border, small padding)</span></td></tr>
+<tr><td><span class="rc">code-block</span></td><td><span class="rv">Block-level code (pre-formatted, scrollable)</span></td></tr>
+</tbody></table></div>
+
+  <div class="pbox">
+    <p class="mb-2">Inline: <code class="code">const x = 42;</code></p>
+    <div class="code-block">function hello() {
+  return "Hello, Noir!";
+}</div>
+  </div>
+</section>
+
+<section class="ref-section" id="buttons">
+  <h2 class="heading-3 mb-2">Buttons</h2>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Description</th></tr></thead><tbody>
+<tr><td><span class="rc">btn</span></td><td><span class="rv">Base button class (required)</span></td></tr>
+<tr><td><span class="rc">btn-primary</span></td><td><span class="rv">Red accent background, white text</span></td></tr>
+<tr><td><span class="rc">btn-secondary</span></td><td><span class="rv">Transparent, border, outline style</span></td></tr>
+<tr><td><span class="rc">btn-ghost</span></td><td><span class="rv">No border, subtle hover bg</span></td></tr>
+<tr><td><span class="rc">btn-warm</span></td><td><span class="rv">Orange accent background</span></td></tr>
+<tr><td><span class="rc">btn-danger</span></td><td><span class="rv">Error-red background</span></td></tr>
+<tr><td><span class="rc">btn-sm</span></td><td><span class="rv">Small size</span></td></tr>
+<tr><td><span class="rc">btn-lg</span></td><td><span class="rv">Large size</span></td></tr>
+<tr><td><span class="rc">btn-icon</span></td><td><span class="rv">Square icon button</span></td></tr>
+<tr><td><span class="rc">btn-group</span></td><td><span class="rv">Inline group, joined border-radius</span></td></tr>
+</tbody></table></div>
+
+  <h4 class="heading-5 mb-3">Preview</h4>
+  <div class="pbox">
+    <div class="flex flex-wrap gap-3 mb-4">
+      <button class="btn btn-primary">Primary</button>
+      <button class="btn btn-secondary">Secondary</button>
+      <button class="btn btn-ghost">Ghost</button>
+      <button class="btn btn-warm">Warm</button>
+      <button class="btn btn-danger">Danger</button>
+    </div>
+    <div class="flex flex-wrap gap-3 mb-4">
+      <button class="btn btn-primary btn-sm">Small</button>
+      <button class="btn btn-primary">Default</button>
+      <button class="btn btn-primary btn-lg">Large</button>
+      <button class="btn btn-primary" disabled>Disabled</button>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-secondary">Left</button>
+      <button class="btn btn-secondary">Center</button>
+      <button class="btn btn-secondary">Right</button>
+    </div>
+  </div>
+  <h4 class="heading-5 mb-2">Markup</h4>
+  <div class="code-block mb-4"><pre><code>&lt;button class=&quot;btn btn-primary&quot;&gt;Primary&lt;/button&gt;
+&lt;button class=&quot;btn btn-secondary btn-sm&quot;&gt;Small&lt;/button&gt;
+
+&lt;div class=&quot;btn-group&quot;&gt;
+  &lt;button class=&quot;btn btn-secondary&quot;&gt;Left&lt;/button&gt;
+  &lt;button class=&quot;btn btn-secondary&quot;&gt;Center&lt;/button&gt;
+  &lt;button class=&quot;btn btn-secondary&quot;&gt;Right&lt;/button&gt;
+&lt;/div&gt;</code></pre></div>
+</section>
+
+<section class="ref-section" id="cards">
+  <h2 class="heading-3 mb-2">Cards</h2>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Description</th></tr></thead><tbody>
+<tr><td><span class="rc">card</span></td><td><span class="rv">Base card (bg, border, rounded)</span></td></tr>
+<tr><td><span class="rc">card-hover</span></td><td><span class="rv">Lift + glow on hover</span></td></tr>
+<tr><td><span class="rc">card-header</span></td><td><span class="rv">Top section with border-bottom</span></td></tr>
+<tr><td><span class="rc">card-body</span></td><td><span class="rv">Main content area</span></td></tr>
+<tr><td><span class="rc">card-footer</span></td><td><span class="rv">Bottom section with border-top</span></td></tr>
+<tr><td><span class="rc">card-img</span></td><td><span class="rv">Full-width image</span></td></tr>
+</tbody></table></div>
+
+  <div class="pbox">
+    <div class="card card-hover" style="max-width:320px">
+      <div class="card-header"><span class="font-semibold text-sm">Card Title</span></div>
+      <div class="card-body"><p class="text-sm text-secondary">Card body content goes here.</p></div>
+      <div class="card-footer flex justify-end"><button class="btn btn-primary btn-sm">Action</button></div>
+    </div>
+  </div>
+  <div class="code-block mb-4"><pre><code>&lt;div class=&quot;card card-hover&quot;&gt;
+  &lt;div class=&quot;card-header&quot;&gt;Title&lt;/div&gt;
+  &lt;div class=&quot;card-body&quot;&gt;Content&lt;/div&gt;
+  &lt;div class=&quot;card-footer&quot;&gt;Footer&lt;/div&gt;
+&lt;/div&gt;</code></pre></div>
+</section>
+
+<section class="ref-section" id="badges">
+  <h2 class="heading-3 mb-2">Badges</h2>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Description</th></tr></thead><tbody>
+<tr><td><span class="rc">badge</span></td><td><span class="rv">Base badge</span></td></tr>
+<tr><td><span class="rc">badge-accent</span></td><td><span class="rv">Red accent</span></td></tr>
+<tr><td><span class="rc">badge-warm</span></td><td><span class="rv">Orange</span></td></tr>
+<tr><td><span class="rc">badge-success</span></td><td><span class="rv">Green</span></td></tr>
+<tr><td><span class="rc">badge-warning</span></td><td><span class="rv">Yellow</span></td></tr>
+<tr><td><span class="rc">badge-error</span></td><td><span class="rv">Red</span></td></tr>
+<tr><td><span class="rc">badge-info</span></td><td><span class="rv">Blue</span></td></tr>
+<tr><td><span class="rc">badge-outline</span></td><td><span class="rv">Bordered, transparent bg</span></td></tr>
+</tbody></table></div>
+
+  <div class="pbox">
+    <div class="flex flex-wrap gap-3">
+      <span class="badge badge-accent">Accent</span>
+      <span class="badge badge-warm">Warm</span>
+      <span class="badge badge-success">Success</span>
+      <span class="badge badge-warning">Warning</span>
+      <span class="badge badge-error">Error</span>
+      <span class="badge badge-info">Info</span>
+      <span class="badge badge-outline">Outline</span>
+    </div>
+  </div>
+</section>
+
+<section class="ref-section" id="alerts">
+  <h2 class="heading-3 mb-2">Alerts</h2>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Description</th></tr></thead><tbody>
+<tr><td><span class="rc">alert</span></td><td><span class="rv">Base alert (left border, padding)</span></td></tr>
+<tr><td><span class="rc">alert-success</span></td><td><span class="rv">Green</span></td></tr>
+<tr><td><span class="rc">alert-warning</span></td><td><span class="rv">Yellow</span></td></tr>
+<tr><td><span class="rc">alert-error</span></td><td><span class="rv">Red</span></td></tr>
+<tr><td><span class="rc">alert-info</span></td><td><span class="rv">Blue</span></td></tr>
+</tbody></table></div>
+
+  <div class="pbox">
+    <div class="flex flex-col gap-3">
+      <div class="alert alert-success" role="alert">Success message.</div>
+      <div class="alert alert-warning" role="alert">Warning message.</div>
+      <div class="alert alert-error" role="alert">Error message.</div>
+      <div class="alert alert-info" role="alert">Info message.</div>
+    </div>
+  </div>
+  <div class="code-block mb-4"><pre><code>&lt;div class=&quot;alert alert-success&quot; role=&quot;alert&quot;&gt;Success message.&lt;/div&gt;</code></pre></div>
+</section>
+
+<section class="ref-section" id="modal">
+  <h2 class="heading-3 mb-2">Modal (Dialog)</h2>
+  <p class="text-secondary text-sm mb-4">Uses the native <code class="code">&lt;dialog&gt;</code> element. Built-in Esc close, focus trap, and backdrop.</p>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Description</th></tr></thead><tbody>
+<tr><td><span class="rc">modal</span></td><td><span class="rv">Base dialog styling</span></td></tr>
+<tr><td><span class="rc">modal-header</span></td><td><span class="rv">Top bar with close button</span></td></tr>
+<tr><td><span class="rc">modal-body</span></td><td><span class="rv">Content area</span></td></tr>
+<tr><td><span class="rc">modal-footer</span></td><td><span class="rv">Action bar at bottom</span></td></tr>
+<tr><td><span class="rc">overlay</span></td><td><span class="rv">Legacy overlay (fixed, backdrop-blur)</span></td></tr>
+<tr><td><span class="rc">overlay.active</span></td><td><span class="rv">Show overlay</span></td></tr>
+</tbody></table></div>
+
+  <div class="pbox">
+    <button class="btn btn-primary" onclick="document.getElementById('ref-modal').showModal()">Open Modal</button>
+    <dialog id="ref-modal" class="modal">
+      <div class="modal-header">
+        <h3 class="text-lg font-semibold">Modal Title</h3>
+        <button class="btn btn-ghost btn-icon" onclick="document.getElementById('ref-modal').close()">&times;</button>
+      </div>
+      <div class="modal-body"><p class="text-secondary">Modal content here.</p></div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" onclick="document.getElementById('ref-modal').close()">Cancel</button>
+        <button class="btn btn-primary">Confirm</button>
+      </div>
+    </dialog>
+  </div>
+  <div class="code-block mb-4"><pre><code>&lt;button class=&quot;btn btn-primary&quot; onclick=&quot;document.getElementById('myModal').showModal()&quot;&gt;Open&lt;/button&gt;
+&lt;dialog id=&quot;myModal&quot; class=&quot;modal&quot;&gt;
+  &lt;div class=&quot;modal-header&quot;&gt;
+    &lt;h3&gt;Title&lt;/h3&gt;
+    &lt;button class=&quot;btn btn-ghost btn-icon&quot; onclick=&quot;this.closest('dialog').close()&quot;&gt;&amp;times;&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;modal-body&quot;&gt;Content&lt;/div&gt;
+  &lt;div class=&quot;modal-footer&quot;&gt;
+    &lt;button class=&quot;btn btn-ghost&quot; onclick=&quot;this.closest('dialog').close()&quot;&gt;Cancel&lt;/button&gt;
+    &lt;button class=&quot;btn btn-primary&quot;&gt;Confirm&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/dialog&gt;</code></pre></div>
+</section>
+
+<section class="ref-section" id="progress">
+  <h2 class="heading-3 mb-2">Progress Bar</h2>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Description</th></tr></thead><tbody>
+<tr><td><span class="rc">progress</span></td><td><span class="rv">Track container</span></td></tr>
+<tr><td><span class="rc">progress-bar</span></td><td><span class="rv">Fill bar (set width via style)</span></td></tr>
+<tr><td><span class="rc">progress-bar-warm</span></td><td><span class="rv">Orange variant</span></td></tr>
+<tr><td><span class="rc">progress-bar-success</span></td><td><span class="rv">Green variant</span></td></tr>
+</tbody></table></div>
+
+  <div class="pbox">
+    <div class="flex flex-col gap-3" style="max-width:400px">
+      <div class="progress"><div class="progress-bar" style="width:40%"></div></div>
+      <div class="progress"><div class="progress-bar progress-bar-warm" style="width:70%"></div></div>
+      <div class="progress"><div class="progress-bar progress-bar-success" style="width:100%"></div></div>
+    </div>
+  </div>
+  <div class="code-block mb-4"><pre><code>&lt;div class=&quot;progress&quot;&gt;
+  &lt;div class=&quot;progress-bar&quot; style=&quot;width: 40%&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre></div>
+</section>
+
+<section class="ref-section" id="avatar">
+  <h2 class="heading-3 mb-2">Avatar</h2>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Size</th></tr></thead><tbody>
+<tr><td><span class="rc">avatar</span></td><td><span class="rv">2.5rem (default)</span></td></tr>
+<tr><td><span class="rc">avatar-sm</span></td><td><span class="rv">2rem</span></td></tr>
+<tr><td><span class="rc">avatar-lg</span></td><td><span class="rv">3.5rem</span></td></tr>
+</tbody></table></div>
+
+  <div class="pbox">
+    <div class="flex gap-3 items-center">
+      <div class="avatar avatar-sm">S</div>
+      <div class="avatar">M</div>
+      <div class="avatar avatar-lg">L</div>
+    </div>
+  </div>
+</section>
+
+<section class="ref-section" id="skeleton">
+  <h2 class="heading-3 mb-2">Skeleton Loading</h2>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Description</th></tr></thead><tbody>
+<tr><td><span class="rc">skeleton</span></td><td><span class="rv">Base shimmer animation</span></td></tr>
+<tr><td><span class="rc">skeleton-text</span></td><td><span class="rv">1em height text placeholder</span></td></tr>
+<tr><td><span class="rc">skeleton-title</span></td><td><span class="rv">1.5em height, 60% width</span></td></tr>
+<tr><td><span class="rc">skeleton-avatar</span></td><td><span class="rv">2.5rem circle</span></td></tr>
+</tbody></table></div>
+
+  <div class="pbox">
+    <div class="flex items-center gap-3 mb-4" style="max-width:300px">
+      <div class="skeleton skeleton-avatar"></div>
+      <div class="flex-1">
+        <div class="skeleton skeleton-text" style="width:60%"></div>
+        <div class="skeleton skeleton-text" style="width:40%"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ref-section" id="toast">
+  <h2 class="heading-3 mb-2">Toast / Notification</h2>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Description</th></tr></thead><tbody>
+<tr><td><span class="rc">toast-container</span></td><td><span class="rv">Fixed container (bottom-right)</span></td></tr>
+<tr><td><span class="rc">toast-container-top</span></td><td><span class="rv">Top position variant</span></td></tr>
+<tr><td><span class="rc">toast</span></td><td><span class="rv">Base toast</span></td></tr>
+<tr><td><span class="rc">toast-success</span></td><td><span class="rv">Green left border</span></td></tr>
+<tr><td><span class="rc">toast-error</span></td><td><span class="rv">Red</span></td></tr>
+<tr><td><span class="rc">toast-warning</span></td><td><span class="rv">Yellow</span></td></tr>
+<tr><td><span class="rc">toast-info</span></td><td><span class="rv">Blue</span></td></tr>
+<tr><td><span class="rc">toast-close</span></td><td><span class="rv">Dismiss button</span></td></tr>
+</tbody></table></div>
+
+  <div class="pbox">
+    <div style="position:static;display:flex;flex-direction:column;gap:var(--noir-space-3)">
+      <div class="toast toast-success" style="animation:none"><span>Success toast.</span><button class="toast-close">&times;</button></div>
+      <div class="toast toast-error" style="animation:none"><span>Error toast.</span><button class="toast-close">&times;</button></div>
+    </div>
+  </div>
+  <div class="code-block mb-4"><pre><code>&lt;div class=&quot;toast-container&quot;&gt;
+  &lt;div class=&quot;toast toast-success&quot;&gt;
+    &lt;span&gt;Saved successfully.&lt;/span&gt;
+    &lt;button class=&quot;toast-close&quot;&gt;&amp;times;&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre></div>
+</section>
+
+<section class="ref-section" id="tooltip">
+  <h2 class="heading-3 mb-2">Tooltip</h2>
+  <p class="text-secondary text-sm mb-4">CSS-only tooltip using <code class="code">data-tooltip</code> attribute.</p>
+  <div class="pbox">
+    <span class="tooltip btn btn-secondary" data-tooltip="Hello from tooltip!">Hover me</span>
+  </div>
+  <div class="code-block mb-4"><pre><code>&lt;span class=&quot;tooltip&quot; data-tooltip=&quot;Tooltip text&quot;&gt;Hover me&lt;/span&gt;</code></pre></div>
+</section>
+
+<section class="ref-section" id="accordion">
+  <h2 class="heading-3 mb-2">Accordion</h2>
+  <p class="text-secondary text-sm mb-4">Uses native <code class="code">&lt;details&gt;</code>/<code class="code">&lt;summary&gt;</code> elements.</p>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Description</th></tr></thead><tbody>
+<tr><td><span class="rc">accordion</span></td><td><span class="rv">Container</span></td></tr>
+<tr><td><span class="rc">accordion-item</span></td><td><span class="rv">Wrapper (use &lt;details&gt;)</span></td></tr>
+<tr><td><span class="rc">accordion-trigger</span></td><td><span class="rv">Clickable header (use &lt;summary&gt;)</span></td></tr>
+<tr><td><span class="rc">accordion-content</span></td><td><span class="rv">Collapsible body</span></td></tr>
+</tbody></table></div>
+
+  <div class="pbox">
+    <div class="accordion" style="max-width:400px">
+      <details class="accordion-item" open>
+        <summary class="accordion-trigger">Section One</summary>
+        <div class="accordion-content">Content for section one.</div>
+      </details>
+      <details class="accordion-item">
+        <summary class="accordion-trigger">Section Two</summary>
+        <div class="accordion-content">Content for section two.</div>
+      </details>
+    </div>
+  </div>
+  <div class="code-block mb-4"><pre><code>&lt;div class=&quot;accordion&quot;&gt;
+  &lt;details class=&quot;accordion-item&quot; open&gt;
+    &lt;summary class=&quot;accordion-trigger&quot;&gt;Title&lt;/summary&gt;
+    &lt;div class=&quot;accordion-content&quot;&gt;Content&lt;/div&gt;
+  &lt;/details&gt;
+&lt;/div&gt;</code></pre></div>
+</section>
+
+<section class="ref-section" id="table">
+  <h2 class="heading-3 mb-2">Table</h2>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Description</th></tr></thead><tbody>
+<tr><td><span class="rc">table</span></td><td><span class="rv">Base table styling</span></td></tr>
+<tr><td><span class="rc">table-striped</span></td><td><span class="rv">Alternating row bg</span></td></tr>
+<tr><td><span class="rc">table-bordered</span></td><td><span class="rv">Full cell borders</span></td></tr>
+<tr><td><span class="rc">table-compact</span></td><td><span class="rv">Smaller padding</span></td></tr>
+</tbody></table></div>
+
+  <div class="pbox">
+    <table class="table table-striped" style="max-width:400px">
+      <thead><tr><th>Name</th><th>Role</th></tr></thead>
+      <tbody><tr><td>Alice</td><td>Developer</td></tr><tr><td>Bob</td><td>Designer</td></tr><tr><td>Carol</td><td>PM</td></tr></tbody>
+    </table>
+  </div>
+</section>
+
+<section class="ref-section" id="divider">
+  <h2 class="heading-3 mb-2">Divider</h2>
+  <p class="text-secondary text-sm mb-4">A 1px horizontal line using <code class="code">divider</code> class.</p>
+  <div class="pbox">
+    <p class="text-sm mb-2">Above</p>
+    <div class="divider"></div>
+    <p class="text-sm mt-2">Below</p>
+  </div>
+</section>
+
+<section class="ref-section" id="spinners">
+  <h2 class="heading-3 mb-2">Spinners &amp; Loaders</h2>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Description</th></tr></thead><tbody>
+<tr><td><span class="rc">spinner</span></td><td><span class="rv">Default spinner (1.5rem)</span></td></tr>
+<tr><td><span class="rc">spinner-sm</span></td><td><span class="rv">Small (1rem)</span></td></tr>
+<tr><td><span class="rc">spinner-lg</span></td><td><span class="rv">Large (2.5rem)</span></td></tr>
+<tr><td><span class="rc">spinner-warm</span></td><td><span class="rv">Orange color</span></td></tr>
+<tr><td><span class="rc">spinner-white</span></td><td><span class="rv">White color</span></td></tr>
+<tr><td><span class="rc">loader-dots</span></td><td><span class="rv">Three-dot pulse loader</span></td></tr>
+<tr><td><span class="rc">loader-bar</span></td><td><span class="rv">Indeterminate progress bar</span></td></tr>
+</tbody></table></div>
+
+  <div class="pbox">
+    <div class="flex gap-4 items-center mb-4">
+      <div class="spinner spinner-sm"></div>
+      <div class="spinner"></div>
+      <div class="spinner spinner-lg"></div>
+      <div class="spinner spinner-warm"></div>
+    </div>
+    <div class="flex gap-4 items-center mb-4">
+      <div class="loader-dots"><span></span><span></span><span></span></div>
+    </div>
+    <div class="loader-bar" style="max-width:300px"></div>
+  </div>
+</section>
+
+<section class="ref-section" id="forms">
+  <h2 class="heading-3 mb-2">Forms</h2>
+  <h4 class="heading-5 mb-3">Input Classes</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Description</th></tr></thead><tbody>
+<tr><td><span class="rc">input</span></td><td><span class="rv">Base text input</span></td></tr>
+<tr><td><span class="rc">input-sm</span></td><td><span class="rv">Small input</span></td></tr>
+<tr><td><span class="rc">input-lg</span></td><td><span class="rv">Large input</span></td></tr>
+<tr><td><span class="rc">textarea</span></td><td><span class="rv">Multi-line input</span></td></tr>
+<tr><td><span class="rc">select</span></td><td><span class="rv">Dropdown select</span></td></tr>
+<tr><td><span class="rc">checkbox</span></td><td><span class="rv">Checkbox label wrapper</span></td></tr>
+<tr><td><span class="rc">radio</span></td><td><span class="rv">Radio label wrapper</span></td></tr>
+<tr><td><span class="rc">toggle</span></td><td><span class="rv">Toggle/switch wrapper</span></td></tr>
+<tr><td><span class="rc">range</span></td><td><span class="rv">Range slider</span></td></tr>
+<tr><td><span class="rc">form-group</span></td><td><span class="rv">Vertical group (label + input + hint)</span></td></tr>
+<tr><td><span class="rc">form-label</span></td><td><span class="rv">Label styling</span></td></tr>
+<tr><td><span class="rc">form-hint</span></td><td><span class="rv">Help text below input</span></td></tr>
+<tr><td><span class="rc">input-group</span></td><td><span class="rv">Icon + input wrapper</span></td></tr>
+<tr><td><span class="rc">input-group-icon</span></td><td><span class="rv">Icon inside input-group</span></td></tr>
+<tr><td><span class="rc">input-success</span></td><td><span class="rv">Green border (valid)</span></td></tr>
+<tr><td><span class="rc">input-error</span></td><td><span class="rv">Red border (invalid)</span></td></tr>
+<tr><td><span class="rc">form-success</span></td><td><span class="rv">Green helper text</span></td></tr>
+<tr><td><span class="rc">form-error</span></td><td><span class="rv">Red helper text</span></td></tr>
+</tbody></table></div>
+
+  <h4 class="heading-5 mb-3">Preview</h4>
+  <div class="pbox">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="flex flex-col gap-4">
+        <div class="form-group">
+          <label class="form-label">Text Input</label>
+          <input type="text" class="input" placeholder="Default input">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Sizes</label>
+          <input type="text" class="input input-sm" placeholder="Small">
+          <input type="text" class="input" placeholder="Default">
+          <input type="text" class="input input-lg" placeholder="Large">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Select</label>
+          <select class="select"><option>Option 1</option><option>Option 2</option></select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Textarea</label>
+          <textarea class="textarea" rows="2" placeholder="Message..."></textarea>
+        </div>
+      </div>
+      <div class="flex flex-col gap-4">
+        <div class="form-group">
+          <label class="form-label">Validation</label>
+          <input type="text" class="input input-success" value="Valid">
+          <span class="form-success">Looks good!</span>
+          <input type="text" class="input input-error" value="Invalid">
+          <span class="form-error">Required field.</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Checkbox</label>
+          <label class="checkbox"><input type="checkbox" checked> Option A</label>
+          <label class="checkbox"><input type="checkbox"> Option B</label>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Radio</label>
+          <label class="radio"><input type="radio" name="ref-radio" checked> Choice 1</label>
+          <label class="radio"><input type="radio" name="ref-radio"> Choice 2</label>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Toggle</label>
+          <label class="toggle"><input type="checkbox" checked> Enabled</label>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Range</label>
+          <input type="range" class="range" min="0" max="100" value="50">
         </div>
       </div>
     </div>
   </div>
+  <div class="code-block mb-4"><pre><code>&lt;div class=&quot;form-group&quot;&gt;
+  &lt;label class=&quot;form-label&quot;&gt;Email&lt;/label&gt;
+  &lt;input type=&quot;email&quot; class=&quot;input&quot; placeholder=&quot;you@example.com&quot;&gt;
+  &lt;span class=&quot;form-hint&quot;&gt;We won't share your email.&lt;/span&gt;
+&lt;/div&gt;
 
-  <main class="container">
+&lt;label class=&quot;checkbox&quot;&gt;&lt;input type=&quot;checkbox&quot;&gt; Accept terms&lt;/label&gt;
+&lt;label class=&quot;toggle&quot;&gt;&lt;input type=&quot;checkbox&quot;&gt; Dark mode&lt;/label&gt;</code></pre></div>
+</section>
 
-    <!-- ==============================
-         BASE
-         ============================== -->
-    <section class="ref-section" id="ref-base">
-      <h2 class="heading-3 mb-2">Base</h2>
-      <p class="text-secondary text-sm mb-6">Theme system, CSS custom properties, and reset. The base module sets global variables and normalizes browser defaults.</p>
-      <div class="ref-table-wrap">
-        <table class="table table-compact ref-table">
-          <thead><tr><th>Class / Attribute</th><th>CSS Property</th><th>Value / Description</th></tr></thead>
-          <tbody>
-            <tr><td class="ref-class">data-theme="dark"</td><td class="ref-prop">--noir-*</td><td>Dark theme (default). Sets dark backgrounds, light text, red accent.</td></tr>
-            <tr><td class="ref-class">data-theme="light"</td><td class="ref-prop">--noir-*</td><td>Light theme. Sets light backgrounds, dark text, adjusted accents and shadows.</td></tr>
-            <tr><td class="ref-class">(none / auto)</td><td class="ref-prop">prefers-color-scheme</td><td>Follows OS preference when no data-theme attribute is set.</td></tr>
-            <tr><td class="ref-class">* (reset)</td><td class="ref-prop">box-sizing</td><td>border-box applied to all elements.</td></tr>
-            <tr><td class="ref-class">body</td><td class="ref-prop">font-family</td><td>var(--noir-font-sans) - Inter / system-ui stack.</td></tr>
-            <tr><td class="ref-class">body</td><td class="ref-prop">background-color / color</td><td>var(--noir-bg-primary) / var(--noir-text-primary)</td></tr>
-            <tr><td class="ref-class">a</td><td class="ref-prop">color</td><td>var(--noir-accent) with hover transition.</td></tr>
-            <tr><td class="ref-class">::selection</td><td class="ref-prop">background-color</td><td>var(--noir-accent) with white text.</td></tr>
-            <tr><td class="ref-class">:focus-visible</td><td class="ref-prop">outline</td><td>2px solid var(--noir-accent), offset 2px.</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
+<section class="ref-section" id="nav-navbar">
+  <h2 class="heading-3 mb-2">Navbar</h2>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Description</th></tr></thead><tbody>
+<tr><td><span class="rc">navbar</span></td><td><span class="rv">Sticky top bar with backdrop-filter</span></td></tr>
+<tr><td><span class="rc">navbar-brand</span></td><td><span class="rv">Logo / brand link</span></td></tr>
+<tr><td><span class="rc">navbar-nav</span></td><td><span class="rv">Link container (mobile slide-out)</span></td></tr>
+<tr><td><span class="rc">navbar-link</span></td><td><span class="rv">Nav link</span></td></tr>
+<tr><td><span class="rc">navbar-link.active</span></td><td><span class="rv">Active state</span></td></tr>
+<tr><td><span class="rc">navbar-toggle</span></td><td><span class="rv">Hamburger button (mobile)</span></td></tr>
+<tr><td><span class="rc">sidebar</span></td><td><span class="rv">Vertical sidebar (260px)</span></td></tr>
+<tr><td><span class="rc">sidebar-header</span></td><td><span class="rv">Sidebar title</span></td></tr>
+<tr><td><span class="rc">sidebar-section</span></td><td><span class="rv">Section heading</span></td></tr>
+<tr><td><span class="rc">sidebar-link</span></td><td><span class="rv">Sidebar navigation link</span></td></tr>
+</tbody></table></div>
 
-    <!-- ==============================
-         TYPOGRAPHY
-         ============================== -->
-    <section class="ref-section" id="ref-typography">
-      <h2 class="heading-3 mb-2">Typography</h2>
-      <p class="text-secondary text-sm mb-6">Font families, sizes, weights, alignment, colors, decoration, transforms, spacing, overflow, and heading presets.</p>
-      <div class="ref-table-wrap">
-        <table class="table table-compact ref-table">
-          <thead><tr><th>Class</th><th>CSS Property</th><th>Value / Description</th></tr></thead>
-          <tbody>
-            <!-- Font Family -->
-            <tr><td class="ref-class">.font-sans</td><td class="ref-prop">font-family</td><td>var(--noir-font-sans) - Inter, Segoe UI, system-ui</td></tr>
-            <tr><td class="ref-class">.font-mono</td><td class="ref-prop">font-family</td><td>var(--noir-font-mono) - JetBrains Mono, Fira Code, Consolas</td></tr>
-            <!-- Font Size -->
-            <tr><td class="ref-class">.text-xs</td><td class="ref-prop">font-size</td><td>0.75rem (12px)</td></tr>
-            <tr><td class="ref-class">.text-sm</td><td class="ref-prop">font-size</td><td>0.875rem (14px)</td></tr>
-            <tr><td class="ref-class">.text-base</td><td class="ref-prop">font-size</td><td>1rem (16px)</td></tr>
-            <tr><td class="ref-class">.text-lg</td><td class="ref-prop">font-size</td><td>1.125rem (18px)</td></tr>
-            <tr><td class="ref-class">.text-xl</td><td class="ref-prop">font-size</td><td>1.25rem (20px)</td></tr>
-            <tr><td class="ref-class">.text-2xl</td><td class="ref-prop">font-size</td><td>1.5rem (24px)</td></tr>
-            <tr><td class="ref-class">.text-3xl</td><td class="ref-prop">font-size</td><td>1.875rem (30px)</td></tr>
-            <tr><td class="ref-class">.text-4xl</td><td class="ref-prop">font-size</td><td>2.25rem (36px)</td></tr>
-            <tr><td class="ref-class">.text-5xl</td><td class="ref-prop">font-size</td><td>3rem (48px)</td></tr>
-            <!-- Font Weight -->
-            <tr><td class="ref-class">.font-light</td><td class="ref-prop">font-weight</td><td>300</td></tr>
-            <tr><td class="ref-class">.font-normal</td><td class="ref-prop">font-weight</td><td>400</td></tr>
-            <tr><td class="ref-class">.font-medium</td><td class="ref-prop">font-weight</td><td>500</td></tr>
-            <tr><td class="ref-class">.font-semibold</td><td class="ref-prop">font-weight</td><td>600</td></tr>
-            <tr><td class="ref-class">.font-bold</td><td class="ref-prop">font-weight</td><td>700</td></tr>
-            <!-- Line Height -->
-            <tr><td class="ref-class">.leading-tight</td><td class="ref-prop">line-height</td><td>1.25</td></tr>
-            <tr><td class="ref-class">.leading-normal</td><td class="ref-prop">line-height</td><td>1.5</td></tr>
-            <tr><td class="ref-class">.leading-relaxed</td><td class="ref-prop">line-height</td><td>1.75</td></tr>
-            <!-- Text Alignment -->
-            <tr><td class="ref-class">.text-left</td><td class="ref-prop">text-align</td><td>left</td></tr>
-            <tr><td class="ref-class">.text-center</td><td class="ref-prop">text-align</td><td>center</td></tr>
-            <tr><td class="ref-class">.text-right</td><td class="ref-prop">text-align</td><td>right</td></tr>
-            <tr><td class="ref-class">.text-justify</td><td class="ref-prop">text-align</td><td>justify</td></tr>
-            <!-- Text Color -->
-            <tr><td class="ref-class">.text-primary</td><td class="ref-prop">color</td><td>var(--noir-text-primary)</td></tr>
-            <tr><td class="ref-class">.text-secondary</td><td class="ref-prop">color</td><td>var(--noir-text-secondary)</td></tr>
-            <tr><td class="ref-class">.text-muted</td><td class="ref-prop">color</td><td>var(--noir-text-muted)</td></tr>
-            <tr><td class="ref-class">.text-inverse</td><td class="ref-prop">color</td><td>var(--noir-text-inverse)</td></tr>
-            <tr><td class="ref-class">.text-accent</td><td class="ref-prop">color</td><td>var(--noir-accent)</td></tr>
-            <tr><td class="ref-class">.text-accent-warm</td><td class="ref-prop">color</td><td>var(--noir-accent-warm)</td></tr>
-            <tr><td class="ref-class">.text-success</td><td class="ref-prop">color</td><td>var(--noir-success)</td></tr>
-            <tr><td class="ref-class">.text-warning</td><td class="ref-prop">color</td><td>var(--noir-warning)</td></tr>
-            <tr><td class="ref-class">.text-error</td><td class="ref-prop">color</td><td>var(--noir-error)</td></tr>
-            <tr><td class="ref-class">.text-info</td><td class="ref-prop">color</td><td>var(--noir-info)</td></tr>
-            <!-- Text Decoration -->
-            <tr><td class="ref-class">.underline</td><td class="ref-prop">text-decoration</td><td>underline</td></tr>
-            <tr><td class="ref-class">.line-through</td><td class="ref-prop">text-decoration</td><td>line-through</td></tr>
-            <tr><td class="ref-class">.no-underline</td><td class="ref-prop">text-decoration</td><td>none</td></tr>
-            <!-- Text Transform -->
-            <tr><td class="ref-class">.uppercase</td><td class="ref-prop">text-transform</td><td>uppercase</td></tr>
-            <tr><td class="ref-class">.lowercase</td><td class="ref-prop">text-transform</td><td>lowercase</td></tr>
-            <tr><td class="ref-class">.capitalize</td><td class="ref-prop">text-transform</td><td>capitalize</td></tr>
-            <tr><td class="ref-class">.normal-case</td><td class="ref-prop">text-transform</td><td>none</td></tr>
-            <!-- Letter Spacing -->
-            <tr><td class="ref-class">.tracking-tight</td><td class="ref-prop">letter-spacing</td><td>-0.025em</td></tr>
-            <tr><td class="ref-class">.tracking-normal</td><td class="ref-prop">letter-spacing</td><td>0</td></tr>
-            <tr><td class="ref-class">.tracking-wide</td><td class="ref-prop">letter-spacing</td><td>0.025em</td></tr>
-            <tr><td class="ref-class">.tracking-wider</td><td class="ref-prop">letter-spacing</td><td>0.05em</td></tr>
-            <tr><td class="ref-class">.tracking-widest</td><td class="ref-prop">letter-spacing</td><td>0.1em</td></tr>
-            <!-- Text Overflow -->
-            <tr><td class="ref-class">.truncate</td><td class="ref-prop">overflow / text-overflow / white-space</td><td>hidden / ellipsis / nowrap</td></tr>
-            <tr><td class="ref-class">.line-clamp-2</td><td class="ref-prop">-webkit-line-clamp</td><td>2 lines then overflow hidden</td></tr>
-            <tr><td class="ref-class">.line-clamp-3</td><td class="ref-prop">-webkit-line-clamp</td><td>3 lines then overflow hidden</td></tr>
-            <tr><td class="ref-class">.whitespace-nowrap</td><td class="ref-prop">white-space</td><td>nowrap</td></tr>
-            <tr><td class="ref-class">.whitespace-pre</td><td class="ref-prop">white-space</td><td>pre</td></tr>
-            <tr><td class="ref-class">.break-words</td><td class="ref-prop">overflow-wrap</td><td>break-word</td></tr>
-            <!-- Headings -->
-            <tr><td class="ref-class">.heading-1</td><td class="ref-prop">font-size / weight / line-height</td><td>3rem / 700 / 1.25, tracking -0.025em</td></tr>
-            <tr><td class="ref-class">.heading-2</td><td class="ref-prop">font-size / weight / line-height</td><td>2.25rem / 700 / 1.25, tracking -0.025em</td></tr>
-            <tr><td class="ref-class">.heading-3</td><td class="ref-prop">font-size / weight / line-height</td><td>1.875rem / 600 / 1.25</td></tr>
-            <tr><td class="ref-class">.heading-4</td><td class="ref-prop">font-size / weight / line-height</td><td>1.5rem / 600 / 1.25</td></tr>
-            <tr><td class="ref-class">.heading-5</td><td class="ref-prop">font-size / weight / line-height</td><td>1.25rem / 500 / 1.25</td></tr>
-            <!-- Code -->
-            <tr><td class="ref-class">.code</td><td class="ref-prop">font-family / background / border</td><td>Mono font, bg-tertiary, sm radius, inline code style</td></tr>
-            <tr><td class="ref-class">.code-block</td><td class="ref-prop">font-family / background / overflow</td><td>Mono font, bg-tertiary, md radius, pre whitespace, overflow-x auto</td></tr>
-            <!-- Responsive Typography -->
-            <tr><td class="ref-class">sm:text-{size}</td><td class="ref-prop">font-size</td><td>Responsive text size at >= 576px (xs through 3xl)</td></tr>
-            <tr><td class="ref-class">md:text-{size}</td><td class="ref-prop">font-size</td><td>Responsive text size at >= 768px (xs through 4xl)</td></tr>
-            <tr><td class="ref-class">lg:text-{size}</td><td class="ref-prop">font-size</td><td>Responsive text size at >= 1024px (xs through 5xl)</td></tr>
-            <tr><td class="ref-class">xl:text-{size}</td><td class="ref-prop">font-size</td><td>Responsive text size at >= 1280px (sm through 5xl)</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
+  <div class="code-block mb-4"><pre><code>&lt;nav class=&quot;navbar&quot;&gt;
+  &lt;a href=&quot;/&quot; class=&quot;navbar-brand&quot;&gt;Brand&lt;/a&gt;
+  &lt;div class=&quot;navbar-nav&quot; id=&quot;nav&quot;&gt;
+    &lt;a href=&quot;#&quot; class=&quot;navbar-link active&quot;&gt;Home&lt;/a&gt;
+    &lt;a href=&quot;#&quot; class=&quot;navbar-link&quot;&gt;About&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;button class=&quot;navbar-toggle&quot; onclick=&quot;document.getElementById('nav').classList.toggle('open')&quot;&gt;
+    &lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;
+  &lt;/button&gt;
+&lt;/nav&gt;</code></pre></div>
+</section>
 
-    <!-- ==============================
-         LAYOUT
-         ============================== -->
-    <section class="ref-section" id="ref-layout">
-      <h2 class="heading-3 mb-2">Layout</h2>
-      <p class="text-secondary text-sm mb-6">Container, display, flexbox, grid, spacing, sizing, position, overflow, border radius, shadows, backgrounds, borders, cursors, transitions, visibility, aspect ratio, object fit, z-index, and gradients. Responsive prefixes: sm: md: lg: xl:</p>
-      <div class="ref-table-wrap">
-        <table class="table table-compact ref-table">
-          <thead><tr><th>Class</th><th>CSS Property</th><th>Value / Description</th></tr></thead>
-          <tbody>
-            <!-- Container -->
-            <tr><td class="ref-class">.container</td><td class="ref-prop">max-width / margin / padding</td><td>1280px max, auto horizontal margin, 1rem horizontal padding</td></tr>
-            <tr><td class="ref-class">.container-sm</td><td class="ref-prop">max-width</td><td>640px</td></tr>
-            <tr><td class="ref-class">.container-md</td><td class="ref-prop">max-width</td><td>768px</td></tr>
-            <tr><td class="ref-class">.container-lg</td><td class="ref-prop">max-width</td><td>1024px</td></tr>
-            <tr><td class="ref-class">.container-xl</td><td class="ref-prop">max-width</td><td>1280px</td></tr>
-            <tr><td class="ref-class">.container-fluid</td><td class="ref-prop">max-width</td><td>100%</td></tr>
-            <!-- Display -->
-            <tr><td class="ref-class">.block</td><td class="ref-prop">display</td><td>block</td></tr>
-            <tr><td class="ref-class">.inline-block</td><td class="ref-prop">display</td><td>inline-block</td></tr>
-            <tr><td class="ref-class">.inline</td><td class="ref-prop">display</td><td>inline</td></tr>
-            <tr><td class="ref-class">.flex</td><td class="ref-prop">display</td><td>flex</td></tr>
-            <tr><td class="ref-class">.inline-flex</td><td class="ref-prop">display</td><td>inline-flex</td></tr>
-            <tr><td class="ref-class">.grid</td><td class="ref-prop">display</td><td>grid</td></tr>
-            <tr><td class="ref-class">.hidden</td><td class="ref-prop">display</td><td>none</td></tr>
-            <!-- Flexbox -->
-            <tr><td class="ref-class">.flex-row</td><td class="ref-prop">flex-direction</td><td>row</td></tr>
-            <tr><td class="ref-class">.flex-col</td><td class="ref-prop">flex-direction</td><td>column</td></tr>
-            <tr><td class="ref-class">.flex-row-reverse</td><td class="ref-prop">flex-direction</td><td>row-reverse</td></tr>
-            <tr><td class="ref-class">.flex-col-reverse</td><td class="ref-prop">flex-direction</td><td>column-reverse</td></tr>
-            <tr><td class="ref-class">.flex-wrap</td><td class="ref-prop">flex-wrap</td><td>wrap</td></tr>
-            <tr><td class="ref-class">.flex-nowrap</td><td class="ref-prop">flex-wrap</td><td>nowrap</td></tr>
-            <tr><td class="ref-class">.flex-1</td><td class="ref-prop">flex</td><td>1 1 0%</td></tr>
-            <tr><td class="ref-class">.flex-auto</td><td class="ref-prop">flex</td><td>1 1 auto</td></tr>
-            <tr><td class="ref-class">.flex-none</td><td class="ref-prop">flex</td><td>none</td></tr>
-            <tr><td class="ref-class">.grow</td><td class="ref-prop">flex-grow</td><td>1</td></tr>
-            <tr><td class="ref-class">.grow-0</td><td class="ref-prop">flex-grow</td><td>0</td></tr>
-            <tr><td class="ref-class">.shrink</td><td class="ref-prop">flex-shrink</td><td>1</td></tr>
-            <tr><td class="ref-class">.shrink-0</td><td class="ref-prop">flex-shrink</td><td>0</td></tr>
-            <!-- Justify Content -->
-            <tr><td class="ref-class">.justify-start</td><td class="ref-prop">justify-content</td><td>flex-start</td></tr>
-            <tr><td class="ref-class">.justify-end</td><td class="ref-prop">justify-content</td><td>flex-end</td></tr>
-            <tr><td class="ref-class">.justify-center</td><td class="ref-prop">justify-content</td><td>center</td></tr>
-            <tr><td class="ref-class">.justify-between</td><td class="ref-prop">justify-content</td><td>space-between</td></tr>
-            <tr><td class="ref-class">.justify-around</td><td class="ref-prop">justify-content</td><td>space-around</td></tr>
-            <tr><td class="ref-class">.justify-evenly</td><td class="ref-prop">justify-content</td><td>space-evenly</td></tr>
-            <!-- Align Items -->
-            <tr><td class="ref-class">.items-start</td><td class="ref-prop">align-items</td><td>flex-start</td></tr>
-            <tr><td class="ref-class">.items-end</td><td class="ref-prop">align-items</td><td>flex-end</td></tr>
-            <tr><td class="ref-class">.items-center</td><td class="ref-prop">align-items</td><td>center</td></tr>
-            <tr><td class="ref-class">.items-baseline</td><td class="ref-prop">align-items</td><td>baseline</td></tr>
-            <tr><td class="ref-class">.items-stretch</td><td class="ref-prop">align-items</td><td>stretch</td></tr>
-            <!-- Align Self -->
-            <tr><td class="ref-class">.self-start</td><td class="ref-prop">align-self</td><td>flex-start</td></tr>
-            <tr><td class="ref-class">.self-end</td><td class="ref-prop">align-self</td><td>flex-end</td></tr>
-            <tr><td class="ref-class">.self-center</td><td class="ref-prop">align-self</td><td>center</td></tr>
-            <tr><td class="ref-class">.self-stretch</td><td class="ref-prop">align-self</td><td>stretch</td></tr>
-            <!-- Gap -->
-            <tr><td class="ref-class">.gap-0</td><td class="ref-prop">gap</td><td>0</td></tr>
-            <tr><td class="ref-class">.gap-1</td><td class="ref-prop">gap</td><td>0.25rem</td></tr>
-            <tr><td class="ref-class">.gap-2</td><td class="ref-prop">gap</td><td>0.5rem</td></tr>
-            <tr><td class="ref-class">.gap-3</td><td class="ref-prop">gap</td><td>0.75rem</td></tr>
-            <tr><td class="ref-class">.gap-4</td><td class="ref-prop">gap</td><td>1rem</td></tr>
-            <tr><td class="ref-class">.gap-5</td><td class="ref-prop">gap</td><td>1.25rem</td></tr>
-            <tr><td class="ref-class">.gap-6</td><td class="ref-prop">gap</td><td>1.5rem</td></tr>
-            <tr><td class="ref-class">.gap-8</td><td class="ref-prop">gap</td><td>2rem</td></tr>
-            <tr><td class="ref-class">.gap-10</td><td class="ref-prop">gap</td><td>2.5rem</td></tr>
-            <tr><td class="ref-class">.gap-12</td><td class="ref-prop">gap</td><td>3rem</td></tr>
-            <!-- Grid -->
-            <tr><td class="ref-class">.grid-cols-1</td><td class="ref-prop">grid-template-columns</td><td>repeat(1, minmax(0, 1fr))</td></tr>
-            <tr><td class="ref-class">.grid-cols-2</td><td class="ref-prop">grid-template-columns</td><td>repeat(2, minmax(0, 1fr))</td></tr>
-            <tr><td class="ref-class">.grid-cols-3</td><td class="ref-prop">grid-template-columns</td><td>repeat(3, minmax(0, 1fr))</td></tr>
-            <tr><td class="ref-class">.grid-cols-4</td><td class="ref-prop">grid-template-columns</td><td>repeat(4, minmax(0, 1fr))</td></tr>
-            <tr><td class="ref-class">.grid-cols-5</td><td class="ref-prop">grid-template-columns</td><td>repeat(5, minmax(0, 1fr))</td></tr>
-            <tr><td class="ref-class">.grid-cols-6</td><td class="ref-prop">grid-template-columns</td><td>repeat(6, minmax(0, 1fr))</td></tr>
-            <tr><td class="ref-class">.grid-cols-12</td><td class="ref-prop">grid-template-columns</td><td>repeat(12, minmax(0, 1fr))</td></tr>
-            <!-- Col Span -->
-            <tr><td class="ref-class">.col-span-1</td><td class="ref-prop">grid-column</td><td>span 1</td></tr>
-            <tr><td class="ref-class">.col-span-2</td><td class="ref-prop">grid-column</td><td>span 2</td></tr>
-            <tr><td class="ref-class">.col-span-3</td><td class="ref-prop">grid-column</td><td>span 3</td></tr>
-            <tr><td class="ref-class">.col-span-4</td><td class="ref-prop">grid-column</td><td>span 4</td></tr>
-            <tr><td class="ref-class">.col-span-5</td><td class="ref-prop">grid-column</td><td>span 5</td></tr>
-            <tr><td class="ref-class">.col-span-6</td><td class="ref-prop">grid-column</td><td>span 6</td></tr>
-            <tr><td class="ref-class">.col-span-full</td><td class="ref-prop">grid-column</td><td>1 / -1 (full width)</td></tr>
-            <!-- Padding -->
-            <tr><td class="ref-class">.p-0 ... .p-12</td><td class="ref-prop">padding</td><td>0 through 3rem (0, 1, 2, 3, 4, 5, 6, 8, 10, 12)</td></tr>
-            <tr><td class="ref-class">.px-0 ... .px-8</td><td class="ref-prop">padding-inline</td><td>0 through 2rem (0, 1, 2, 3, 4, 6, 8)</td></tr>
-            <tr><td class="ref-class">.py-0 ... .py-8</td><td class="ref-prop">padding-block</td><td>0 through 2rem (0, 1, 2, 3, 4, 6, 8)</td></tr>
-            <tr><td class="ref-class">.pt-0, .pt-2, .pt-4, .pt-6, .pt-8</td><td class="ref-prop">padding-top</td><td>0 through 2rem</td></tr>
-            <tr><td class="ref-class">.pb-0, .pb-2, .pb-4, .pb-6, .pb-8</td><td class="ref-prop">padding-bottom</td><td>0 through 2rem</td></tr>
-            <!-- Margin -->
-            <tr><td class="ref-class">.m-0 ... .m-8</td><td class="ref-prop">margin</td><td>0 through 2rem (0, 1, 2, 3, 4, 6, 8)</td></tr>
-            <tr><td class="ref-class">.m-auto</td><td class="ref-prop">margin</td><td>auto</td></tr>
-            <tr><td class="ref-class">.mx-0 ... .mx-4</td><td class="ref-prop">margin-inline</td><td>0 through 1rem (0, 1, 2, 4)</td></tr>
-            <tr><td class="ref-class">.mx-auto</td><td class="ref-prop">margin-inline</td><td>auto</td></tr>
-            <tr><td class="ref-class">.my-0 ... .my-8</td><td class="ref-prop">margin-block</td><td>0 through 2rem (0, 1, 2, 4, 8)</td></tr>
-            <tr><td class="ref-class">.mt-0 ... .mt-8</td><td class="ref-prop">margin-top</td><td>0 through 2rem (0, 1, 2, 4, 6, 8)</td></tr>
-            <tr><td class="ref-class">.mb-0 ... .mb-8</td><td class="ref-prop">margin-bottom</td><td>0 through 2rem (0, 1, 2, 4, 6, 8)</td></tr>
-            <!-- Width & Height -->
-            <tr><td class="ref-class">.w-full</td><td class="ref-prop">width</td><td>100%</td></tr>
-            <tr><td class="ref-class">.w-screen</td><td class="ref-prop">width</td><td>100vw</td></tr>
-            <tr><td class="ref-class">.w-auto</td><td class="ref-prop">width</td><td>auto</td></tr>
-            <tr><td class="ref-class">.w-fit</td><td class="ref-prop">width</td><td>fit-content</td></tr>
-            <tr><td class="ref-class">.min-w-0</td><td class="ref-prop">min-width</td><td>0</td></tr>
-            <tr><td class="ref-class">.max-w-full</td><td class="ref-prop">max-width</td><td>100%</td></tr>
-            <tr><td class="ref-class">.h-full</td><td class="ref-prop">height</td><td>100%</td></tr>
-            <tr><td class="ref-class">.h-screen</td><td class="ref-prop">height</td><td>100dvh</td></tr>
-            <tr><td class="ref-class">.h-auto</td><td class="ref-prop">height</td><td>auto</td></tr>
-            <tr><td class="ref-class">.h-fit</td><td class="ref-prop">height</td><td>fit-content</td></tr>
-            <tr><td class="ref-class">.min-h-screen</td><td class="ref-prop">min-height</td><td>100dvh</td></tr>
-            <!-- Position -->
-            <tr><td class="ref-class">.relative</td><td class="ref-prop">position</td><td>relative</td></tr>
-            <tr><td class="ref-class">.absolute</td><td class="ref-prop">position</td><td>absolute</td></tr>
-            <tr><td class="ref-class">.fixed</td><td class="ref-prop">position</td><td>fixed</td></tr>
-            <tr><td class="ref-class">.sticky</td><td class="ref-prop">position</td><td>sticky; top: 0</td></tr>
-            <tr><td class="ref-class">.inset-0</td><td class="ref-prop">inset</td><td>0</td></tr>
-            <tr><td class="ref-class">.top-0</td><td class="ref-prop">top</td><td>0</td></tr>
-            <tr><td class="ref-class">.right-0</td><td class="ref-prop">right</td><td>0</td></tr>
-            <tr><td class="ref-class">.bottom-0</td><td class="ref-prop">bottom</td><td>0</td></tr>
-            <tr><td class="ref-class">.left-0</td><td class="ref-prop">left</td><td>0</td></tr>
-            <!-- Overflow -->
-            <tr><td class="ref-class">.overflow-hidden</td><td class="ref-prop">overflow</td><td>hidden</td></tr>
-            <tr><td class="ref-class">.overflow-auto</td><td class="ref-prop">overflow</td><td>auto</td></tr>
-            <tr><td class="ref-class">.overflow-x-auto</td><td class="ref-prop">overflow-x</td><td>auto</td></tr>
-            <tr><td class="ref-class">.overflow-y-auto</td><td class="ref-prop">overflow-y</td><td>auto</td></tr>
-            <!-- Border Radius -->
-            <tr><td class="ref-class">.rounded-none</td><td class="ref-prop">border-radius</td><td>0</td></tr>
-            <tr><td class="ref-class">.rounded-sm</td><td class="ref-prop">border-radius</td><td>0.25rem</td></tr>
-            <tr><td class="ref-class">.rounded</td><td class="ref-prop">border-radius</td><td>0.5rem</td></tr>
-            <tr><td class="ref-class">.rounded-lg</td><td class="ref-prop">border-radius</td><td>0.75rem</td></tr>
-            <tr><td class="ref-class">.rounded-xl</td><td class="ref-prop">border-radius</td><td>1rem</td></tr>
-            <tr><td class="ref-class">.rounded-full</td><td class="ref-prop">border-radius</td><td>9999px</td></tr>
-            <!-- Shadow -->
-            <tr><td class="ref-class">.shadow-sm</td><td class="ref-prop">box-shadow</td><td>0 1px 2px rgba(0,0,0,0.4)</td></tr>
-            <tr><td class="ref-class">.shadow</td><td class="ref-prop">box-shadow</td><td>0 4px 6px rgba(0,0,0,0.4)</td></tr>
-            <tr><td class="ref-class">.shadow-lg</td><td class="ref-prop">box-shadow</td><td>0 10px 15px rgba(0,0,0,0.5)</td></tr>
-            <tr><td class="ref-class">.shadow-xl</td><td class="ref-prop">box-shadow</td><td>0 20px 25px rgba(0,0,0,0.5)</td></tr>
-            <tr><td class="ref-class">.shadow-glow</td><td class="ref-prop">box-shadow</td><td>0 0 20px rgba(232,69,69,0.3) (accent glow)</td></tr>
-            <tr><td class="ref-class">.shadow-none</td><td class="ref-prop">box-shadow</td><td>none</td></tr>
-            <!-- Opacity -->
-            <tr><td class="ref-class">.opacity-0</td><td class="ref-prop">opacity</td><td>0</td></tr>
-            <tr><td class="ref-class">.opacity-25</td><td class="ref-prop">opacity</td><td>0.25</td></tr>
-            <tr><td class="ref-class">.opacity-50</td><td class="ref-prop">opacity</td><td>0.5</td></tr>
-            <tr><td class="ref-class">.opacity-75</td><td class="ref-prop">opacity</td><td>0.75</td></tr>
-            <tr><td class="ref-class">.opacity-100</td><td class="ref-prop">opacity</td><td>1</td></tr>
-            <!-- Background Colors -->
-            <tr><td class="ref-class">.bg-primary</td><td class="ref-prop">background-color</td><td>var(--noir-bg-primary)</td></tr>
-            <tr><td class="ref-class">.bg-secondary</td><td class="ref-prop">background-color</td><td>var(--noir-bg-secondary)</td></tr>
-            <tr><td class="ref-class">.bg-tertiary</td><td class="ref-prop">background-color</td><td>var(--noir-bg-tertiary)</td></tr>
-            <tr><td class="ref-class">.bg-elevated</td><td class="ref-prop">background-color</td><td>var(--noir-bg-elevated)</td></tr>
-            <tr><td class="ref-class">.bg-accent</td><td class="ref-prop">background-color</td><td>var(--noir-accent)</td></tr>
-            <tr><td class="ref-class">.bg-accent-subtle</td><td class="ref-prop">background-color</td><td>var(--noir-accent-subtle)</td></tr>
-            <tr><td class="ref-class">.bg-accent-warm</td><td class="ref-prop">background-color</td><td>var(--noir-accent-warm)</td></tr>
-            <tr><td class="ref-class">.bg-transparent</td><td class="ref-prop">background-color</td><td>transparent</td></tr>
-            <!-- Borders -->
-            <tr><td class="ref-class">.border</td><td class="ref-prop">border</td><td>1px solid var(--noir-border)</td></tr>
-            <tr><td class="ref-class">.border-0</td><td class="ref-prop">border</td><td>none</td></tr>
-            <tr><td class="ref-class">.border-t</td><td class="ref-prop">border-top</td><td>1px solid var(--noir-border)</td></tr>
-            <tr><td class="ref-class">.border-b</td><td class="ref-prop">border-bottom</td><td>1px solid var(--noir-border)</td></tr>
-            <tr><td class="ref-class">.border-l</td><td class="ref-prop">border-left</td><td>1px solid var(--noir-border)</td></tr>
-            <tr><td class="ref-class">.border-r</td><td class="ref-prop">border-right</td><td>1px solid var(--noir-border)</td></tr>
-            <tr><td class="ref-class">.border-accent</td><td class="ref-prop">border-color</td><td>var(--noir-accent)</td></tr>
-            <!-- Cursor -->
-            <tr><td class="ref-class">.cursor-pointer</td><td class="ref-prop">cursor</td><td>pointer</td></tr>
-            <tr><td class="ref-class">.cursor-not-allowed</td><td class="ref-prop">cursor</td><td>not-allowed</td></tr>
-            <!-- Transition -->
-            <tr><td class="ref-class">.transition</td><td class="ref-prop">transition</td><td>all 250ms ease</td></tr>
-            <tr><td class="ref-class">.transition-fast</td><td class="ref-prop">transition</td><td>all 150ms ease</td></tr>
-            <tr><td class="ref-class">.transition-slow</td><td class="ref-prop">transition</td><td>all 400ms ease</td></tr>
-            <tr><td class="ref-class">.transition-none</td><td class="ref-prop">transition</td><td>none</td></tr>
-            <!-- Visibility -->
-            <tr><td class="ref-class">.visible</td><td class="ref-prop">visibility</td><td>visible</td></tr>
-            <tr><td class="ref-class">.invisible</td><td class="ref-prop">visibility</td><td>hidden</td></tr>
-            <tr><td class="ref-class">.sr-only</td><td class="ref-prop">position / clip / overflow</td><td>Screen reader only (visually hidden, accessible)</td></tr>
-            <tr><td class="ref-class">.not-sr-only</td><td class="ref-prop">position / clip / overflow</td><td>Undo .sr-only, restore to normal flow</td></tr>
-            <!-- Aspect Ratio -->
-            <tr><td class="ref-class">.aspect-auto</td><td class="ref-prop">aspect-ratio</td><td>auto</td></tr>
-            <tr><td class="ref-class">.aspect-square</td><td class="ref-prop">aspect-ratio</td><td>1 / 1</td></tr>
-            <tr><td class="ref-class">.aspect-video</td><td class="ref-prop">aspect-ratio</td><td>16 / 9</td></tr>
-            <tr><td class="ref-class">.aspect-4/3</td><td class="ref-prop">aspect-ratio</td><td>4 / 3</td></tr>
-            <tr><td class="ref-class">.aspect-3/2</td><td class="ref-prop">aspect-ratio</td><td>3 / 2</td></tr>
-            <tr><td class="ref-class">.aspect-21/9</td><td class="ref-prop">aspect-ratio</td><td>21 / 9</td></tr>
-            <!-- Object Fit -->
-            <tr><td class="ref-class">.object-contain</td><td class="ref-prop">object-fit</td><td>contain</td></tr>
-            <tr><td class="ref-class">.object-cover</td><td class="ref-prop">object-fit</td><td>cover</td></tr>
-            <tr><td class="ref-class">.object-fill</td><td class="ref-prop">object-fit</td><td>fill</td></tr>
-            <tr><td class="ref-class">.object-none</td><td class="ref-prop">object-fit</td><td>none</td></tr>
-            <tr><td class="ref-class">.object-scale-down</td><td class="ref-prop">object-fit</td><td>scale-down</td></tr>
-            <!-- Object Position -->
-            <tr><td class="ref-class">.object-center</td><td class="ref-prop">object-position</td><td>center</td></tr>
-            <tr><td class="ref-class">.object-top</td><td class="ref-prop">object-position</td><td>top</td></tr>
-            <tr><td class="ref-class">.object-bottom</td><td class="ref-prop">object-position</td><td>bottom</td></tr>
-            <tr><td class="ref-class">.object-left</td><td class="ref-prop">object-position</td><td>left</td></tr>
-            <tr><td class="ref-class">.object-right</td><td class="ref-prop">object-position</td><td>right</td></tr>
-            <!-- Z-Index -->
-            <tr><td class="ref-class">.z-0</td><td class="ref-prop">z-index</td><td>0</td></tr>
-            <tr><td class="ref-class">.z-10</td><td class="ref-prop">z-index</td><td>10</td></tr>
-            <tr><td class="ref-class">.z-20</td><td class="ref-prop">z-index</td><td>20</td></tr>
-            <tr><td class="ref-class">.z-30</td><td class="ref-prop">z-index</td><td>30</td></tr>
-            <tr><td class="ref-class">.z-40</td><td class="ref-prop">z-index</td><td>40</td></tr>
-            <tr><td class="ref-class">.z-50</td><td class="ref-prop">z-index</td><td>50</td></tr>
-            <tr><td class="ref-class">.z-auto</td><td class="ref-prop">z-index</td><td>auto</td></tr>
-            <tr><td class="ref-class">.z-dropdown</td><td class="ref-prop">z-index</td><td>100</td></tr>
-            <tr><td class="ref-class">.z-sticky</td><td class="ref-prop">z-index</td><td>200</td></tr>
-            <tr><td class="ref-class">.z-overlay</td><td class="ref-prop">z-index</td><td>300</td></tr>
-            <tr><td class="ref-class">.z-modal</td><td class="ref-prop">z-index</td><td>400</td></tr>
-            <tr><td class="ref-class">.z-toast</td><td class="ref-prop">z-index</td><td>500</td></tr>
-            <tr><td class="ref-class">.-z-10</td><td class="ref-prop">z-index</td><td>-10</td></tr>
-            <!-- Gradients -->
-            <tr><td class="ref-class">.bg-gradient-accent</td><td class="ref-prop">background</td><td>135deg gradient from accent to accent-warm</td></tr>
-            <tr><td class="ref-class">.bg-gradient-warm</td><td class="ref-prop">background</td><td>135deg gradient from accent-warm to gold</td></tr>
-            <tr><td class="ref-class">.bg-gradient-dark</td><td class="ref-prop">background</td><td>180deg gradient from bg-primary to bg-secondary</td></tr>
-            <tr><td class="ref-class">.bg-gradient-to-r</td><td class="ref-prop">background</td><td>Left to right, accent to accent-warm</td></tr>
-            <tr><td class="ref-class">.bg-gradient-to-l</td><td class="ref-prop">background</td><td>Right to left, accent to accent-warm</td></tr>
-            <tr><td class="ref-class">.bg-gradient-to-t</td><td class="ref-prop">background</td><td>Bottom to top, bg-primary to transparent</td></tr>
-            <tr><td class="ref-class">.bg-gradient-to-b</td><td class="ref-prop">background</td><td>Top to bottom, bg-primary to transparent</td></tr>
-            <!-- Responsive Prefixes -->
-            <tr><td class="ref-class">sm:{class}</td><td class="ref-prop">(varies)</td><td>Applies at >= 576px. Supports display, flex, grid, gap, padding, margin, text-align, width.</td></tr>
-            <tr><td class="ref-class">md:{class}</td><td class="ref-prop">(varies)</td><td>Applies at >= 768px. Supports display, flex, grid, gap, padding, margin, text-align, width, justify, items.</td></tr>
-            <tr><td class="ref-class">lg:{class}</td><td class="ref-prop">(varies)</td><td>Applies at >= 1024px. Supports display, flex, grid, gap, padding, margin, text-align, width.</td></tr>
-            <tr><td class="ref-class">xl:{class}</td><td class="ref-prop">(varies)</td><td>Applies at >= 1280px. Supports display, flex, grid, gap, padding, margin, text-align, width, justify, items.</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
+<section class="ref-section" id="nav-tabs">
+  <h2 class="heading-3 mb-2">Tabs</h2>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Description</th></tr></thead><tbody>
+<tr><td><span class="rc">tabs</span></td><td><span class="rv">Underline-style tab container</span></td></tr>
+<tr><td><span class="rc">tabs-pill</span></td><td><span class="rv">Pill-style tab container</span></td></tr>
+<tr><td><span class="rc">tab</span></td><td><span class="rv">Individual tab button/link</span></td></tr>
+<tr><td><span class="rc">tab.active</span></td><td><span class="rv">Active tab</span></td></tr>
+</tbody></table></div>
 
-    <!-- ==============================
-         FORMS
-         ============================== -->
-    <section class="ref-section" id="ref-forms">
-      <h2 class="heading-3 mb-2">Forms</h2>
-      <p class="text-secondary text-sm mb-6">Input fields, textareas, selects, checkboxes, radios, toggles, form groups, validation states, and range sliders.</p>
-      <div class="ref-table-wrap">
-        <table class="table table-compact ref-table">
-          <thead><tr><th>Class</th><th>CSS Property</th><th>Value / Description</th></tr></thead>
-          <tbody>
-            <tr><td class="ref-class">.input</td><td class="ref-prop">display / padding / border</td><td>Full-width text input with bg-secondary, border, rounded-md, focus accent ring.</td></tr>
-            <tr><td class="ref-class">.input-sm</td><td class="ref-prop">padding / font-size</td><td>Small input: tighter padding, text-xs.</td></tr>
-            <tr><td class="ref-class">.input-lg</td><td class="ref-prop">padding / font-size</td><td>Large input: larger padding, text-base.</td></tr>
-            <tr><td class="ref-class">.textarea</td><td class="ref-prop">display / padding / resize</td><td>Full-width textarea with vertical resize, min-height 80px.</td></tr>
-            <tr><td class="ref-class">.select</td><td class="ref-prop">display / padding / appearance</td><td>Custom styled select with dropdown arrow SVG.</td></tr>
-            <tr><td class="ref-class">.checkbox</td><td class="ref-prop">display / align-items / cursor</td><td>Inline-flex label wrapper for styled checkbox input.</td></tr>
-            <tr><td class="ref-class">.radio</td><td class="ref-prop">display / align-items / cursor</td><td>Inline-flex label wrapper for styled radio input.</td></tr>
-            <tr><td class="ref-class">.toggle</td><td class="ref-prop">display / align-items / cursor</td><td>Toggle switch wrapper. Checkbox rendered as pill-shaped switch.</td></tr>
-            <tr><td class="ref-class">.form-group</td><td class="ref-prop">display / flex-direction / gap</td><td>Flex column with 0.5rem gap for label + input + hint.</td></tr>
-            <tr><td class="ref-class">.form-label</td><td class="ref-prop">font-size / font-weight / color</td><td>text-sm, medium weight, primary color.</td></tr>
-            <tr><td class="ref-class">.form-hint</td><td class="ref-prop">font-size / color</td><td>text-xs, muted color. Helper text below inputs.</td></tr>
-            <tr><td class="ref-class">.input-group</td><td class="ref-prop">position / display</td><td>Relative flex container for icon + input combos.</td></tr>
-            <tr><td class="ref-class">.input-group-icon</td><td class="ref-prop">position / pointer-events</td><td>Absolute positioned icon inside input-group.</td></tr>
-            <tr><td class="ref-class">.input-success</td><td class="ref-prop">border-color</td><td>var(--noir-success) with green focus ring.</td></tr>
-            <tr><td class="ref-class">.input-error</td><td class="ref-prop">border-color</td><td>var(--noir-error) with red focus ring.</td></tr>
-            <tr><td class="ref-class">.form-error</td><td class="ref-prop">font-size / color</td><td>text-xs, error color. Validation error message.</td></tr>
-            <tr><td class="ref-class">.form-success</td><td class="ref-prop">font-size / color</td><td>text-xs, success color. Validation success message.</td></tr>
-            <tr><td class="ref-class">.range</td><td class="ref-prop">appearance / height / background</td><td>Custom range slider with accent thumb, 6px track.</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- ==============================
-         COMPONENTS
-         ============================== -->
-    <section class="ref-section" id="ref-components">
-      <h2 class="heading-3 mb-2">Components</h2>
-      <p class="text-secondary text-sm mb-6">Buttons, cards, badges, alerts, modals, tooltips, progress bars, skeletons, tables, spinners, loaders, toasts, and accordions.</p>
-      <div class="ref-table-wrap">
-        <table class="table table-compact ref-table">
-          <thead><tr><th>Class</th><th>CSS Property</th><th>Value / Description</th></tr></thead>
-          <tbody>
-            <!-- Buttons -->
-            <tr><td class="ref-class">.btn</td><td class="ref-prop">display / padding / font-size</td><td>Base button: inline-flex, centered, rounded-md, 150ms transition.</td></tr>
-            <tr><td class="ref-class">.btn-primary</td><td class="ref-prop">background-color / color</td><td>Accent background, white text. Glow on hover.</td></tr>
-            <tr><td class="ref-class">.btn-secondary</td><td class="ref-prop">background / border / color</td><td>Transparent with border. Accent border + color on hover.</td></tr>
-            <tr><td class="ref-class">.btn-ghost</td><td class="ref-prop">background / color</td><td>Transparent, secondary text. Tertiary bg on hover.</td></tr>
-            <tr><td class="ref-class">.btn-warm</td><td class="ref-prop">background-color / color</td><td>Orange accent background, white text.</td></tr>
-            <tr><td class="ref-class">.btn-danger</td><td class="ref-prop">background-color / color</td><td>Error red background, white text.</td></tr>
-            <tr><td class="ref-class">.btn-sm</td><td class="ref-prop">padding / font-size</td><td>Small button: tighter padding, text-xs.</td></tr>
-            <tr><td class="ref-class">.btn-lg</td><td class="ref-prop">padding / font-size</td><td>Large button: more padding, text-base.</td></tr>
-            <tr><td class="ref-class">.btn-icon</td><td class="ref-prop">padding / aspect-ratio</td><td>Square icon button (1:1 aspect ratio).</td></tr>
-            <tr><td class="ref-class">.btn-group</td><td class="ref-prop">display</td><td>Inline-flex container, removes inner border-radius for grouped buttons.</td></tr>
-            <!-- Cards -->
-            <tr><td class="ref-class">.card</td><td class="ref-prop">background / border / border-radius</td><td>bg-secondary, border, rounded-lg, overflow hidden.</td></tr>
-            <tr><td class="ref-class">.card-hover</td><td class="ref-prop">transform / box-shadow</td><td>Lifts -2px and adds shadow-lg + accent border on hover.</td></tr>
-            <tr><td class="ref-class">.card-header</td><td class="ref-prop">padding / border-bottom</td><td>Card top section with bottom border.</td></tr>
-            <tr><td class="ref-class">.card-body</td><td class="ref-prop">padding</td><td>Main card content area (1.5rem padding).</td></tr>
-            <tr><td class="ref-class">.card-footer</td><td class="ref-prop">padding / border-top</td><td>Card bottom section with top border.</td></tr>
-            <tr><td class="ref-class">.card-img</td><td class="ref-prop">width / object-fit</td><td>Full-width image with object-fit: cover.</td></tr>
-            <!-- Badges -->
-            <tr><td class="ref-class">.badge</td><td class="ref-prop">display / padding / font-size</td><td>Inline-flex, text-xs, medium weight, rounded-full.</td></tr>
-            <tr><td class="ref-class">.badge-accent</td><td class="ref-prop">background / color</td><td>Accent-subtle bg, accent text.</td></tr>
-            <tr><td class="ref-class">.badge-warm</td><td class="ref-prop">background / color</td><td>Warm-subtle bg, warm text.</td></tr>
-            <tr><td class="ref-class">.badge-success</td><td class="ref-prop">background / color</td><td>Success-subtle bg, success text.</td></tr>
-            <tr><td class="ref-class">.badge-warning</td><td class="ref-prop">background / color</td><td>Warning-subtle bg, warning text.</td></tr>
-            <tr><td class="ref-class">.badge-error</td><td class="ref-prop">background / color</td><td>Error-subtle bg, error text.</td></tr>
-            <tr><td class="ref-class">.badge-info</td><td class="ref-prop">background / color</td><td>Info-subtle bg, info text.</td></tr>
-            <tr><td class="ref-class">.badge-outline</td><td class="ref-prop">background / border / color</td><td>Transparent bg, 1px border, secondary text.</td></tr>
-            <!-- Alerts -->
-            <tr><td class="ref-class">.alert</td><td class="ref-prop">display / padding / border-left</td><td>Flex container with 3px left border, rounded-md.</td></tr>
-            <tr><td class="ref-class">.alert-success</td><td class="ref-prop">background / border-color / color</td><td>Success-subtle bg, success border + text.</td></tr>
-            <tr><td class="ref-class">.alert-warning</td><td class="ref-prop">background / border-color / color</td><td>Warning-subtle bg, warning border + text.</td></tr>
-            <tr><td class="ref-class">.alert-error</td><td class="ref-prop">background / border-color / color</td><td>Error-subtle bg, error border + text.</td></tr>
-            <tr><td class="ref-class">.alert-info</td><td class="ref-prop">background / border-color / color</td><td>Info-subtle bg, info border + text.</td></tr>
-            <!-- Modal / Overlay -->
-            <tr><td class="ref-class">.overlay</td><td class="ref-prop">position / background / z-index</td><td>Fixed fullscreen backdrop with blur, z-index 300. Hidden by default.</td></tr>
-            <tr><td class="ref-class">.overlay.active</td><td class="ref-prop">opacity / pointer-events</td><td>Shows the overlay and enables interaction.</td></tr>
-            <tr><td class="ref-class">.modal</td><td class="ref-prop">background / border / max-width</td><td>500px max centered dialog with bg-secondary, shadow-xl, rounded-xl.</td></tr>
-            <tr><td class="ref-class">.modal-header</td><td class="ref-prop">display / padding / border-bottom</td><td>Flex row, space-between, with bottom border.</td></tr>
-            <tr><td class="ref-class">.modal-body</td><td class="ref-prop">padding</td><td>Main modal content area.</td></tr>
-            <tr><td class="ref-class">.modal-footer</td><td class="ref-prop">display / justify-content / padding</td><td>Flex end-aligned row with top border for actions.</td></tr>
-            <!-- Divider -->
-            <tr><td class="ref-class">.divider</td><td class="ref-prop">height / background-color</td><td>1px horizontal rule using border color.</td></tr>
-            <!-- Avatar -->
-            <tr><td class="ref-class">.avatar</td><td class="ref-prop">width / height / border-radius</td><td>2.5rem circle with accent-subtle bg and accent text.</td></tr>
-            <tr><td class="ref-class">.avatar-sm</td><td class="ref-prop">width / height</td><td>2rem small avatar.</td></tr>
-            <tr><td class="ref-class">.avatar-lg</td><td class="ref-prop">width / height</td><td>3.5rem large avatar.</td></tr>
-            <!-- Tooltip -->
-            <tr><td class="ref-class">.tooltip</td><td class="ref-prop">position</td><td>Relative container. Use data-tooltip="text" for content.</td></tr>
-            <!-- Progress -->
-            <tr><td class="ref-class">.progress</td><td class="ref-prop">height / background / border-radius</td><td>6px bar track with bg-tertiary, rounded-full.</td></tr>
-            <tr><td class="ref-class">.progress-bar</td><td class="ref-prop">height / background-color</td><td>Accent-colored fill bar. Set width with inline style.</td></tr>
-            <tr><td class="ref-class">.progress-bar-warm</td><td class="ref-prop">background-color</td><td>Orange variant of progress bar.</td></tr>
-            <tr><td class="ref-class">.progress-bar-success</td><td class="ref-prop">background-color</td><td>Green variant of progress bar.</td></tr>
-            <!-- Skeleton -->
-            <tr><td class="ref-class">.skeleton</td><td class="ref-prop">background / animation</td><td>Shimmer loading placeholder with gradient animation.</td></tr>
-            <tr><td class="ref-class">.skeleton-text</td><td class="ref-prop">height</td><td>1em tall text placeholder.</td></tr>
-            <tr><td class="ref-class">.skeleton-title</td><td class="ref-prop">height / width</td><td>1.5em tall, 60% wide title placeholder.</td></tr>
-            <tr><td class="ref-class">.skeleton-avatar</td><td class="ref-prop">width / height / border-radius</td><td>2.5rem circular avatar placeholder.</td></tr>
-            <!-- Table -->
-            <tr><td class="ref-class">.table</td><td class="ref-prop">width / border-collapse</td><td>Full-width collapsed table with text-sm.</td></tr>
-            <tr><td class="ref-class">.table-striped</td><td class="ref-prop">background-color</td><td>Alternating row backgrounds (even rows).</td></tr>
-            <tr><td class="ref-class">.table-bordered</td><td class="ref-prop">border</td><td>All cells and table have 1px border.</td></tr>
-            <tr><td class="ref-class">.table-compact</td><td class="ref-prop">padding</td><td>Reduced cell padding.</td></tr>
-            <!-- Spinner -->
-            <tr><td class="ref-class">.spinner</td><td class="ref-prop">width / height / border / animation</td><td>1.5rem spinning circle with accent top border.</td></tr>
-            <tr><td class="ref-class">.spinner-sm</td><td class="ref-prop">width / height</td><td>1rem small spinner.</td></tr>
-            <tr><td class="ref-class">.spinner-lg</td><td class="ref-prop">width / height</td><td>2.5rem large spinner.</td></tr>
-            <tr><td class="ref-class">.spinner-warm</td><td class="ref-prop">border-top-color</td><td>Orange accent spinner.</td></tr>
-            <tr><td class="ref-class">.spinner-white</td><td class="ref-prop">border-color / border-top-color</td><td>White spinner for dark backgrounds.</td></tr>
-            <!-- Loader -->
-            <tr><td class="ref-class">.loader-dots</td><td class="ref-prop">display / animation</td><td>Three pulsing dots. Add 3 span children.</td></tr>
-            <tr><td class="ref-class">.loader-bar</td><td class="ref-prop">width / height / animation</td><td>Indeterminate horizontal bar loader.</td></tr>
-            <!-- Toast -->
-            <tr><td class="ref-class">.toast-container</td><td class="ref-prop">position / z-index</td><td>Fixed bottom-right container for toast notifications.</td></tr>
-            <tr><td class="ref-class">.toast-container-top</td><td class="ref-prop">top / bottom</td><td>Moves container to top-right.</td></tr>
-            <tr><td class="ref-class">.toast</td><td class="ref-prop">display / padding / background</td><td>Flex toast notification card with slide-in animation.</td></tr>
-            <tr><td class="ref-class">.toast-success</td><td class="ref-prop">border-left</td><td>3px green left border.</td></tr>
-            <tr><td class="ref-class">.toast-error</td><td class="ref-prop">border-left</td><td>3px red left border.</td></tr>
-            <tr><td class="ref-class">.toast-warning</td><td class="ref-prop">border-left</td><td>3px yellow left border.</td></tr>
-            <tr><td class="ref-class">.toast-info</td><td class="ref-prop">border-left</td><td>3px blue left border.</td></tr>
-            <tr><td class="ref-class">.toast-close</td><td class="ref-prop">margin-left / cursor</td><td>Auto-left close button for toasts.</td></tr>
-            <!-- Accordion -->
-            <tr><td class="ref-class">.accordion</td><td class="ref-prop">display / border / border-radius</td><td>Flex column container with border and rounded-lg.</td></tr>
-            <tr><td class="ref-class">.accordion-item</td><td class="ref-prop">border-bottom</td><td>Use with &lt;details&gt; element. Bottom border separator.</td></tr>
-            <tr><td class="ref-class">.accordion-trigger</td><td class="ref-prop">display / padding / cursor</td><td>Use with &lt;summary&gt;. Full-width toggle button with +/- indicator.</td></tr>
-            <tr><td class="ref-class">.accordion-content</td><td class="ref-prop">padding / color</td><td>Collapsible content area, secondary text color.</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- ==============================
-         NAVIGATION
-         ============================== -->
-    <section class="ref-section" id="ref-navigation">
-      <h2 class="heading-3 mb-2">Navigation</h2>
-      <p class="text-secondary text-sm mb-6">Navbar, sidebar, tabs, breadcrumbs, pagination, and dropdowns.</p>
-      <div class="ref-table-wrap">
-        <table class="table table-compact ref-table">
-          <thead><tr><th>Class</th><th>CSS Property</th><th>Value / Description</th></tr></thead>
-          <tbody>
-            <!-- Navbar -->
-            <tr><td class="ref-class">.navbar</td><td class="ref-prop">display / position / backdrop-filter</td><td>Sticky top flex bar with blur backdrop, z-index 200.</td></tr>
-            <tr><td class="ref-class">.navbar-brand</td><td class="ref-prop">display / font-size / font-weight</td><td>Flex link with bold text for logo/brand name.</td></tr>
-            <tr><td class="ref-class">.navbar-nav</td><td class="ref-prop">display / gap</td><td>Flex row of navigation links. Becomes slide-out panel on mobile.</td></tr>
-            <tr><td class="ref-class">.navbar-link</td><td class="ref-prop">display / padding / color</td><td>Individual nav link with hover and .active state support.</td></tr>
-            <tr><td class="ref-class">.navbar-link.active</td><td class="ref-prop">color / background-color</td><td>Accent color with accent-subtle background.</td></tr>
-            <tr><td class="ref-class">.navbar-toggle</td><td class="ref-prop">display / flex-direction</td><td>Mobile hamburger button (3 spans). Hidden on desktop.</td></tr>
-            <!-- Sidebar -->
-            <tr><td class="ref-class">.sidebar</td><td class="ref-prop">width / min-height / background</td><td>260px fixed sidebar with bg-secondary and right border.</td></tr>
-            <tr><td class="ref-class">.sidebar-header</td><td class="ref-prop">padding / font-size / font-weight</td><td>Bold header text for sidebar title.</td></tr>
-            <tr><td class="ref-class">.sidebar-section</td><td class="ref-prop">font-size / text-transform / color</td><td>Uppercase muted section label (text-xs).</td></tr>
-            <tr><td class="ref-class">.sidebar-link</td><td class="ref-prop">display / padding / color</td><td>Sidebar navigation link with hover and .active state.</td></tr>
-            <tr><td class="ref-class">.sidebar-link.active</td><td class="ref-prop">color / background-color</td><td>Accent color with accent-subtle background.</td></tr>
-            <!-- Tabs -->
-            <tr><td class="ref-class">.tabs</td><td class="ref-prop">display / border-bottom</td><td>Flex row with bottom border for underline-style tabs.</td></tr>
-            <tr><td class="ref-class">.tab</td><td class="ref-prop">display / padding / border-bottom</td><td>Individual tab button with 2px transparent bottom border.</td></tr>
-            <tr><td class="ref-class">.tab.active</td><td class="ref-prop">color / border-bottom-color</td><td>Accent colored text and bottom border.</td></tr>
-            <tr><td class="ref-class">.tabs-pill</td><td class="ref-prop">display / background / border-radius</td><td>Pill-style tab container with tertiary bg and rounded-lg.</td></tr>
-            <tr><td class="ref-class">.tabs-pill .tab.active</td><td class="ref-prop">background / color / box-shadow</td><td>Elevated bg, primary text, small shadow.</td></tr>
-            <!-- Breadcrumb -->
-            <tr><td class="ref-class">.breadcrumb</td><td class="ref-prop">display / gap</td><td>Flex row with 0.5rem gap for breadcrumb navigation.</td></tr>
-            <tr><td class="ref-class">.breadcrumb-item</td><td class="ref-prop">color / text-decoration</td><td>Muted color link with hover to primary.</td></tr>
-            <tr><td class="ref-class">.breadcrumb-item.active</td><td class="ref-prop">color / font-weight</td><td>Primary color, medium weight for current page.</td></tr>
-            <tr><td class="ref-class">.breadcrumb-separator</td><td class="ref-prop">color / user-select</td><td>Muted separator character (e.g. "/").</td></tr>
-            <!-- Pagination -->
-            <tr><td class="ref-class">.pagination</td><td class="ref-prop">display / gap</td><td>Flex row of page links.</td></tr>
-            <tr><td class="ref-class">.page-link</td><td class="ref-prop">display / min-width / border</td><td>2.25rem square link with border and rounded-md.</td></tr>
-            <tr><td class="ref-class">.page-link.active</td><td class="ref-prop">background / border-color / color</td><td>Accent bg and border, white text.</td></tr>
-            <!-- Dropdown -->
-            <tr><td class="ref-class">.dropdown</td><td class="ref-prop">position / display</td><td>Relative inline-block container for dropdown menus.</td></tr>
-            <tr><td class="ref-class">.dropdown-menu</td><td class="ref-prop">position / min-width / z-index</td><td>Absolute positioned menu, 200px min-width, z-index 100. Hidden by default.</td></tr>
-            <tr><td class="ref-class">.dropdown.open .dropdown-menu</td><td class="ref-prop">opacity / pointer-events</td><td>Shows dropdown on .open class or :focus-within.</td></tr>
-            <tr><td class="ref-class">.dropdown-item</td><td class="ref-prop">display / padding / cursor</td><td>Full-width flex link/button inside dropdown.</td></tr>
-            <tr><td class="ref-class">.dropdown-divider</td><td class="ref-prop">height / background-color</td><td>1px separator inside dropdown menu.</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- ==============================
-         UTILITIES
-         ============================== -->
-    <section class="ref-section" id="ref-utilities">
-      <h2 class="heading-3 mb-2">Utilities</h2>
-      <p class="text-secondary text-sm mb-6">CSS transform utilities: rotate, scale, translate, and transform-origin.</p>
-      <div class="ref-table-wrap">
-        <table class="table table-compact ref-table">
-          <thead><tr><th>Class</th><th>CSS Property</th><th>Value / Description</th></tr></thead>
-          <tbody>
-            <!-- Rotate -->
-            <tr><td class="ref-class">.rotate-0</td><td class="ref-prop">transform</td><td>rotate(0deg)</td></tr>
-            <tr><td class="ref-class">.rotate-45</td><td class="ref-prop">transform</td><td>rotate(45deg)</td></tr>
-            <tr><td class="ref-class">.rotate-90</td><td class="ref-prop">transform</td><td>rotate(90deg)</td></tr>
-            <tr><td class="ref-class">.rotate-180</td><td class="ref-prop">transform</td><td>rotate(180deg)</td></tr>
-            <tr><td class="ref-class">.-rotate-45</td><td class="ref-prop">transform</td><td>rotate(-45deg)</td></tr>
-            <tr><td class="ref-class">.-rotate-90</td><td class="ref-prop">transform</td><td>rotate(-90deg)</td></tr>
-            <tr><td class="ref-class">.-rotate-180</td><td class="ref-prop">transform</td><td>rotate(-180deg)</td></tr>
-            <!-- Scale -->
-            <tr><td class="ref-class">.scale-75</td><td class="ref-prop">transform</td><td>scale(0.75)</td></tr>
-            <tr><td class="ref-class">.scale-90</td><td class="ref-prop">transform</td><td>scale(0.9)</td></tr>
-            <tr><td class="ref-class">.scale-95</td><td class="ref-prop">transform</td><td>scale(0.95)</td></tr>
-            <tr><td class="ref-class">.scale-100</td><td class="ref-prop">transform</td><td>scale(1)</td></tr>
-            <tr><td class="ref-class">.scale-105</td><td class="ref-prop">transform</td><td>scale(1.05)</td></tr>
-            <tr><td class="ref-class">.scale-110</td><td class="ref-prop">transform</td><td>scale(1.1)</td></tr>
-            <tr><td class="ref-class">.scale-125</td><td class="ref-prop">transform</td><td>scale(1.25)</td></tr>
-            <tr><td class="ref-class">.scale-150</td><td class="ref-prop">transform</td><td>scale(1.5)</td></tr>
-            <!-- Translate X -->
-            <tr><td class="ref-class">.translate-x-1</td><td class="ref-prop">transform</td><td>translateX(0.25rem)</td></tr>
-            <tr><td class="ref-class">.translate-x-2</td><td class="ref-prop">transform</td><td>translateX(0.5rem)</td></tr>
-            <tr><td class="ref-class">.translate-x-4</td><td class="ref-prop">transform</td><td>translateX(1rem)</td></tr>
-            <tr><td class="ref-class">.-translate-x-1</td><td class="ref-prop">transform</td><td>translateX(-0.25rem)</td></tr>
-            <tr><td class="ref-class">.-translate-x-2</td><td class="ref-prop">transform</td><td>translateX(-0.5rem)</td></tr>
-            <tr><td class="ref-class">.-translate-x-4</td><td class="ref-prop">transform</td><td>translateX(-1rem)</td></tr>
-            <tr><td class="ref-class">.translate-x-full</td><td class="ref-prop">transform</td><td>translateX(100%)</td></tr>
-            <tr><td class="ref-class">.-translate-x-full</td><td class="ref-prop">transform</td><td>translateX(-100%)</td></tr>
-            <!-- Translate Y -->
-            <tr><td class="ref-class">.translate-y-1</td><td class="ref-prop">transform</td><td>translateY(0.25rem)</td></tr>
-            <tr><td class="ref-class">.translate-y-2</td><td class="ref-prop">transform</td><td>translateY(0.5rem)</td></tr>
-            <tr><td class="ref-class">.translate-y-4</td><td class="ref-prop">transform</td><td>translateY(1rem)</td></tr>
-            <tr><td class="ref-class">.-translate-y-1</td><td class="ref-prop">transform</td><td>translateY(-0.25rem)</td></tr>
-            <tr><td class="ref-class">.-translate-y-2</td><td class="ref-prop">transform</td><td>translateY(-0.5rem)</td></tr>
-            <tr><td class="ref-class">.-translate-y-4</td><td class="ref-prop">transform</td><td>translateY(-1rem)</td></tr>
-            <tr><td class="ref-class">.translate-y-full</td><td class="ref-prop">transform</td><td>translateY(100%)</td></tr>
-            <tr><td class="ref-class">.-translate-y-full</td><td class="ref-prop">transform</td><td>translateY(-100%)</td></tr>
-            <!-- Origin -->
-            <tr><td class="ref-class">.origin-center</td><td class="ref-prop">transform-origin</td><td>center</td></tr>
-            <tr><td class="ref-class">.origin-top</td><td class="ref-prop">transform-origin</td><td>top</td></tr>
-            <tr><td class="ref-class">.origin-bottom</td><td class="ref-prop">transform-origin</td><td>bottom</td></tr>
-            <tr><td class="ref-class">.origin-left</td><td class="ref-prop">transform-origin</td><td>left</td></tr>
-            <tr><td class="ref-class">.origin-right</td><td class="ref-prop">transform-origin</td><td>right</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- ==============================
-         ANIMATIONS
-         ============================== -->
-    <section class="ref-section" id="ref-animations">
-      <h2 class="heading-3 mb-2">Animations</h2>
-      <p class="text-secondary text-sm mb-6">Keyframe animations for fade, slide, pulse, spin, bounce, and ping. Includes duration, delay, and iteration control classes. Respects prefers-reduced-motion.</p>
-      <div class="ref-table-wrap">
-        <table class="table table-compact ref-table">
-          <thead><tr><th>Class</th><th>CSS Property</th><th>Value / Description</th></tr></thead>
-          <tbody>
-            <!-- Fade -->
-            <tr><td class="ref-class">.animate-fade-in</td><td class="ref-prop">animation</td><td>Fade in from opacity 0 to 1 (250ms ease).</td></tr>
-            <tr><td class="ref-class">.animate-fade-out</td><td class="ref-prop">animation</td><td>Fade out from opacity 1 to 0 (250ms ease).</td></tr>
-            <!-- Slide -->
-            <tr><td class="ref-class">.animate-slide-up</td><td class="ref-prop">animation</td><td>Slide up from +1rem, fade in (250ms ease).</td></tr>
-            <tr><td class="ref-class">.animate-slide-down</td><td class="ref-prop">animation</td><td>Slide down from -1rem, fade in (250ms ease).</td></tr>
-            <tr><td class="ref-class">.animate-slide-left</td><td class="ref-prop">animation</td><td>Slide left from +1rem, fade in (250ms ease).</td></tr>
-            <tr><td class="ref-class">.animate-slide-right</td><td class="ref-prop">animation</td><td>Slide right from -1rem, fade in (250ms ease).</td></tr>
-            <!-- Pulse / Spin / Bounce / Ping -->
-            <tr><td class="ref-class">.animate-pulse</td><td class="ref-prop">animation</td><td>Pulsing opacity 1 -> 0.5 -> 1 (2s infinite).</td></tr>
-            <tr><td class="ref-class">.animate-spin</td><td class="ref-prop">animation</td><td>Continuous 360deg rotation (1s linear infinite).</td></tr>
-            <tr><td class="ref-class">.animate-bounce</td><td class="ref-prop">animation</td><td>Vertical bounce effect (1s infinite).</td></tr>
-            <tr><td class="ref-class">.animate-ping</td><td class="ref-prop">animation</td><td>Scale up to 2x and fade out (1s infinite). Ping/ripple effect.</td></tr>
-            <!-- Control -->
-            <tr><td class="ref-class">.animate-none</td><td class="ref-prop">animation</td><td>none - removes all animation.</td></tr>
-            <tr><td class="ref-class">.animate-duration-fast</td><td class="ref-prop">animation-duration</td><td>150ms</td></tr>
-            <tr><td class="ref-class">.animate-duration-base</td><td class="ref-prop">animation-duration</td><td>250ms</td></tr>
-            <tr><td class="ref-class">.animate-duration-slow</td><td class="ref-prop">animation-duration</td><td>400ms</td></tr>
-            <tr><td class="ref-class">.animate-delay-100</td><td class="ref-prop">animation-delay</td><td>100ms</td></tr>
-            <tr><td class="ref-class">.animate-delay-200</td><td class="ref-prop">animation-delay</td><td>200ms</td></tr>
-            <tr><td class="ref-class">.animate-delay-300</td><td class="ref-prop">animation-delay</td><td>300ms</td></tr>
-            <tr><td class="ref-class">.animate-delay-500</td><td class="ref-prop">animation-delay</td><td>500ms</td></tr>
-            <tr><td class="ref-class">.animate-infinite</td><td class="ref-prop">animation-iteration-count</td><td>infinite</td></tr>
-            <tr><td class="ref-class">.animate-once</td><td class="ref-prop">animation-iteration-count</td><td>1</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- ==============================
-         ACCESSIBILITY
-         ============================== -->
-    <!-- Accessibility -->
-    <section class="ref-section" id="accessibility">
-      <h2 class="heading-3 mb-2">Accessibility</h2>
-      <p class="text-secondary text-sm mb-6">Noir includes built-in accessibility features. Follow these guidelines for WCAG 2.1 AA compliance.</p>
-      <div class="ref-table-wrap">
-        <table class="table table-compact ref-table">
-          <thead>
-            <tr>
-              <th>Component</th>
-              <th>Required Attributes</th>
-              <th>Notes</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Modal (dialog)</td>
-              <td><code class="code">aria-labelledby</code></td>
-              <td>Use native <code class="code">&lt;dialog&gt;</code> element. Browser provides Esc-close and focus trap via <code class="code">showModal()</code>.</td>
-            </tr>
-            <tr>
-              <td>Dropdown</td>
-              <td><code class="code">aria-haspopup</code>, <code class="code">aria-expanded</code>, <code class="code">role="menu"</code></td>
-              <td>Toggle <code class="code">aria-expanded</code> with JS. Add <code class="code">role="menuitem"</code> to items.</td>
-            </tr>
-            <tr>
-              <td>Toast</td>
-              <td><code class="code">role="status"</code>, <code class="code">aria-live="polite"</code></td>
-              <td>Use <code class="code">role="alert"</code> for error/warning toasts. Container needs <code class="code">aria-live</code>.</td>
-            </tr>
-            <tr>
-              <td>Accordion</td>
-              <td>Native <code class="code">&lt;details&gt;/&lt;summary&gt;</code></td>
-              <td>Browser handles expand/collapse accessibility natively.</td>
-            </tr>
-            <tr>
-              <td>Forms</td>
-              <td><code class="code">for/id</code>, <code class="code">aria-describedby</code></td>
-              <td>Link labels to inputs with <code class="code">for</code>. Use <code class="code">aria-describedby</code> for hints/errors.</td>
-            </tr>
-            <tr>
-              <td>Screen reader</td>
-              <td><code class="code">.sr-only</code></td>
-              <td>Visually hide content while keeping it accessible to assistive technology.</td>
-            </tr>
-            <tr>
-              <td>Reduced motion</td>
-              <td>Automatic</td>
-              <td>All animations and transitions respect <code class="code">prefers-reduced-motion: reduce</code>.</td>
-            </tr>
-            <tr>
-              <td>Focus</td>
-              <td>Automatic</td>
-              <td>All interactive elements show <code class="code">:focus-visible</code> outline. Use <code class="code">.focus\:ring-*</code> for custom rings.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- Footer -->
-  <footer class="border-t py-8 mt-8">
-    <div class="container text-center">
-      <p class="text-sm text-muted">Noir CSS Framework &mdash; <a href="index.html">Demo</a> &middot; <a href="https://github.com/kakuteki/Noir" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+  <div class="pbox">
+    <div class="tabs mb-4">
+      <button class="tab active">Tab 1</button>
+      <button class="tab">Tab 2</button>
+      <button class="tab">Tab 3</button>
     </div>
-  </footer>
+    <div class="tabs-pill">
+      <button class="tab active">All</button>
+      <button class="tab">Active</button>
+      <button class="tab">Archived</button>
+    </div>
+  </div>
+  <div class="code-block mb-4"><pre><code>&lt;div class=&quot;tabs&quot;&gt;
+  &lt;button class=&quot;tab active&quot;&gt;Tab 1&lt;/button&gt;
+  &lt;button class=&quot;tab&quot;&gt;Tab 2&lt;/button&gt;
+&lt;/div&gt;
 
-  <script>
-    /* Theme toggle */
-    (function() {
-      var saved = localStorage.getItem('noir-theme');
-      if (saved) {
-        document.documentElement.setAttribute('data-theme', saved);
-      }
-      var btn = document.getElementById('themeBtn');
-      if (btn) {
-        btn.textContent = document.documentElement.getAttribute('data-theme') === 'dark' ? 'Light Mode' : 'Dark Mode';
-      }
-    })();
+&lt;div class=&quot;tabs-pill&quot;&gt;
+  &lt;button class=&quot;tab active&quot;&gt;All&lt;/button&gt;
+  &lt;button class=&quot;tab&quot;&gt;Filtered&lt;/button&gt;
+&lt;/div&gt;</code></pre></div>
+</section>
 
-    function toggleTheme() {
-      var html = document.documentElement;
-      var btn = document.getElementById('themeBtn');
-      if (html.getAttribute('data-theme') === 'dark') {
-        html.setAttribute('data-theme', 'light');
-        btn.textContent = 'Dark Mode';
-        localStorage.setItem('noir-theme', 'light');
-      } else {
-        html.setAttribute('data-theme', 'dark');
-        btn.textContent = 'Light Mode';
-        localStorage.setItem('noir-theme', 'dark');
-      }
+<section class="ref-section" id="nav-breadcrumb">
+  <h2 class="heading-3 mb-2">Breadcrumb</h2>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Description</th></tr></thead><tbody>
+<tr><td><span class="rc">breadcrumb</span></td><td><span class="rv">Flex container</span></td></tr>
+<tr><td><span class="rc">breadcrumb-item</span></td><td><span class="rv">Link or text item</span></td></tr>
+<tr><td><span class="rc">breadcrumb-item.active</span></td><td><span class="rv">Current page (bold)</span></td></tr>
+<tr><td><span class="rc">breadcrumb-separator</span></td><td><span class="rv">Divider character</span></td></tr>
+</tbody></table></div>
+
+  <div class="pbox">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="#" class="breadcrumb-item">Home</a>
+      <span class="breadcrumb-separator">/</span>
+      <a href="#" class="breadcrumb-item">Docs</a>
+      <span class="breadcrumb-separator">/</span>
+      <span class="breadcrumb-item active">Reference</span>
+    </nav>
+  </div>
+</section>
+
+<section class="ref-section" id="nav-pagination">
+  <h2 class="heading-3 mb-2">Pagination</h2>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Description</th></tr></thead><tbody>
+<tr><td><span class="rc">pagination</span></td><td><span class="rv">Flex container</span></td></tr>
+<tr><td><span class="rc">page-link</span></td><td><span class="rv">Individual page button</span></td></tr>
+<tr><td><span class="rc">page-link.active</span></td><td><span class="rv">Current page</span></td></tr>
+</tbody></table></div>
+
+  <div class="pbox">
+    <nav class="pagination">
+      <a href="#" class="page-link">&laquo;</a>
+      <a href="#" class="page-link">1</a>
+      <a href="#" class="page-link active">2</a>
+      <a href="#" class="page-link">3</a>
+      <a href="#" class="page-link">&raquo;</a>
+    </nav>
+  </div>
+</section>
+
+<section class="ref-section" id="nav-dropdown">
+  <h2 class="heading-3 mb-2">Dropdown</h2>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Description</th></tr></thead><tbody>
+<tr><td><span class="rc">dropdown</span></td><td><span class="rv">Relative container</span></td></tr>
+<tr><td><span class="rc">dropdown-menu</span></td><td><span class="rv">Absolutely-positioned menu</span></td></tr>
+<tr><td><span class="rc">dropdown.open</span></td><td><span class="rv">Show menu (add via JS)</span></td></tr>
+<tr><td><span class="rc">dropdown-item</span></td><td><span class="rv">Menu item link/button</span></td></tr>
+<tr><td><span class="rc">dropdown-divider</span></td><td><span class="rv">Horizontal separator</span></td></tr>
+</tbody></table></div>
+
+  <div class="pbox">
+    <div class="dropdown">
+      <button class="btn btn-secondary" onclick="this.parentElement.classList.toggle('open')">Options &#9662;</button>
+      <div class="dropdown-menu" role="menu">
+        <a href="#" class="dropdown-item" role="menuitem">Profile</a>
+        <a href="#" class="dropdown-item" role="menuitem">Settings</a>
+        <div class="dropdown-divider"></div>
+        <a href="#" class="dropdown-item" role="menuitem">Sign Out</a>
+      </div>
+    </div>
+  </div>
+  <div class="code-block mb-4"><pre><code>&lt;div class=&quot;dropdown&quot;&gt;
+  &lt;button class=&quot;btn btn-secondary&quot; onclick=&quot;this.parentElement.classList.toggle('open')&quot;&gt;
+    Menu &amp;#9662;
+  &lt;/button&gt;
+  &lt;div class=&quot;dropdown-menu&quot;&gt;
+    &lt;a href=&quot;#&quot; class=&quot;dropdown-item&quot;&gt;Item 1&lt;/a&gt;
+    &lt;div class=&quot;dropdown-divider&quot;&gt;&lt;/div&gt;
+    &lt;a href=&quot;#&quot; class=&quot;dropdown-item&quot;&gt;Item 2&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre></div>
+</section>
+
+<section class="ref-section" id="utilities">
+  <h2 class="heading-3 mb-2">Utilities</h2>
+  <h4 class="heading-5 mb-3">Transform</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>CSS</th></tr></thead><tbody>
+<tr><td><span class="rc">rotate-45</span></td><td><span class="rv">rotate(45deg)</span></td></tr>
+<tr><td><span class="rc">rotate-90</span></td><td><span class="rv">rotate(90deg)</span></td></tr>
+<tr><td><span class="rc">rotate-180</span></td><td><span class="rv">rotate(180deg)</span></td></tr>
+<tr><td><span class="rc">-rotate-90</span></td><td><span class="rv">rotate(-90deg)</span></td></tr>
+<tr><td><span class="rc">scale-75</span></td><td><span class="rv">scale(0.75)</span></td></tr>
+<tr><td><span class="rc">scale-90</span></td><td><span class="rv">scale(0.9)</span></td></tr>
+<tr><td><span class="rc">scale-95</span></td><td><span class="rv">scale(0.95)</span></td></tr>
+<tr><td><span class="rc">scale-100</span></td><td><span class="rv">scale(1)</span></td></tr>
+<tr><td><span class="rc">scale-105</span></td><td><span class="rv">scale(1.05)</span></td></tr>
+<tr><td><span class="rc">scale-110</span></td><td><span class="rv">scale(1.1)</span></td></tr>
+<tr><td><span class="rc">scale-125</span></td><td><span class="rv">scale(1.25)</span></td></tr>
+<tr><td><span class="rc">translate-x-full</span></td><td><span class="rv">translateX(100%)</span></td></tr>
+<tr><td><span class="rc">-translate-x-full</span></td><td><span class="rv">translateX(-100%)</span></td></tr>
+<tr><td><span class="rc">translate-y-full</span></td><td><span class="rv">translateY(100%)</span></td></tr>
+<tr><td><span class="rc">-translate-y-full</span></td><td><span class="rv">translateY(-100%)</span></td></tr>
+<tr><td><span class="rc">origin-center</span></td><td><span class="rv">transform-origin: center</span></td></tr>
+<tr><td><span class="rc">origin-top</span></td><td><span class="rv">transform-origin: top</span></td></tr>
+</tbody></table></div>
+
+  <h4 class="heading-5 mb-3">Pointer Events &amp; User Select</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>CSS</th></tr></thead><tbody>
+<tr><td><span class="rc">pointer-events-none</span></td><td><span class="rv">pointer-events: none</span></td></tr>
+<tr><td><span class="rc">pointer-events-auto</span></td><td><span class="rv">pointer-events: auto</span></td></tr>
+<tr><td><span class="rc">select-none</span></td><td><span class="rv">user-select: none</span></td></tr>
+<tr><td><span class="rc">select-text</span></td><td><span class="rv">user-select: text</span></td></tr>
+<tr><td><span class="rc">select-all</span></td><td><span class="rv">user-select: all</span></td></tr>
+</tbody></table></div>
+
+  <h4 class="heading-5 mb-3">List Style</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>CSS</th></tr></thead><tbody>
+<tr><td><span class="rc">list-none</span></td><td><span class="rv">list-style: none</span></td></tr>
+<tr><td><span class="rc">list-disc</span></td><td><span class="rv">list-style: disc</span></td></tr>
+<tr><td><span class="rc">list-decimal</span></td><td><span class="rv">list-style: decimal</span></td></tr>
+</tbody></table></div>
+
+  <h4 class="heading-5 mb-3">Max Width</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Value</th></tr></thead><tbody>
+<tr><td><span class="rc">max-w-xs</span></td><td><span class="rv">20rem</span></td></tr>
+<tr><td><span class="rc">max-w-sm</span></td><td><span class="rv">24rem</span></td></tr>
+<tr><td><span class="rc">max-w-md</span></td><td><span class="rv">28rem</span></td></tr>
+<tr><td><span class="rc">max-w-lg</span></td><td><span class="rv">32rem</span></td></tr>
+<tr><td><span class="rc">max-w-xl</span></td><td><span class="rv">36rem</span></td></tr>
+<tr><td><span class="rc">max-w-2xl</span></td><td><span class="rv">42rem</span></td></tr>
+<tr><td><span class="rc">max-w-3xl</span></td><td><span class="rv">48rem</span></td></tr>
+<tr><td><span class="rc">max-w-4xl</span></td><td><span class="rv">56rem</span></td></tr>
+<tr><td><span class="rc">max-w-prose</span></td><td><span class="rv">65ch</span></td></tr>
+<tr><td><span class="rc">max-w-none</span></td><td><span class="rv">none</span></td></tr>
+</tbody></table></div>
+
+  <h4 class="heading-5 mb-3">Ring (Focus Ring)</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>CSS</th></tr></thead><tbody>
+<tr><td><span class="rc">ring</span></td><td><span class="rv">0 0 0 3px accent-subtle</span></td></tr>
+<tr><td><span class="rc">ring-accent</span></td><td><span class="rv">0 0 0 3px accent-subtle</span></td></tr>
+<tr><td><span class="rc">ring-success</span></td><td><span class="rv">0 0 0 3px success-subtle</span></td></tr>
+<tr><td><span class="rc">ring-error</span></td><td><span class="rv">0 0 0 3px error-subtle</span></td></tr>
+<tr><td><span class="rc">ring-0</span></td><td><span class="rv">none</span></td></tr>
+<tr><td><span class="rc">ring-2</span></td><td><span class="rv">0 0 0 2px accent-subtle</span></td></tr>
+</tbody></table></div>
+
+  <h4 class="heading-5 mb-3">Backdrop Filter</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>CSS</th></tr></thead><tbody>
+<tr><td><span class="rc">backdrop-blur-sm</span></td><td><span class="rv">blur(4px)</span></td></tr>
+<tr><td><span class="rc">backdrop-blur</span></td><td><span class="rv">blur(8px)</span></td></tr>
+<tr><td><span class="rc">backdrop-blur-lg</span></td><td><span class="rv">blur(16px)</span></td></tr>
+</tbody></table></div>
+
+  <h4 class="heading-5 mb-3">Negative Margin</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>CSS</th></tr></thead><tbody>
+<tr><td><span class="rc">-m-1</span></td><td><span class="rv">-0.25rem</span></td></tr>
+<tr><td><span class="rc">-m-2</span></td><td><span class="rv">-0.5rem</span></td></tr>
+<tr><td><span class="rc">-mt-1</span></td><td><span class="rv">-0.25rem</span></td></tr>
+<tr><td><span class="rc">-mt-2</span></td><td><span class="rv">-0.5rem</span></td></tr>
+<tr><td><span class="rc">-mt-4</span></td><td><span class="rv">-1rem</span></td></tr>
+<tr><td><span class="rc">-mb-1</span></td><td><span class="rv">-0.25rem</span></td></tr>
+<tr><td><span class="rc">-mb-2</span></td><td><span class="rv">-0.5rem</span></td></tr>
+</tbody></table></div>
+
+</section>
+
+<section class="ref-section" id="states">
+  <h2 class="heading-3 mb-2">State Variants</h2>
+  <p class="text-secondary text-sm mb-4">Prefix utilities with <code class="code">hover:</code>, <code class="code">focus:</code>, <code class="code">active:</code>, <code class="code">group-hover:</code>, or <code class="code">disabled:</code> for stateful styling.</p>
+
+  <h4 class="heading-5 mb-3">hover: Background</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Hover Value</th></tr></thead><tbody>
+<tr><td><span class="rc">hover:bg-primary</span></td><td><span class="rv">var(--noir-bg-primary)</span></td></tr>
+<tr><td><span class="rc">hover:bg-secondary</span></td><td><span class="rv">var(--noir-bg-secondary)</span></td></tr>
+<tr><td><span class="rc">hover:bg-tertiary</span></td><td><span class="rv">var(--noir-bg-tertiary)</span></td></tr>
+<tr><td><span class="rc">hover:bg-elevated</span></td><td><span class="rv">var(--noir-bg-elevated)</span></td></tr>
+<tr><td><span class="rc">hover:bg-accent</span></td><td><span class="rv">var(--noir-accent)</span></td></tr>
+<tr><td><span class="rc">hover:bg-accent-subtle</span></td><td><span class="rv">var(--noir-accent-subtle)</span></td></tr>
+<tr><td><span class="rc">hover:bg-accent-warm</span></td><td><span class="rv">var(--noir-accent-warm)</span></td></tr>
+<tr><td><span class="rc">hover:bg-transparent</span></td><td><span class="rv">transparent</span></td></tr>
+</tbody></table></div>
+
+  <h4 class="heading-5 mb-3">hover: Text</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Hover Value</th></tr></thead><tbody>
+<tr><td><span class="rc">hover:text-primary</span></td><td><span class="rv">var(--noir-text-primary)</span></td></tr>
+<tr><td><span class="rc">hover:text-secondary</span></td><td><span class="rv">var(--noir-text-secondary)</span></td></tr>
+<tr><td><span class="rc">hover:text-accent</span></td><td><span class="rv">var(--noir-accent)</span></td></tr>
+<tr><td><span class="rc">hover:text-accent-warm</span></td><td><span class="rv">var(--noir-accent-warm)</span></td></tr>
+<tr><td><span class="rc">hover:text-white</span></td><td><span class="rv">#ffffff</span></td></tr>
+</tbody></table></div>
+
+  <h4 class="heading-5 mb-3">hover: Border, Shadow, Opacity</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Effect</th></tr></thead><tbody>
+<tr><td><span class="rc">hover:border-accent</span></td><td><span class="rv">border-color: accent</span></td></tr>
+<tr><td><span class="rc">hover:border-hover</span></td><td><span class="rv">border-color: border-hover</span></td></tr>
+<tr><td><span class="rc">hover:shadow</span></td><td><span class="rv">shadow-md</span></td></tr>
+<tr><td><span class="rc">hover:shadow-lg</span></td><td><span class="rv">shadow-lg</span></td></tr>
+<tr><td><span class="rc">hover:shadow-glow</span></td><td><span class="rv">shadow-glow</span></td></tr>
+<tr><td><span class="rc">hover:shadow-none</span></td><td><span class="rv">none</span></td></tr>
+<tr><td><span class="rc">hover:opacity-75</span></td><td><span class="rv">0.75</span></td></tr>
+<tr><td><span class="rc">hover:opacity-90</span></td><td><span class="rv">0.9</span></td></tr>
+<tr><td><span class="rc">hover:opacity-100</span></td><td><span class="rv">1</span></td></tr>
+</tbody></table></div>
+
+  <h4 class="heading-5 mb-3">hover: Transform &amp; Text</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Effect</th></tr></thead><tbody>
+<tr><td><span class="rc">hover:scale-105</span></td><td><span class="rv">scale(1.05)</span></td></tr>
+<tr><td><span class="rc">hover:scale-110</span></td><td><span class="rv">scale(1.1)</span></td></tr>
+<tr><td><span class="rc">hover:-translate-y-1</span></td><td><span class="rv">translateY(-0.25rem)</span></td></tr>
+<tr><td><span class="rc">hover:-translate-y-2</span></td><td><span class="rv">translateY(-0.5rem)</span></td></tr>
+<tr><td><span class="rc">hover:underline</span></td><td><span class="rv">underline</span></td></tr>
+<tr><td><span class="rc">hover:no-underline</span></td><td><span class="rv">none</span></td></tr>
+</tbody></table></div>
+
+  <h4 class="heading-5 mb-3">focus:</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Effect</th></tr></thead><tbody>
+<tr><td><span class="rc">focus:ring</span></td><td><span class="rv">3px accent ring</span></td></tr>
+<tr><td><span class="rc">focus:ring-accent</span></td><td><span class="rv">3px accent ring</span></td></tr>
+<tr><td><span class="rc">focus:ring-2</span></td><td><span class="rv">2px ring</span></td></tr>
+<tr><td><span class="rc">focus:ring-4</span></td><td><span class="rv">4px ring</span></td></tr>
+<tr><td><span class="rc">focus:border-accent</span></td><td><span class="rv">border-color: accent</span></td></tr>
+<tr><td><span class="rc">focus:outline-none</span></td><td><span class="rv">outline: none</span></td></tr>
+<tr><td><span class="rc">focus:outline-accent</span></td><td><span class="rv">2px solid accent outline</span></td></tr>
+<tr><td><span class="rc">focus:bg-tertiary</span></td><td><span class="rv">bg tertiary</span></td></tr>
+<tr><td><span class="rc">focus:bg-accent-subtle</span></td><td><span class="rv">bg accent-subtle</span></td></tr>
+</tbody></table></div>
+
+  <h4 class="heading-5 mb-3">active:</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Effect</th></tr></thead><tbody>
+<tr><td><span class="rc">active:scale-95</span></td><td><span class="rv">scale(0.95)</span></td></tr>
+<tr><td><span class="rc">active:scale-100</span></td><td><span class="rv">scale(1)</span></td></tr>
+<tr><td><span class="rc">active:bg-accent</span></td><td><span class="rv">bg accent</span></td></tr>
+<tr><td><span class="rc">active:bg-tertiary</span></td><td><span class="rv">bg tertiary</span></td></tr>
+<tr><td><span class="rc">active:shadow-none</span></td><td><span class="rv">shadow none</span></td></tr>
+</tbody></table></div>
+
+  <h4 class="heading-5 mb-3">group-hover:</h4>
+  <p class="text-secondary text-sm mb-2">Add <code class="code">group</code> class to parent, then use <code class="code">group-hover:*</code> on children.</p>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Effect</th></tr></thead><tbody>
+<tr><td><span class="rc">group-hover:text-primary</span></td><td><span class="rv">color: text-primary</span></td></tr>
+<tr><td><span class="rc">group-hover:text-accent</span></td><td><span class="rv">color: accent</span></td></tr>
+<tr><td><span class="rc">group-hover:opacity-100</span></td><td><span class="rv">opacity: 1</span></td></tr>
+<tr><td><span class="rc">group-hover:visible</span></td><td><span class="rv">visibility: visible</span></td></tr>
+<tr><td><span class="rc">group-hover:scale-105</span></td><td><span class="rv">scale(1.05)</span></td></tr>
+</tbody></table></div>
+
+  <h4 class="heading-5 mb-3">disabled:</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Effect</th></tr></thead><tbody>
+<tr><td><span class="rc">disabled:opacity-50</span></td><td><span class="rv">opacity: 0.5</span></td></tr>
+<tr><td><span class="rc">disabled:cursor-not-allowed</span></td><td><span class="rv">cursor: not-allowed</span></td></tr>
+<tr><td><span class="rc">disabled:pointer-events-none</span></td><td><span class="rv">pointer-events: none</span></td></tr>
+</tbody></table></div>
+
+</section>
+
+<section class="ref-section" id="animations">
+  <h2 class="heading-3 mb-2">Animations</h2>
+  <h4 class="heading-5 mb-3">Animation Classes</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Effect</th></tr></thead><tbody>
+<tr><td><span class="rc">animate-fade-in</span></td><td><span class="rv">Fade in (0 to 1 opacity)</span></td></tr>
+<tr><td><span class="rc">animate-fade-out</span></td><td><span class="rv">Fade out</span></td></tr>
+<tr><td><span class="rc">animate-slide-up</span></td><td><span class="rv">Slide up + fade in</span></td></tr>
+<tr><td><span class="rc">animate-slide-down</span></td><td><span class="rv">Slide down + fade in</span></td></tr>
+<tr><td><span class="rc">animate-slide-left</span></td><td><span class="rv">Slide from right</span></td></tr>
+<tr><td><span class="rc">animate-slide-right</span></td><td><span class="rv">Slide from left</span></td></tr>
+<tr><td><span class="rc">animate-pulse</span></td><td><span class="rv">Pulsing opacity (infinite)</span></td></tr>
+<tr><td><span class="rc">animate-spin</span></td><td><span class="rv">360deg rotation (infinite)</span></td></tr>
+<tr><td><span class="rc">animate-bounce</span></td><td><span class="rv">Bouncing (infinite)</span></td></tr>
+<tr><td><span class="rc">animate-ping</span></td><td><span class="rv">Ping / ripple (infinite)</span></td></tr>
+<tr><td><span class="rc">animate-none</span></td><td><span class="rv">animation: none</span></td></tr>
+</tbody></table></div>
+
+  <h4 class="heading-5 mb-3">Duration &amp; Delay</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Value</th></tr></thead><tbody>
+<tr><td><span class="rc">animate-duration-fast</span></td><td><span class="rv">150ms</span></td></tr>
+<tr><td><span class="rc">animate-duration-base</span></td><td><span class="rv">250ms</span></td></tr>
+<tr><td><span class="rc">animate-duration-slow</span></td><td><span class="rv">400ms</span></td></tr>
+<tr><td><span class="rc">animate-delay-100</span></td><td><span class="rv">100ms</span></td></tr>
+<tr><td><span class="rc">animate-delay-200</span></td><td><span class="rv">200ms</span></td></tr>
+<tr><td><span class="rc">animate-delay-300</span></td><td><span class="rv">300ms</span></td></tr>
+<tr><td><span class="rc">animate-delay-500</span></td><td><span class="rv">500ms</span></td></tr>
+<tr><td><span class="rc">animate-infinite</span></td><td><span class="rv">infinite iteration</span></td></tr>
+<tr><td><span class="rc">animate-once</span></td><td><span class="rv">single iteration</span></td></tr>
+</tbody></table></div>
+
+  <h4 class="heading-5 mb-3">Preview</h4>
+  <div class="pbox">
+    <div class="flex flex-wrap gap-4 items-center">
+      <div class="animate-pulse badge badge-accent">Pulse</div>
+      <div class="animate-bounce text-accent font-bold">Bounce</div>
+      <div class="animate-spin spinner"></div>
+    </div>
+  </div>
+  <h4 class="heading-5 mb-3 mt-4">Reduced Motion</h4>
+  <p class="text-secondary text-sm">When <code class="code">prefers-reduced-motion: reduce</code> is set, all animations and transitions are reduced to near-zero duration automatically.</p>
+</section>
+
+<section class="ref-section" id="accessibility">
+  <h2 class="heading-3 mb-2">Accessibility</h2>
+  <p class="text-secondary text-sm mb-6">Noir is built with WCAG 2.1 AA guidelines in mind.</p>
+
+  <h4 class="heading-5 mb-3">Screen Reader</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Class</th><th>Usage</th></tr></thead><tbody>
+<tr><td><span class="rc">sr-only</span></td><td><span class="rv">Visually hide element but keep accessible to screen readers</span></td></tr>
+</tbody></table></div>
+
+
+  <h4 class="heading-5 mb-3">Focus Management</h4>
+  <p class="text-secondary text-sm mb-4">All interactive elements receive a visible <code class="code">:focus-visible</code> outline (2px solid accent, 2px offset). Use <code class="code">focus:ring</code> and <code class="code">focus:outline-accent</code> for custom focus rings.</p>
+
+  <h4 class="heading-5 mb-3">ARIA Patterns</h4>
+  <div class="ref-tw"><table class="rt"><thead><tr><th>Component</th><th>ARIA Guidance</th></tr></thead><tbody>
+<tr><td><span class="rc">Alerts</span></td><td><span class="rv">Add <span class="rc">role="alert"</span> for important messages</span></td></tr>
+<tr><td><span class="rc">Modal</span></td><td><span class="rv">Uses native &lt;dialog&gt; with built-in focus trap. Add <span class="rc">aria-labelledby</span></span></td></tr>
+<tr><td><span class="rc">Dropdown</span></td><td><span class="rv">Add <span class="rc">role="menu"</span> to menu, <span class="rc">role="menuitem"</span> to items, <span class="rc">aria-haspopup</span> and <span class="rc">aria-expanded</span> to trigger</span></td></tr>
+<tr><td><span class="rc">Tabs</span></td><td><span class="rv">Use <span class="rc">role="tablist"</span>, <span class="rc">role="tab"</span>, <span class="rc">aria-selected</span></span></td></tr>
+<tr><td><span class="rc">Breadcrumb</span></td><td><span class="rv">Wrap in <span class="rc">&lt;nav aria-label="Breadcrumb"&gt;</span></span></td></tr>
+<tr><td><span class="rc">Toast</span></td><td><span class="rv">Use <span class="rc">role="status"</span> or <span class="rc">role="alert"</span> with <span class="rc">aria-live</span></span></td></tr>
+<tr><td><span class="rc">Accordion</span></td><td><span class="rv">Native &lt;details&gt;/&lt;summary&gt; provides built-in accessibility</span></td></tr>
+<tr><td><span class="rc">Pagination</span></td><td><span class="rv">Add <span class="rc">aria-current="page"</span> to active link</span></td></tr>
+</tbody></table></div>
+
+
+  <h4 class="heading-5 mb-3">Reduced Motion</h4>
+  <p class="text-secondary text-sm mb-4">All animations respect <code class="code">prefers-reduced-motion: reduce</code>. Animation durations are set to near-zero automatically.</p>
+
+  <h4 class="heading-5 mb-3">Color Contrast</h4>
+  <p class="text-secondary text-sm mb-4">Both dark and light themes are designed with sufficient contrast ratios. Primary text on primary background meets WCAG AA. Use semantic colors (success, error, warning, info) for meaningful status indication, not just color alone.</p>
+
+  <h4 class="heading-5 mb-3">Keyboard Navigation</h4>
+  <p class="text-secondary text-sm">All interactive components (buttons, inputs, links, tabs, modals, dropdowns) are keyboard accessible. The native <code class="code">&lt;dialog&gt;</code> element provides focus trapping. Use <code class="code">tabindex</code> to manage custom focus order when needed.</p>
+</section>
+
+</main>
+</div>
+
+<footer class="border-t py-8 mt-8">
+  <div class="container text-center">
+    <p class="text-sm text-muted">Noir CSS Framework v1.0 &mdash; Dark-cool utility-first CSS</p>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var saved = localStorage.getItem('noir-theme');
+    if (saved) {
+      document.documentElement.setAttribute('data-theme', saved);
     }
+    var btn = document.getElementById('themeBtn');
+    if (btn) {
+      btn.textContent = document.documentElement.getAttribute('data-theme') === 'dark' ? 'Light Mode' : 'Dark Mode';
+    }
+  })();
 
-    /* Search / Filter */
-    (function() {
-      var input = document.getElementById('searchInput');
-      var countEl = document.getElementById('matchCount');
-      var tables = document.querySelectorAll('.ref-table');
-
-      input.addEventListener('input', function() {
-        var query = this.value.toLowerCase().trim();
-        var total = 0;
-        var visible = 0;
-
-        tables.forEach(function(table) {
-          var rows = table.querySelectorAll('tbody tr');
-          rows.forEach(function(row) {
-            total++;
-            var className = row.cells[0] ? row.cells[0].textContent.toLowerCase() : '';
-            var desc = row.cells[2] ? row.cells[2].textContent.toLowerCase() : '';
-            if (!query || className.indexOf(query) !== -1 || desc.indexOf(query) !== -1) {
-              row.style.display = '';
-              visible++;
-            } else {
-              row.style.display = 'none';
-            }
-          });
-        });
-
-        if (query) {
-          countEl.textContent = visible + ' of ' + total + ' classes';
-        } else {
-          countEl.textContent = total + ' classes total';
-        }
-      });
-
-      /* Trigger initial count */
-      input.dispatchEvent(new Event('input'));
-    })();
-  </script>
+  function toggleTheme() {
+    var html = document.documentElement;
+    var btn = document.getElementById('themeBtn');
+    if (html.getAttribute('data-theme') === 'dark') {
+      html.setAttribute('data-theme', 'light');
+      btn.textContent = 'Dark Mode';
+      localStorage.setItem('noir-theme', 'light');
+    } else {
+      html.setAttribute('data-theme', 'dark');
+      btn.textContent = 'Light Mode';
+      localStorage.setItem('noir-theme', 'dark');
+    }
+  }
+</script>
 </body>
 </html>
