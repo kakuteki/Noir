@@ -34,7 +34,14 @@
     "url": "https://github.com/kakuteki/Noir/issues"
   },
   "devDependencies": {
+    "browserslist": "^4.23.0",
+    "lightningcss": "^1.25.0",
     "stylelint": "^16.0.0",
     "stylelint-config-standard": "^36.0.0"
-  }
+  },
+  "browserslist": [
+    ">= 0.5%",
+    "last 2 versions",
+    "not dead"
+  ]
 }
