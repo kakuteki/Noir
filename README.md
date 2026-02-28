@@ -4,7 +4,7 @@ A utility-first dark theme CSS framework with bold accent colors.
 
 ![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)
 [![GitHub Pages](https://img.shields.io/badge/demo-GitHub%20Pages-brightgreen.svg)](https://kakuteki.github.io/Noir/)
-![CSS Size](https://img.shields.io/badge/size-~67KB-orange.svg)
+![CSS Size](https://img.shields.io/badge/size-~77KB-orange.svg)
 
 ## Features
 
@@ -12,8 +12,8 @@ A utility-first dark theme CSS framework with bold accent colors.
 - **Dark / Light theme** — switch themes via `data-theme` attribute or auto-follow OS preference
 - **5 responsive breakpoints** — `xs` / `sm` / `md` / `lg` / `xl`
 - **Modular architecture** — load only the modules you need
-- **No JavaScript required** — pure CSS, zero runtime dependencies
-- **Lightweight (~67KB)** — full framework unminified
+- **No JavaScript required** — pure CSS components; interactive patterns (modal, dropdown) need minimal JS
+- **Lightweight (~77KB)** — full framework unminified
 - **`prefers-reduced-motion` support** — respects user accessibility settings
 
 ## Why Noir?
@@ -22,12 +22,14 @@ A utility-first dark theme CSS framework with bold accent colors.
 |---|---|---|---|
 | Philosophy | Utility-first | Utility-first | Component-first |
 | Default theme | Dark | Light | Light |
-| JavaScript | None | None (core) | Required |
-| File size | ~67KB | ~300KB+ | ~200KB+ |
-| Build step | Not required | Required (PostCSS) | Optional |
+| JavaScript | Optional (modal/dropdown) | None (core) | Required |
+| File size | ~77KB | ~300KB+* | ~200KB+ |
+| Build step | Optional (minified build) | Required (PostCSS) | Optional |
 | Dark mode | Built-in (`data-theme`) | Class-based (`dark:`) | `data-bs-theme` (v5.3+) |
 | Learning curve | Low | Medium | Medium |
 | Customization | CSS variables | tailwind.config.js | Sass variables |
+
+*\* Tailwind's ~300KB+ is the full development build; post-purge production builds are typically 5–15KB.*
 
 **Noir is ideal when you want:**
 - A dark-first design without extra configuration
