@@ -1720,26 +1720,7 @@ pre {
   color: var(--noir-info);
 }
 
-/* --- Modal / Overlay --- */
-.overlay {
-  position: fixed;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(4px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: var(--noir-z-overlay);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity var(--noir-transition-base);
-}
-
-.overlay.active {
-  opacity: 1;
-  pointer-events: auto;
-}
-
+/* --- Modal / Dialog --- */
 .modal {
   background-color: var(--noir-bg-secondary);
   border: 1px solid var(--noir-border);
@@ -1749,12 +1730,22 @@ pre {
   max-width: 500px;
   max-height: 85vh;
   overflow-y: auto;
-  transform: translateY(20px) scale(0.95);
-  transition: transform var(--noir-transition-base);
+  padding: 0;
+  color: var(--noir-text-primary);
 }
 
-.overlay.active .modal {
-  transform: translateY(0) scale(1);
+.modal::backdrop {
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+.modal[open] {
+  animation: noir-modal-in var(--noir-transition-base) ease forwards;
+}
+
+@keyframes noir-modal-in {
+  from { transform: translateY(20px) scale(0.95); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
 }
 
 .modal-header {
@@ -1775,6 +1766,26 @@ pre {
   gap: var(--noir-space-3);
   padding: var(--noir-space-4) var(--noir-space-6);
   border-top: 1px solid var(--noir-border);
+}
+
+/* Legacy overlay support */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--noir-z-overlay);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--noir-transition-base);
+}
+
+.overlay.active {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 /* --- Divider --- */

@@ -582,32 +582,24 @@
     <!-- ===== Modal Demo ===== -->
     <section class="demo-section">
       <h2 class="heading-3 demo-title">Modal</h2>
-      <p class="text-secondary demo-desc">Overlay dialog with animation.</p>
-      <button class="btn btn-primary" onclick="document.getElementById('demoModal').classList.add('active')">
-        Open Modal
-      </button>
+      <p class="text-secondary demo-desc">Native dialog element — Esc to close, focus trap, and backdrop are built-in.</p>
+      <button class="btn btn-primary" onclick="document.getElementById('demo-modal').showModal()">Open Modal</button>
+      <dialog id="demo-modal" class="modal" aria-labelledby="modal-title">
+        <div class="modal-header">
+          <h3 id="modal-title" class="text-lg font-semibold">Modal Title</h3>
+          <button class="btn btn-ghost btn-icon" onclick="document.getElementById('demo-modal').close()" aria-label="Close">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p class="text-secondary">This modal uses the native &lt;dialog&gt; element — Esc to close, focus trap, and backdrop are built-in.</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-ghost" onclick="document.getElementById('demo-modal').close()">Cancel</button>
+          <button class="btn btn-primary">Confirm</button>
+        </div>
+      </dialog>
     </section>
 
   </main>
-
-  <!-- Modal -->
-  <div class="overlay" id="demoModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" onclick="if(event.target===this)this.classList.remove('active')">
-    <div class="modal">
-      <div class="modal-header">
-        <h3 class="heading-5" id="modalTitle">Confirm Action</h3>
-        <button class="btn btn-ghost btn-icon btn-sm" aria-label="Close" onclick="document.getElementById('demoModal').classList.remove('active')">
-          &times;
-        </button>
-      </div>
-      <div class="modal-body">
-        <p class="text-secondary text-sm">Are you sure you want to proceed? This action cannot be undone.</p>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-ghost" onclick="document.getElementById('demoModal').classList.remove('active')">Cancel</button>
-        <button class="btn btn-primary" onclick="document.getElementById('demoModal').classList.remove('active')">Confirm</button>
-      </div>
-    </div>
-  </div>
 
   <!-- Footer -->
   <footer class="border-t py-8 mt-8">
