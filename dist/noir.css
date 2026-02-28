@@ -2679,6 +2679,94 @@ pre {
 .-mx-4 { margin-inline: calc(var(--noir-space-4) * -1); }
 
 /* ============================================
+   Noir CSS Framework - State Variants Module
+   hover:, focus:, active: pseudo-class utilities
+   ============================================ */
+
+/* --- Hover: Background --- */
+.hover\:bg-primary:hover { background-color: var(--noir-bg-primary); }
+.hover\:bg-secondary:hover { background-color: var(--noir-bg-secondary); }
+.hover\:bg-tertiary:hover { background-color: var(--noir-bg-tertiary); }
+.hover\:bg-elevated:hover { background-color: var(--noir-bg-elevated); }
+.hover\:bg-accent:hover { background-color: var(--noir-accent); }
+.hover\:bg-accent-subtle:hover { background-color: var(--noir-accent-subtle); }
+.hover\:bg-accent-warm:hover { background-color: var(--noir-accent-warm); }
+.hover\:bg-transparent:hover { background-color: transparent; }
+
+/* --- Hover: Text Color --- */
+.hover\:text-primary:hover { color: var(--noir-text-primary); }
+.hover\:text-secondary:hover { color: var(--noir-text-secondary); }
+.hover\:text-accent:hover { color: var(--noir-accent); }
+.hover\:text-accent-warm:hover { color: var(--noir-accent-warm); }
+.hover\:text-white:hover { color: #ffffff; }
+
+/* --- Hover: Border --- */
+.hover\:border-accent:hover { border-color: var(--noir-accent); }
+.hover\:border-hover:hover { border-color: var(--noir-border-hover); }
+
+/* --- Hover: Shadow --- */
+.hover\:shadow:hover { box-shadow: var(--noir-shadow-md); }
+.hover\:shadow-lg:hover { box-shadow: var(--noir-shadow-lg); }
+.hover\:shadow-glow:hover { box-shadow: var(--noir-shadow-glow); }
+.hover\:shadow-none:hover { box-shadow: none; }
+
+/* --- Hover: Opacity --- */
+.hover\:opacity-75:hover { opacity: 0.75; }
+.hover\:opacity-90:hover { opacity: 0.9; }
+.hover\:opacity-100:hover { opacity: 1; }
+
+/* --- Hover: Transform --- */
+.hover\:scale-105:hover { transform: scale(1.05); }
+.hover\:scale-110:hover { transform: scale(1.1); }
+.hover\:-translate-y-1:hover { transform: translateY(-0.25rem); }
+.hover\:-translate-y-2:hover { transform: translateY(-0.5rem); }
+
+/* --- Hover: Text Decoration --- */
+.hover\:underline:hover { text-decoration: underline; }
+.hover\:no-underline:hover { text-decoration: none; }
+
+/* --- Focus: Ring --- */
+.focus\:ring:focus { box-shadow: 0 0 0 3px var(--noir-accent-subtle); }
+.focus\:ring-accent:focus { box-shadow: 0 0 0 3px var(--noir-accent-subtle); }
+.focus\:ring-2:focus { box-shadow: 0 0 0 2px var(--noir-accent-subtle); }
+.focus\:ring-4:focus { box-shadow: 0 0 0 4px var(--noir-accent-subtle); }
+
+/* --- Focus: Border --- */
+.focus\:border-accent:focus { border-color: var(--noir-accent); }
+.focus\:border-accent:focus-visible { border-color: var(--noir-accent); }
+
+/* --- Focus: Outline --- */
+.focus\:outline-none:focus { outline: none; }
+.focus\:outline-accent:focus-visible { outline: 2px solid var(--noir-accent); outline-offset: 2px; }
+
+/* --- Focus: Background --- */
+.focus\:bg-tertiary:focus { background-color: var(--noir-bg-tertiary); }
+.focus\:bg-accent-subtle:focus { background-color: var(--noir-accent-subtle); }
+
+/* --- Active: Transform --- */
+.active\:scale-95:active { transform: scale(0.95); }
+.active\:scale-100:active { transform: scale(1); }
+
+/* --- Active: Background --- */
+.active\:bg-accent:active { background-color: var(--noir-accent); }
+.active\:bg-tertiary:active { background-color: var(--noir-bg-tertiary); }
+
+/* --- Active: Shadow --- */
+.active\:shadow-none:active { box-shadow: none; }
+
+/* --- Group Hover (parent with .group) --- */
+.group:hover .group-hover\:text-primary { color: var(--noir-text-primary); }
+.group:hover .group-hover\:text-accent { color: var(--noir-accent); }
+.group:hover .group-hover\:opacity-100 { opacity: 1; }
+.group:hover .group-hover\:visible { visibility: visible; }
+.group:hover .group-hover\:scale-105 { transform: scale(1.05); }
+
+/* --- Disabled --- */
+.disabled\:opacity-50:disabled { opacity: 0.5; }
+.disabled\:cursor-not-allowed:disabled { cursor: not-allowed; }
+.disabled\:pointer-events-none:disabled { pointer-events: none; }
+
+/* ============================================
    Noir CSS Framework - Animations Module
    Fade, Slide, Pulse, Spin, Bounce
    ============================================ */
