@@ -1,0 +1,147 @@
+/* ============================================
+   Noir CSS Framework - Typography Module
+   Font Sizes, Weights, Alignment, Colors
+   ============================================ */
+
+/* --- Font Family --- */
+.font-sans { font-family: var(--noir-font-sans); }
+.font-mono { font-family: var(--noir-font-mono); }
+
+/* --- Font Size --- */
+.text-xs { font-size: var(--noir-text-xs); }
+.text-sm { font-size: var(--noir-text-sm); }
+.text-base { font-size: var(--noir-text-base); }
+.text-lg { font-size: var(--noir-text-lg); }
+.text-xl { font-size: var(--noir-text-xl); }
+.text-2xl { font-size: var(--noir-text-2xl); }
+.text-3xl { font-size: var(--noir-text-3xl); }
+.text-4xl { font-size: var(--noir-text-4xl); }
+.text-5xl { font-size: var(--noir-text-5xl); }
+
+/* --- Font Weight --- */
+.font-light { font-weight: var(--noir-font-light); }
+.font-normal { font-weight: var(--noir-font-normal); }
+.font-medium { font-weight: var(--noir-font-medium); }
+.font-semibold { font-weight: var(--noir-font-semibold); }
+.font-bold { font-weight: var(--noir-font-bold); }
+
+/* --- Line Height --- */
+.leading-tight { line-height: var(--noir-leading-tight); }
+.leading-normal { line-height: var(--noir-leading-normal); }
+.leading-relaxed { line-height: var(--noir-leading-relaxed); }
+
+/* --- Text Alignment --- */
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-justify { text-align: justify; }
+
+/* --- Text Color --- */
+.text-primary { color: var(--noir-text-primary); }
+.text-secondary { color: var(--noir-text-secondary); }
+.text-muted { color: var(--noir-text-muted); }
+.text-inverse { color: var(--noir-text-inverse); }
+.text-accent { color: var(--noir-accent); }
+.text-accent-warm { color: var(--noir-accent-warm); }
+.text-success { color: var(--noir-success); }
+.text-warning { color: var(--noir-warning); }
+.text-error { color: var(--noir-error); }
+.text-info { color: var(--noir-info); }
+
+/* --- Text Decoration --- */
+.underline { text-decoration: underline; }
+.line-through { text-decoration: line-through; }
+.no-underline { text-decoration: none; }
+
+/* --- Text Transform --- */
+.uppercase { text-transform: uppercase; }
+.lowercase { text-transform: lowercase; }
+.capitalize { text-transform: capitalize; }
+.normal-case { text-transform: none; }
+
+/* --- Letter Spacing --- */
+.tracking-tight { letter-spacing: -0.025em; }
+.tracking-normal { letter-spacing: 0; }
+.tracking-wide { letter-spacing: 0.025em; }
+.tracking-wider { letter-spacing: 0.05em; }
+.tracking-widest { letter-spacing: 0.1em; }
+
+/* --- Text Overflow --- */
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.whitespace-nowrap { white-space: nowrap; }
+.whitespace-pre { white-space: pre; }
+.break-words { overflow-wrap: break-word; }
+
+/* --- Heading Styles --- */
+.heading-1 {
+  font-size: var(--noir-text-5xl);
+  font-weight: var(--noir-font-bold);
+  line-height: var(--noir-leading-tight);
+  letter-spacing: -0.025em;
+}
+
+.heading-2 {
+  font-size: var(--noir-text-4xl);
+  font-weight: var(--noir-font-bold);
+  line-height: var(--noir-leading-tight);
+  letter-spacing: -0.025em;
+}
+
+.heading-3 {
+  font-size: var(--noir-text-3xl);
+  font-weight: var(--noir-font-semibold);
+  line-height: var(--noir-leading-tight);
+}
+
+.heading-4 {
+  font-size: var(--noir-text-2xl);
+  font-weight: var(--noir-font-semibold);
+  line-height: var(--noir-leading-tight);
+}
+
+.heading-5 {
+  font-size: var(--noir-text-xl);
+  font-weight: var(--noir-font-medium);
+  line-height: var(--noir-leading-tight);
+}
+
+/* --- Code Block --- */
+.code {
+  font-family: var(--noir-font-mono);
+  font-size: var(--noir-text-sm);
+  background-color: var(--noir-bg-tertiary);
+  padding: var(--noir-space-1) var(--noir-space-2);
+  border-radius: var(--noir-radius-sm);
+  border: 1px solid var(--noir-border);
+}
+
+.code-block {
+  font-family: var(--noir-font-mono);
+  font-size: var(--noir-text-sm);
+  background-color: var(--noir-bg-tertiary);
+  padding: var(--noir-space-4);
+  border-radius: var(--noir-radius-md);
+  border: 1px solid var(--noir-border);
+  overflow-x: auto;
+  white-space: pre;
+  line-height: var(--noir-leading-relaxed);
+}

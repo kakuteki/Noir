@@ -1,0 +1,278 @@
+/* ============================================
+   Noir CSS Framework - Base Module
+   Reset, CSS Variables, Theme System
+   ============================================ */
+
+/* --- Theme Variables --- */
+:root,
+[data-theme="dark"] {
+  /* Background */
+  --noir-bg-primary: #0a0a0a;
+  --noir-bg-secondary: #141414;
+  --noir-bg-tertiary: #1e1e1e;
+  --noir-bg-elevated: #262626;
+
+  /* Text */
+  --noir-text-primary: #f0f0f0;
+  --noir-text-secondary: #a0a0a0;
+  --noir-text-muted: #666666;
+  --noir-text-inverse: #0a0a0a;
+
+  /* Accent - Red / Orange */
+  --noir-accent: #e84545;
+  --noir-accent-hover: #ff5252;
+  --noir-accent-subtle: rgba(232, 69, 69, 0.15);
+  --noir-accent-warm: #f97316;
+  --noir-accent-warm-hover: #fb923c;
+
+  /* Borders */
+  --noir-border: #2a2a2a;
+  --noir-border-hover: #3a3a3a;
+  --noir-border-focus: var(--noir-accent);
+
+  /* Semantic Colors */
+  --noir-success: #22c55e;
+  --noir-success-subtle: rgba(34, 197, 94, 0.15);
+  --noir-warning: #eab308;
+  --noir-warning-subtle: rgba(234, 179, 8, 0.15);
+  --noir-error: #ef4444;
+  --noir-error-subtle: rgba(239, 68, 68, 0.15);
+  --noir-info: #3b82f6;
+  --noir-info-subtle: rgba(59, 130, 246, 0.15);
+
+  /* Spacing Scale */
+  --noir-space-0: 0;
+  --noir-space-1: 0.25rem;
+  --noir-space-2: 0.5rem;
+  --noir-space-3: 0.75rem;
+  --noir-space-4: 1rem;
+  --noir-space-5: 1.25rem;
+  --noir-space-6: 1.5rem;
+  --noir-space-8: 2rem;
+  --noir-space-10: 2.5rem;
+  --noir-space-12: 3rem;
+  --noir-space-16: 4rem;
+  --noir-space-20: 5rem;
+  --noir-space-24: 6rem;
+
+  /* Typography */
+  --noir-font-sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --noir-font-mono: "JetBrains Mono", "Fira Code", "Consolas", monospace;
+
+  --noir-text-xs: 0.75rem;
+  --noir-text-sm: 0.875rem;
+  --noir-text-base: 1rem;
+  --noir-text-lg: 1.125rem;
+  --noir-text-xl: 1.25rem;
+  --noir-text-2xl: 1.5rem;
+  --noir-text-3xl: 1.875rem;
+  --noir-text-4xl: 2.25rem;
+  --noir-text-5xl: 3rem;
+
+  --noir-leading-tight: 1.25;
+  --noir-leading-normal: 1.5;
+  --noir-leading-relaxed: 1.75;
+
+  --noir-font-light: 300;
+  --noir-font-normal: 400;
+  --noir-font-medium: 500;
+  --noir-font-semibold: 600;
+  --noir-font-bold: 700;
+
+  /* Border Radius */
+  --noir-radius-none: 0;
+  --noir-radius-sm: 0.25rem;
+  --noir-radius-md: 0.5rem;
+  --noir-radius-lg: 0.75rem;
+  --noir-radius-xl: 1rem;
+  --noir-radius-full: 9999px;
+
+  /* Shadows */
+  --noir-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --noir-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+  --noir-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
+  --noir-shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.5);
+  --noir-shadow-glow: 0 0 20px rgba(232, 69, 69, 0.3);
+
+  /* Transitions */
+  --noir-transition-fast: 150ms ease;
+  --noir-transition-base: 250ms ease;
+  --noir-transition-slow: 400ms ease;
+
+  /* Z-index Scale */
+  --noir-z-dropdown: 100;
+  --noir-z-sticky: 200;
+  --noir-z-overlay: 300;
+  --noir-z-modal: 400;
+  --noir-z-toast: 500;
+
+  color-scheme: dark;
+}
+
+/* --- Light Theme --- */
+[data-theme="light"] {
+  --noir-bg-primary: #f8f8f8;
+  --noir-bg-secondary: #ffffff;
+  --noir-bg-tertiary: #f0f0f0;
+  --noir-bg-elevated: #ffffff;
+
+  --noir-text-primary: #1a1a1a;
+  --noir-text-secondary: #555555;
+  --noir-text-muted: #999999;
+  --noir-text-inverse: #f0f0f0;
+
+  --noir-accent: #d63031;
+  --noir-accent-hover: #e84545;
+  --noir-accent-subtle: rgba(214, 48, 49, 0.1);
+  --noir-accent-warm: #e67e22;
+  --noir-accent-warm-hover: #f97316;
+
+  --noir-border: #e0e0e0;
+  --noir-border-hover: #cccccc;
+
+  --noir-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.08);
+  --noir-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.08);
+  --noir-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --noir-shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
+  --noir-shadow-glow: 0 0 20px rgba(214, 48, 49, 0.2);
+
+  color-scheme: light;
+}
+
+/* --- Auto Theme (follows OS preference) --- */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+    --noir-bg-primary: #f8f8f8;
+    --noir-bg-secondary: #ffffff;
+    --noir-bg-tertiary: #f0f0f0;
+    --noir-bg-elevated: #ffffff;
+
+    --noir-text-primary: #1a1a1a;
+    --noir-text-secondary: #555555;
+    --noir-text-muted: #999999;
+    --noir-text-inverse: #f0f0f0;
+
+    --noir-accent: #d63031;
+    --noir-accent-hover: #e84545;
+    --noir-accent-subtle: rgba(214, 48, 49, 0.1);
+    --noir-accent-warm: #e67e22;
+    --noir-accent-warm-hover: #f97316;
+
+    --noir-border: #e0e0e0;
+    --noir-border-hover: #cccccc;
+
+    --noir-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.08);
+    --noir-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.08);
+    --noir-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+    --noir-shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
+    --noir-shadow-glow: 0 0 20px rgba(214, 48, 49, 0.2);
+
+    color-scheme: light;
+  }
+}
+
+/* --- Modern CSS Reset --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -moz-tab-size: 4;
+  tab-size: 4;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--noir-font-sans);
+  font-size: var(--noir-text-base);
+  line-height: var(--noir-leading-normal);
+  color: var(--noir-text-primary);
+  background-color: var(--noir-bg-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100dvh;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+a {
+  color: var(--noir-accent);
+  text-decoration: none;
+  transition: color var(--noir-transition-fast);
+}
+
+a:hover {
+  color: var(--noir-accent-hover);
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: var(--noir-leading-tight);
+  font-weight: var(--noir-font-bold);
+  color: var(--noir-text-primary);
+}
+
+code,
+kbd,
+pre {
+  font-family: var(--noir-font-mono);
+}
+
+::selection {
+  background-color: var(--noir-accent);
+  color: #ffffff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--noir-accent);
+  outline-offset: 2px;
+}
+
+/* Scrollbar styling (Webkit) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--noir-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--noir-border-hover);
+  border-radius: var(--noir-radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--noir-text-muted);
+}
