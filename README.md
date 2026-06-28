@@ -4,7 +4,7 @@ A utility-first dark theme CSS framework with bold accent colors.
 
 ![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)
 [![GitHub Pages](https://img.shields.io/badge/demo-GitHub%20Pages-brightgreen.svg)](https://kakuteki.github.io/Noir/)
-![CSS Size](https://img.shields.io/badge/size-~77KB-orange.svg)
+![CSS Size](https://img.shields.io/badge/size-~51KB%20min-orange.svg)
 
 ## Features
 
@@ -13,7 +13,7 @@ A utility-first dark theme CSS framework with bold accent colors.
 - **5 responsive breakpoints** — `xs` / `sm` / `md` / `lg` / `xl`
 - **Modular architecture** — load only the modules you need
 - **No JavaScript required** — pure CSS components; interactive patterns (modal, dropdown) need minimal JS
-- **Lightweight (~77KB)** — full framework unminified
+- **Lightweight (~66KB unminified, ~51KB minified)** — full framework
 - **`prefers-reduced-motion` support** — respects user accessibility settings
 
 ## Why Noir?
