@@ -22,6 +22,7 @@ css/
     ├── components.css    # UI components
     ├── navigation.css    # Nav components
     ├── utilities.css     # Transform utilities
+    ├── states.css        # State variants (hover:/focus:/active:/group-hover:/disabled:)
     └── animations.css    # Animation utilities
 ```
 
@@ -32,7 +33,7 @@ css/
 - Use CSS custom properties (variables) defined in `base.css`
 - Follow the `--noir-` prefix for all custom properties
 - Use BEM-inspired flat class names (e.g., `.card-header`, `.btn-primary`)
-- Add responsive variants using the `sm:`, `md:`, `lg:`, `xl:` prefix pattern
+- Add responsive variants using the `sm:`, `md:`, `lg:` prefix pattern
 
 ### Adding a New Utility
 

@@ -10,7 +10,7 @@ A utility-first dark theme CSS framework with bold accent colors.
 
 - **Utility-first design** — compose layouts and styles with low-level utility classes
 - **Dark / Light theme** — switch themes via `data-theme` attribute or auto-follow OS preference
-- **5 responsive breakpoints** — `xs` / `sm` / `md` / `lg` / `xl`
+- **Responsive breakpoints** — `sm` / `md` / `lg` utility variants (mobile-first; `xs` is the default base)
 - **Modular architecture** — load only the modules you need
 - **No JavaScript required** — pure CSS components; interactive patterns (modal, dropdown) need minimal JS
 - **Lightweight (~66KB unminified, ~51KB minified)** — full framework
@@ -136,11 +136,12 @@ git clone https://github.com/kakuteki/Noir.git
 |---|---|
 | `base.css` | CSS variables, reset, dark/light theme system |
 | `typography.css` | Font sizes, weights, alignment, text utilities |
-| `layout.css` | Grid, flexbox, spacing, responsive breakpoints (xs/sm/md/lg/xl) |
+| `layout.css` | Grid, flexbox, spacing, responsive breakpoints (sm/md/lg) |
 | `forms.css` | Input, select, checkbox, radio, toggle, range |
 | `components.css` | Buttons, cards, badges, alerts, modal, tooltip, table, spinner, toast, accordion, skeleton |
 | `navigation.css` | Navbar, sidebar, tabs, breadcrumb, pagination, dropdown |
 | `utilities.css` | Transform utilities |
+| `states.css` | State variant utilities: `hover:`, `focus:`, `active:`, `group-hover:`, `disabled:` |
 | `animations.css` | Fade, slide, pulse, spin, bounce, ping animations |
 
 ## Browser Support

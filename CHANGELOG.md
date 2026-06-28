@@ -7,7 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [1.0.0] - 2026-02-28
 
 ### Added
-- Core CSS framework with 8 modules
+- Core CSS framework with 9 modules
 - Dark/Light theme system with `data-theme` attribute
 - Auto theme detection via `prefers-color-scheme`
 - Theme persistence with localStorage
@@ -15,7 +15,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Utility-first classes: spacing, typography, colors, borders, shadows
 - Responsive grid system (1-12 columns)
 - Flexbox utilities
-- 5-stage responsive breakpoints (xs/sm/md/lg/xl)
+- Responsive breakpoint variants (sm/md/lg), mobile-first (xs = default)
 - Typography module: font sizes, weights, alignment, text colors, headings
 - Form components: input, textarea, select, checkbox, radio, toggle, range slider
 - UI components: buttons, cards, badges, alerts, modal, tooltip, progress bar, skeleton, avatar, divider
@@ -26,6 +26,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Accordion component (CSS-only with details/summary)
 - Animation utilities: fade, slide, pulse, spin, bounce, ping
 - Transform utilities: rotate, scale, translate
+- State variant utilities: hover:, focus:, active:, group-hover:, disabled:
 - Visibility, aspect-ratio, object-fit, z-index, gradient utilities
 - Responsive typography variants
 - `prefers-reduced-motion` support
